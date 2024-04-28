@@ -97,7 +97,7 @@ function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
       />
       </div>
       <div className="flex flex-col p-4">
-        <Heading as="h2" className="text-2xl font-bold mb-2">
+        <Heading as="h2" className="text-2xl font-semibold mb-2">
           {title}
         </Heading>
         <p>{description}</p>

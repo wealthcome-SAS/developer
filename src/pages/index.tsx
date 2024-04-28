@@ -15,14 +15,14 @@ function HomepageHeader() {
       <img
         src="img/wealthcome-banner.svg"
         alt="My Site Logo"
-        className="w-full"
+        className="container w-full h-auto"
       />
-      
-      <div className="flex flex-col w-full items-center gap-y-5">
-      <Heading as="h1" className="font-bold text-5xl">
-        {siteConfig.title}
-      </Heading>
-        <p className="hero__subtitle w-1/2 text-center">{siteConfig.tagline}</p>
+
+      <div className="flex flex-col w-full items-center gap-y-5 mt-10">
+        <Heading as="h1" className="font-bold text-3xl md:text-5xl text-center px-10">
+          {siteConfig.title}
+        </Heading>
+        <p className="hero__subtitle w-1/2 text-center text-lg md:text-xl">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
