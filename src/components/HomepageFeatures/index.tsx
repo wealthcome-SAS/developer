@@ -92,7 +92,7 @@ function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
     >
       <div className="w-full bg-gradient-to-r from-slate-500 to-slate-800 flex items-center justify-center">
       <Svg
-        className="w-14 h-14 p-2 rounded-md border border-slate-400 bg-slate-400/40 my-10"
+        className="w-16 h-16 p-3 rounded-2xl border-2 border-slate-600 bg-slate-100/75 my-10"
         role="img"
       />
       </div>
