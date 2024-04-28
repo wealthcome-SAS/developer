@@ -88,9 +88,9 @@ function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
   return (
     <a
       href={comingSoon ? "#" : to}
-      className="flex flex-col gap-y-2 w-full h-auto border-2 border-slate-500 rounded-xl hover:bg-slate-300/35 no-underline hover:text-gray-900 hover:no-underline"
+      className="flex flex-col gap-y-2 w-full h-auto border-2 border-slate-500 rounded-xl hover:bg-slate-300/35 no-underline hover:text-gray-900 hover:no-underline overflow-hidden"
     >
-      <div className="w-full bg-gradient-to-r from-slate-500 to-slate-800 flex items-center justify-center overflow-hidden rounded-t-xl">
+      <div className="w-full bg-gradient-to-r from-slate-500 to-slate-800 flex items-center justify-center">
       <Svg
         className="w-14 h-14 p-2 rounded-md border border-slate-400 bg-slate-400/40 my-10"
         role="img"
