@@ -1,14 +1,16 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
+import type * as Plugin from "@docusaurus/types/src/plugin";
 
 const config: Config = {
   title: 'Developer Wealthcome',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'All developer tools to interact with Wealthcome services',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://developer.wealthcome.fr',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -31,17 +33,18 @@ const config: Config = {
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          routeBasePath: "/",
+          sidebarPath: "./sidebars.ts",
+          editUrl:
+            "https://github.com/PaloAltoNetworks/docusaurus-openapi-docs/tree/main/demo",
+          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
         },
+        blog: false,
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -49,22 +52,30 @@ const config: Config = {
 
   plugins: [
     [
-      'docusaurus-plugin-openapi-docs',
+      "docusaurus-plugin-openapi-docs",
       {
-        id: "api", // plugin id
-        docsPluginId: "classic", // id of plugin-content-docs or preset for rendering docs
+        id: "openapi",
+        docsPluginId: "classic",
         config: {
-          petstore: { // the <id> referenced when running CLI commands
-            specPath: "examples/petstore.yaml", // path to OpenAPI spec, URLs supported
-            outputDir: "api/petstore", // output directory for generated files
-            sidebarOptions: { // optional, instructs plugin to generate sidebar.js
-              groupPathsBy: "tag", // group sidebar items by operation "tag"
-            },
-          },
-        }
+          provider: {
+            specPath: "static/openapi/provider-specification.yaml",
+            // proxy: "https://cors.pan.dev",
+            outputDir: "docs/provider-specification",
+            // sidebarOptions: {
+            //   groupPathsBy: "tag",
+            //   categoryLinkSource: "tag",
+            // },
+            // template: "api.mustache", // Customize API MDX with mustache template
+            downloadUrl:
+              "/openapi/provider-specification.yaml",
+            hideSendButton: false,
+            showSchemas: true,
+          } satisfies OpenApiPlugin.Options,
+        } satisfies Plugin.PluginOptions,
       },
-    ]
+    ],
   ],
+  themes: ["docusaurus-theme-openapi-docs"],
 
   themeConfig: {
     // Replace with your project's social card
@@ -76,17 +87,22 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-        },
-        { to: '/blog', label: 'Blog', position: 'left' },
+
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right',
+        },
+        {
+          type: "dropdown",
+          label: "API",
+          position: "left",
+          items: [
+            {
+              label: "Provider Specification",
+              to: "/provider-specification/financial-provider-specification",
+            },
+          ],
         },
       ],
     },
