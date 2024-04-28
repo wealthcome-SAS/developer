@@ -1,57 +1,131 @@
-import clsx from 'clsx';
-import Heading from '@theme/Heading';
-import styles from './styles.module.css';
+import clsx from "clsx";
+import Heading from "@theme/Heading";
+import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: JSX.Element;
+  to?: string;
+  comingSoon?: boolean;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: "Authentification",
+    Svg: require("@site/static/img/lock-closed.svg").default,
+    description: <>Regroup and document all the step nessec.</>,
+    to: "/category/authentification",
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: "Migrations API",
+    Svg: require("@site/static/img/switch-horizontal.svg").default,
+    description: <>Coming soon.</>,
+    to: "/category/migrations",
+    comingSoon: true,
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: "Aggregator API",
+    Svg: require("@site/static/img/arrows-expand.svg").default,
+    description: <>Coming soon.</>,
+    to: "/category/aggregator",
+    comingSoon: true,
+  },
+  {
+    title: "Financial provider",
+    Svg: require("@site/static/img/cash-outline.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        The documentation related to specification that financial provider, to
+        provide with a fully integrated experience into Wealthcome Pro for their
+        clients.
       </>
     ),
+    to: "/provider-specification/financial-provider-specification",
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+const GuidelinesFeaturesList: FeatureItem[] = [
+  {
+    title: "Customer",
+    Svg: require("@site/static/img/user.svg").default,
+    description: <>Coming soon.</>,
+    comingSoon: true,
+  },
+  {
+    title: "Company",
+    Svg: require("@site/static/img/company.svg").default,
+    description: <>Coming soon.</>,
+    comingSoon: true,
+  },
+  {
+    title: "Manager",
+    Svg: require("@site/static/img/manager.svg").default,
+    description: <>Coming soon.</>,
+    comingSoon: true,
+  },
+  {
+    title: "Asset",
+    Svg: require("@site/static/img/asset.svg").default,
+    description: <>Coming soon.</>,
+    comingSoon: true,
+  },
+  {
+    title: "Investment",
+    Svg: require("@site/static/img/investment.svg").default,
+    description: <>Coming soon.</>,
+    comingSoon: true,
+  },
+  {
+    title: "Transaction",
+    Svg: require("@site/static/img/transaction.svg").default,
+    description: <>Coming soon.</>,
+    comingSoon: true,
+  },
+];
+
+function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+    <a
+      href={comingSoon ? "#" : to}
+      className="flex flex-col gap-y-2 w-full h-auto border-2 border-slate-500 rounded-xl hover:bg-slate-300/35 no-underline hover:text-gray-900 hover:no-underline overflow-hidden"
+    >
+      <div className="w-full bg-gradient-to-r from-slate-500 to-slate-800 flex items-center justify-center">
+      <Svg
+        className="w-16 h-16 p-3 rounded-2xl border-2 border-slate-600 bg-slate-100/75 my-10"
+        role="img"
+      />
       </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+      <div className="flex flex-col p-4">
+        <Heading as="h2" className="text-2xl font-semibold mb-2">
+          {title}
+        </Heading>
         <p>{description}</p>
       </div>
-    </div>
+    </a>
+  );
+}
+
+function GuidelineFeature({
+  title,
+  Svg,
+  description,
+  to,
+  comingSoon,
+}: FeatureItem) {
+  return (
+    <a
+      href={comingSoon ? "#" : to}
+      className="flex gap-x-3 w-full h-auto border border-slate-300 rounded-xl p-4 hover:bg-slate-300/35 no-underline hover:text-gray-900 hover:no-underline"
+    >
+      <Svg className="w-7 h-7" role="img" />
+      <div className="flex flex-col">
+        <Heading as="h2" className="text-xl font-semibold mb-2">
+          {title}
+        </Heading>
+        <p>{description}</p>
+      </div>
+    </a>
   );
 }
 
@@ -59,10 +133,26 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+        <div className="mt-10 flex flex-col gap-y-6">
+          <div>
+            <h2 className="text-3xl font-bold">Most popular</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {FeatureList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-10 flex flex-col gap-y-6">
+          <div>
+            <h2 className="text-3xl font-bold">Guides</h2>
+            <span>Guidelines for the different entities in the system.</span>
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {GuidelinesFeaturesList.map((props, idx) => (
+              <GuidelineFeature key={idx} {...props} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
