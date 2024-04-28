@@ -1,57 +1,59 @@
-import clsx from 'clsx';
-import Heading from '@theme/Heading';
-import styles from './styles.module.css';
+import clsx from "clsx";
+import Heading from "@theme/Heading";
+import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: JSX.Element;
+  to?: string;
+  comingSoon?: boolean;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: "Authentification",
+    Svg: require("@site/static/img/lock-closed.svg").default,
+    description: <>Regroup and document all the step nessec.</>,
+    to: "/docs/category/authentification",
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: "Migrations API",
+    Svg: require("@site/static/img/switch-horizontal.svg").default,
+    description: <>Coming soon.</>,
+    to: "/docs/category/migrations",
+    comingSoon: true,
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: "Aggregator API",
+    Svg: require("@site/static/img/arrows-expand.svg").default,
+    description: <>Coming soon.</>,
+    to: "/docs/category/aggregator",
+    comingSoon: true,
+  },
+  {
+    title: "Financial provider",
+    Svg: require("@site/static/img/cash-outline.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        The documentation related to specification that financial provider, to
+        provide with a fully integrated experience into Wealthcome Pro for their
+        clients.
       </>
     ),
+    to: "/docs/category/financial-provider",
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+    <a href={comingSoon ? "#" : to} className="flex flex-col gap-y-2 w-full h-auto border-2 border-slate-500 rounded-xl p-4 hover:bg-slate-300/35 no-underline">
+      <Svg className="w-12 h-12 p-2 rounded-md border border-slate-400 bg-slate-400/40 dark:bg-red-600" role="img" />
+      <div className="flex flex-col">
+        <Heading as="h2" className="text-2xl font-bold py-1">{title}</Heading>
         <p>{description}</p>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -59,7 +61,7 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

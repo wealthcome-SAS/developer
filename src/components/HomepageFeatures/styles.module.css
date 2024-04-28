@@ -6,6 +6,15 @@
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 60px;
+  width: 60px;
+}
+
+.alignStart {
+  align-items: flex-start;
+}
+
+.borderFeature {
+  border: 1px solid white !important;
+  border-width: 2px;
 }

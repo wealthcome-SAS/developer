@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Developer Wealthcome',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Welcome to Wealthcome APIs. This developer portal provides all the resources you need to get started integrating our powerful features into your applications.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -63,7 +63,18 @@ const config: Config = {
           },
         }
       },
-    ]
+    ],
+    async function tailwindPlugin(context, options) {
+      return {
+        name: "docusaurus-tailwindcss",
+        configurePostCss(postcssOptions) {
+          // Appends TailwindCSS and AutoPrefixer.
+          postcssOptions.plugins.push(require("tailwindcss"));
+          postcssOptions.plugins.push(require("autoprefixer"));
+          return postcssOptions;
+        },
+      };
+    },
   ],
 
   themeConfig: {
