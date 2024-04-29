@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: developer
+spec:
+  acme:
+    email: dev@wealthcome.fr
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: developer-issuer-private-key
+    solvers:
+      - http01:
+          ingress:
+            class: nginx

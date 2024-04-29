@@ -1,0 +1,61 @@
+name: Deploy
+on:
+  workflow_call:
+    inputs:
+      image:
+        required: true
+        type: string
+      tag:
+        required: true
+        type: string
+    secrets:
+      cluster_configuration:
+        required: true
+      registry_secret:
+        required: true
+      registry_url:
+        required: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup kubectl
+      - uses: azure/setup-kubectl@v3
+        name: Set up kubectl
+        id: install
+
+      # Setup context
+      - uses: azure/k8s-set-context@v3
+        name: Set up cluster configuration
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.cluster_configuration }}
+
+      - name: Set up registry secret
+        uses: azure/k8s-create-secret@v4
+        with:
+          secret-type: "kubernetes.io/dockerconfigjson"
+          secret-name: "registry-secret"
+          data: ${{ secrets.registry_secret}}
+
+      # Clone source code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup registry URL
+        run: sed -i 's|registry-url|${{ secrets.registry_url }}|g' kubernetes/deployment.yaml
+
+      - uses: Azure/k8s-deploy@v4
+        name: Deploy
+        with:
+          action: deploy
+          strategy: basic
+          manifests: |
+            kubernetes/deployment.yaml
+            kubernetes/service.yaml
+            kubernetes/issuer.yaml
+            kubernetes/ingress.yaml
+            kubernetes/cert.yaml
+          images: ${{ secrets.registry_url }}/${{ inputs.image }}:${{ inputs.tag }}
+          imagepullsecrets: registry-secret

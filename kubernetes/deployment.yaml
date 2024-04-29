@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: developer
+  labels:
+    app: developer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: developer
+  template:
+    metadata:
+      labels:
+        app: developer
+    spec:
+      containers:
+        - name: developer
+          image: rg.fr-par.scw.cloud/wealthcome-application/developer:local-0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+      - name: registry-secret

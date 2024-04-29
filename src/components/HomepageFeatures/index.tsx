@@ -16,6 +16,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/lock-closed.svg").default,
     description: <>Regroup and document all the step nessec.</>,
     to: "/category/authentification",
+    comingSoon: true
   },
   {
     title: "Migrations API",
@@ -100,7 +101,7 @@ function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
         <Heading as="h2" className="text-2xl font-semibold mb-2">
           {title}
         </Heading>
-        <p>{description}</p>
+        <p>{!comingSoon && description ? description : (<>Coming soon.</>)}</p>
       </div>
     </a>
   );
@@ -123,7 +124,7 @@ function GuidelineFeature({
         <Heading as="h2" className="text-xl font-semibold mb-2">
           {title}
         </Heading>
-        <p>{description}</p>
+        <p>{!comingSoon && description ? description : (<>Coming soon.</>)}</p>
       </div>
     </a>
   );
@@ -146,7 +147,7 @@ export default function HomepageFeatures(): JSX.Element {
         <div className="mt-10 flex flex-col gap-y-6">
           <div>
             <h2 className="text-3xl font-bold">Guides</h2>
-            <span>Guidelines for the different entities in the system.</span>
+            <span>Guidelines for the different entities, product logic in the system.</span>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {GuidelinesFeaturesList.map((props, idx) => (

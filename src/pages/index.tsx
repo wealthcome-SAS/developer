@@ -10,11 +10,10 @@ import styles from "./index.module.css";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    // <header className={clsx('hero hero--primary', styles.heroBanner)}>
     <header className="w-full items-center flex flex-col py-20">
       <img
         src="img/wealthcome-banner.svg"
-        alt="My Site Logo"
+        alt="Wealthcome Logo"
         className="container w-full h-auto"
       />
 
@@ -40,8 +39,8 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={siteConfig.title}
+      description={siteConfig.tagline}
     >
       <HomepageHeader />
       <main>

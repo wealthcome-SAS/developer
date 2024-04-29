@@ -4,6 +4,9 @@ info:
   description: |-
     This describe the specification that a financial provider must follow, to provide it's client (wealth management companies) an integrated experience of their data into a wealth aggregator (_Wealthcome_)
 
+    
+    
+
     Some useful links:
     - [Wealthcome](https://wealthcome.fr)
   termsOfService: https://www.wealthcome.fr/conditions-generales-utilisation
@@ -25,6 +28,12 @@ tags:
   - name: manager
     description: Manager related operations.
     x-displayName: Manager
+  - name: contract
+    description: Contract related operations.
+    x-displayName: Contract
+  - name: asset
+    description: Asset related operations.
+    x-displayName: Asset
 paths:
   # Company
   /companies:
@@ -32,7 +41,6 @@ paths:
       tags:
         - company
       summary: List all companies.
-      description: This call is not paginated, and will return all companies.
       operationId: listCompanies
       responses:
         "200": # status code
@@ -40,9 +48,15 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/company"
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/company"
+
   /companies/{company_id}:
     get:
       tags:
@@ -65,15 +79,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/company"
         "404":
-          description: Company not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Company not found"
+          $ref: "#/components/responses/not_found"
 
   # Manager
   /managers:
@@ -81,7 +87,6 @@ paths:
       tags:
         - manager
       summary: List all managers.
-      description: This call is not paginated, and will return all managers.
       operationId: listManagers
       responses:
         "200": # status code
@@ -89,11 +94,350 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/manager"
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/manager"
+  
+  /managers/{manager_id}:
+    get:
+      tags:
+        - manager
+      summary: Get a manager detailed informations.
+      operationId: manager_by_id
+      parameters:
+        - name: manager_id
+          in: path
+          required: true
+          description: The ID of the manager to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A manager object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/manager"
+        "404":
+          $ref: "#/components/responses/not_found"
+
+  # Contracts
+  /contracts:
+    get:
+      tags:
+        - contract
+      summary: List all contracts.
+      description: By default the call will only return the ongoing contracts.
+      operationId: list_contracts
+      responses:
+        "200": # status code
+          description: A array of contracts entities
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/contract"
+
+  /contracts/{contract_id}:
+    get:
+      tags:
+        - contract
+      summary: Get a contract detailed informations.
+      operationId: contract_by_id
+      parameters:
+        - name: contract_id
+          in: path
+          required: true
+          description: The ID of the contract to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A contract object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contract"
+        "404":
+          $ref: "#/components/responses/not_found"
+  # Assets
+  /assets:
+    get:
+      tags:
+        - asset
+      summary: List all assets.
+      operationId: list_assets
+      responses:
+        "200": # status code
+          description: A array of assets entities
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/asset"
+  /assets/{asset_id}:
+    get:
+      tags:
+        - asset
+      summary: Get a asset detailed informations.
+      operationId: asset_by_id
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          description: The ID of the asset to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A asset object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/asset"
+        "404":
+          $ref: "#/components/responses/not_found"
+
+  /assets/{asset_id}/transactions:
+    get:
+      tags:
+        - asset
+      summary: List all transactions related to an asset.
+      description: By default this call must only list the processed transactions.\n This call is paginated.
+      operationId: list_transactions
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          description: The ID of the asset to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A array of transactions entities
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/transaction"
+
+        "404":
+          $ref: "#/components/responses/not_found"
+                    
+  /assets/{asset_id}/valuation_history:
+    get:
+      tags:
+        - asset
+      summary: The valuation in time of an asset.
+      description: By default this call must only list the processed valuations.
+      operationId: list_valuations
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          description: The ID of the asset to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A array of valuations entities
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                              format: date-time
+                            balance:
+                              $ref: "#/components/schemas/amount"
+        "404":
+          $ref: "#/components/responses/not_found"
+        "405":
+            $ref: "#/components/responses/not_available"
+
+  /assets/{asset_id}/valuation_current:
+    get:
+      tags:
+        - asset
+      summary: The current valuation of an asset.
+      description: This call must return the current valuation of the asset.
+      operationId: current_valuation
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          description: The ID of the asset to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A valuation object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date:
+                    type: string
+                    format: date-time
+                  balance:
+                    $ref: "#/components/schemas/amount"
+        "404":
+          $ref: "#/components/responses/not_found"
+        "405":
+          $ref: "#/components/responses/not_available"
+
+  /assets/{asset_id}/investments:
+    get:
+      tags:
+        - asset
+      summary: List all investments currently held in an asset.
+      operationId: list_investments
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          description: The ID of the asset to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A array of investments entities
+          content:
+            application/json:
+              schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/investment"
+        "404":
+          $ref: "#/components/responses/not_found"
+        "405":
+          $ref: "#/components/responses/not_available"
+
+  /assets/{asset_id}/investments_history:
+    get:
+      tags:
+        - asset
+      summary: The history of investments in an asset.
+      operationId: list_investments_history
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          description: The ID of the asset to retrieve.
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        "200":
+          description: A array of investments entities
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/cursor_paginated"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                              format: date-time
+                            state:
+                              type: array
+                              items:
+                                $ref: "#/components/schemas/investment"
+        "404":
+          $ref: "#/components/responses/not_found"
+        "405":
+          $ref: "#/components/responses/not_available"
+
+
+          
 components:
+  responses:
+    not_found:
+      description: The requested resource is not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Resource not found"
+    not_available:
+      description: The requested resource is not available.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Resource not available"
+              reason:
+                type: string
+                enum: ["deleted", "not_implemented", "too_early"]
+                 
+            required:
+              - reason
   schemas:
+    cursor_paginated:
+      type: object
+      properties:
+        data:
+          type: array
+          items: {}
+        next:
+          type: string
+          minLength: 1
+        previous:
+          type: string
+          minLength: 1
+      required:
+        - next
     company:
       type: object
       properties:
@@ -124,7 +468,147 @@ components:
           type: array
           items:
             type: string
+            minLength: 1
       required:
         - id
         - name
         - companies
+    contract:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        managers: 
+          type: array
+          description: List of managers ids related to this contract.
+          items:
+            type: string
+            minLength: 1
+        customers:
+          type: array
+          description: List of customers ids related to this contract.
+          items:
+            type: string
+            minLength: 1
+        assets:
+          type: array
+          description: List of assets ids related to this contract.
+          items:
+            type: string
+            minLength: 1
+      required:
+        - id
+        - assets
+    asset:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        BBAN:
+          description: Basic Bank Account Number.
+          type: string
+          minLength: 1
+        IBAN:
+          description: International Bank Account Number.
+          type: string
+          minLength: 3
+        reference:
+          type: string
+          minLength: 1
+        opened:
+          type: string
+          format: date-time
+          description: Date when the contract was opened
+        update:
+          type: object
+          properties:
+            date:
+              type: string
+              format: date-time
+              description: Last date when the asset was updated
+        beneficiaries:
+          type: array
+          description: List of customers ids that are beneficiary of this asset.
+          items:
+            type: string
+            minLength: 1
+      required:
+        - id
+    transaction:
+      type: object
+      properties:
+        id: 
+          type: string
+          minLength: 1
+        date: 
+          type: string
+          format: date-time
+        amount:
+          $ref: "#/components/schemas/amount"
+        name:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - date
+        - amount  
+    amount:
+      type: object
+      description: An financial value expressed in a given instrument (EUR, BTC, XMR, AAPL, US0378331005)
+      properties:
+        value:
+          type: number
+          format: float
+        instrument:
+          type: string
+          minLength: 1
+      required:
+        - instrument
+        - value
+    investment:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+        update:
+          type: object
+          properties:
+            date:
+              type: string
+              format: date-time
+              description: Last date when the investment was updated
+        quantity:
+          type: number
+          description: The quantity of the given investment (3 shares of US0378331005)
+          format: float
+        value:
+          description: The valuation of the investment in another instrument (preferably a currency)
+          $ref: "#/components/schemas/amount"
+        name:
+          type: string
+          minLength: 1
+        acquisition:
+          type: object
+          properties:
+            date:
+              type: string
+              format: date-time
+              description: Date when the investment was acquired
+            value:
+              description: The valuation of the investment at the time of acquisition in another instrument (preferably a currency)
+              $ref: "#/components/schemas/amount"
+      required:
+        - code
+        - quantity
+        - value
+        - name
+        

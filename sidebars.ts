@@ -19,28 +19,16 @@ const sidebars: SidebarsConfig = {
 
   provider: [{
     type: "category",
-    label: "Petstore",
+    label: "Financial Provider Specification",
     link: {
       type: "generated-index",
-      title: "Finac API",
+      title: "Financial Provider Specification API",
       description:
         "This is a sample server Petstore server. You can find out more about Swagger at http://swagger.io or on irc.freenode.net, #swagger. For this sample, you can use the api key special-key to test the authorization filters.",
       slug: "/category/provider-specification",
     },
     items: providerSidebar,
   }],
-  // But you can create a sidebar manually
-  /*
-  tutorialSidebar: [
-    'intro',
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
-    },
-  ],
-   */
 };
 
 export default sidebars;

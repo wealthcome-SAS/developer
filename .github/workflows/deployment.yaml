@@ -1,0 +1,29 @@
+name: production flow
+
+on:
+  push:
+    branches:
+      - stable
+
+jobs:
+  publish:
+    uses: ./.github/workflows/publish.yaml
+    with:
+      image: developer
+      tag: ${{ github.ref_name }}
+    secrets:
+      registry_url: ${{ secrets.APPLI_REGISTRY_URL }}
+      registry_username: ${{ secrets.APPLI_REGISTRY_USER }}
+      registry_password: ${{ secrets.APPLI_REGISTRY_PASSWORD }}
+
+  rollout:
+    concurrency: production
+    needs: publish
+    uses: ./.github/workflows/rollout.yaml
+    with:
+      image: developer
+      tag: ${{ github.ref_name }}
+    secrets:
+      cluster_configuration: ${{ secrets.APPLI_CLUSTER_CONFIGURATION }}
+      registry_secret: ${{ secrets.APPLI_REGISTRY_SECRET }}
+      registry_url: ${{ secrets.APPLI_REGISTRY_URL }}
