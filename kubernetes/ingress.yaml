@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: developer
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "developer.wealthcome.fr"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: developer
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - developer.wealthcome.fr
+      secretName: developer-tls

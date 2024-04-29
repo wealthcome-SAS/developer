@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: developer
+spec:
+  secretName: developer-tls
+  issuerRef:
+    kind: Issuer
+    name: developer
+  dnsNames:
+    - developer.wealthcome.fr
