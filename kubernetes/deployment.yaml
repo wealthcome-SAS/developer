@@ -16,9 +16,7 @@ spec:
     spec:
       containers:
         - name: developer
-          image: rg.fr-par.scw.cloud/wealthcome-application/developer:local-0
+          image: registry-url/developer:develop
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-      imagePullSecrets:
-      - name: registry-secret
