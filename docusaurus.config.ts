@@ -61,10 +61,10 @@ const config: Config = {
             specPath: "static/openapi/provider-specification.yaml",
             // proxy: "https://cors.pan.dev",
             outputDir: "docs/provider-specification",
-            // sidebarOptions: {
-            //   groupPathsBy: "tag",
-            //   categoryLinkSource: "tag",
-            // },
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
             // template: "api.mustache", // Customize API MDX with mustache template
             downloadUrl:
               "/openapi/provider-specification.yaml",
@@ -94,13 +94,13 @@ const config: Config = {
     navbar: {
       title: 'Developer Wealthcome',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Wealthcome Logo',
         src: 'img/logo.svg',
       },
       items: [
 
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/wealthcome-SAS/developer',
           label: 'GitHub',
           position: 'right',
         },
