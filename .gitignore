@@ -20,4 +20,4 @@ yarn-debug.log*
 yarn-error.log*
 
 docs/provider-specification
-docs/aggregated-specification
+# docs/aggregated-specification

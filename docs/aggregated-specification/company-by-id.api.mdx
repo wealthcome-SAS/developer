@@ -1,0 +1,243 @@
+---
+id: company-by-id
+title: "Get a company detailed informations."
+description: "Get a company detailed informations."
+sidebar_label: "Get a company detailed informations."
+hide_title: true
+hide_table_of_contents: true
+api: eJytVE1P4zAQ/SuWTyCVtqw45bSVdoWQVtoVsNoDVMhNJonBsb32pFBF+e8746ahpUhw2FMm9ny892bGnURVRZndydw1XtmNXE6k8xAUamevCpntLh5WmwddyIn0KqgGEAKHddLSz55XctGWTrzCmuwAf1sdgDJhaGEiC4h50J7Tk9NtDeLqm3ClQLKGJAKdCIBBwxqmlCLmNTRKZp3Ejedike5sRTeNtj/AVlQoO+/7JVeL3tkIkb2/zOf8Oay4GKu41SPkSFlyZxEssq/y3ug8kZ89Rg7ojsuPgT6wVKi35Yj6RxAng1wfMdmX7U4mTVMgMUSNZk9w2ffsfjG/OKbK4nIeiAgFWdG1IQeho7AORelaW0z/H/0GYlTVu+TgRTU+ob7egRgRJAKJwyH4S0Chxl4VgEobYqFt6UKTEEYGT5NYOx7TChIkHrpMzrZxhGzWvU5mz7MEYb0b3TYY9l3PJY8OZ07gB4EXVRWgUizd4teVfIvv3t64BkQboWyNMNo+xezenom7P6AM1lQVlic1oo/ZbPY8nk3LcEq5aH2a+LO8ITQ652qj5/Pz9MCbqNhCJ75nFVjaTAPxrEVtdEwyDB1UeeogtUozqwLWXw/ySFKYmW/Rz6fn0zkfeRexUanRwyZ/UvgDNcaWI7zgzBtFLwAlTwJ3Q1N2TwyPy0Rmew8GiV8TDHbpupWK8DuYvudjmt2woXMy1ypoteLOUOcK4k429b1UJr59VbrXkZYn18MinYpPvTXv8hgOed0YiGn5j8wn2Bw+ff2SvGtQBYSEc+uwyHPwuBd6tGY8f+MkX36/paX4Bycf71g=
+sidebar_class_name: "get api-method"
+info_path: aggregated-specification/aggregated-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get a company detailed informations."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/companies/{company_id}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get a company detailed informations.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"company_id","in":"path","required":true,"description":"The ID of the company to retrieve.","schema":{"type":"string","minLength":1}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A company object
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"id"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"name"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"id\": \"string\",\n  \"name\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          The requested resource is not found.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Resource not found"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"message\": \"Resource not found\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

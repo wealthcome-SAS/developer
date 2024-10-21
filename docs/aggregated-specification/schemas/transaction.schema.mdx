@@ -1,0 +1,122 @@
+---
+id: transaction
+title: "transaction"
+description: ""
+sidebar_label: "transaction"
+hide_title: true
+schema: true
+custom_edit_url: null
+---
+
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Heading from "@theme/Heading";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"transaction"}
+>
+</Heading>
+
+
+
+
+
+<ul>
+  <SchemaItem
+    collapsible={false}
+    name={"id"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"date"}
+    required={true}
+    schemaName={"date-time"}
+    qualifierMessage={undefined}
+    schema={{"type":"string","format":"date-time"}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={true}
+    className={"schemaItem"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details"}
+    >
+      <summary
+        style={{}}
+      >
+        <span
+          className={"openapi-schema__container"}
+        >
+          <strong
+            className={"openapi-schema__property"}
+          >
+            amount
+          </strong><span
+            className={"openapi-schema__name"}
+          >
+             object
+          </span><span
+            className={"openapi-schema__divider"}
+          >
+            
+          </span><span
+            className={"openapi-schema__required"}
+          >
+            required
+          </span>
+        </span>
+      </summary><div
+        style={{"marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+        >
+          
+          
+          An financial value expressed in a given instrument (EUR, BTC, XMR, AAPL, US0378331005)
+          
+          
+        </div><SchemaItem
+          collapsible={false}
+          name={"value"}
+          required={true}
+          schemaName={"float"}
+          qualifierMessage={undefined}
+          schema={{"type":"number","format":"float"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"instrument"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** `non-empty`"}
+          schema={{"type":"string","minLength":1}}
+        >
+          
+        </SchemaItem>
+      </div>
+    </details>
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"name"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem>
+</ul>
+            

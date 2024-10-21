@@ -1,0 +1,76 @@
+---
+id: manager
+title: "manager"
+description: ""
+sidebar_label: "manager"
+hide_title: true
+schema: true
+custom_edit_url: null
+---
+
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Heading from "@theme/Heading";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"manager"}
+>
+</Heading>
+
+
+
+
+
+<ul>
+  <SchemaItem
+    collapsible={false}
+    name={"id"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={undefined}
+    schema={{"type":"string"}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"name"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"email"}
+    required={false}
+    schemaName={"email"}
+    qualifierMessage={undefined}
+    schema={{"type":"string","format":"email"}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"phone"}
+    required={false}
+    schemaName={"phone"}
+    qualifierMessage={undefined}
+    schema={{"type":"string","format":"phone"}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"companies"}
+    required={true}
+    schemaName={"string[]"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"array","items":{"type":"string","minLength":1}}}
+  >
+    
+  </SchemaItem>
+</ul>
+            

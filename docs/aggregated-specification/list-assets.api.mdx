@@ -1,0 +1,282 @@
+---
+id: list-assets
+title: "List all assets."
+description: "List all assets."
+sidebar_label: "List all assets."
+hide_title: true
+hide_table_of_contents: true
+api: eJylVU1v2zAM/SuCThuQr263nJZgwxCgaAd0ww5tUCgybau1ZVekkwWG//tIxUibNEO67eI4EvlIPj7SrSaToZ7eaoMIpJcDXdUQDLnKLxI91YVDuo93qAc6ANaVR2CPVn+YTOQnAbTB1eLB9jNlQjBbVaVq56XAkyMH4m4rT/xXvExdF87GOOMHFNdWo82hNPG2KK5TzqrVtK2BYavVA1hiiDpIfhFPYhuK9r1VDM1GjqCU+64baA+/6IUJUnA+Y5vS+UvwGeV6etEJLqxd1eBZ005YeGpcgERoi/DMGtdYiJNtAlbhvjaZ84bYphv8ZxFnvF3yhuq8KeENZvP57Op1S+cGnVVz4x/VzNqq8aSumnIFYcQIZxAXJxEXLIPgY/NN8Q/IH2MTUgjg7VvqYr48nOQprUJpWB/SBBiSY5oGR8l+5hu1ycErykGJhIOxpDYGVY/LEZpaAM5368jqb/K4NEgqOUgmTljMZBefUxF9rjir1FlnQh/1SFlHuDzhMq62QapKCKhcggxviEcZ1DNYHGrKHe7ijk5o9A8jczQzLNkXE7NbPGzULeXRncyPF0K/TyRsCZRXsp0yiBQbiaPH+zWFENZcSFwgTSjkbj3RHQd1Pq1ivn3wWZYFyIQ6Nfu2eMXNnb9hSlSDkDaFKpx/xOmdH6rbn2AKyi1fLt/lRDVOx+PN/myUhveiYAglXqc3nI0Tneq95WYzOrAes6wSJ0FxmDHhwRSAw4Ycr984Jv3yZOFJ9rwlnVSVwPrTAY5IUSrfZT8ZXYwmclRXSKWJO3a3CU6RelD5vqPE+21cF8b5KHMhs+0J778ZKM3MOYKctO3KIPwIRdfJ8VMDYcvn/LpmNZqVkH67ZKQcTAIhdugRttIJa6GWbq5N0URdHH8hpH/7zn/98p018xvpMVFg
+sidebar_class_name: "get api-method"
+info_path: aggregated-specification/aggregated-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List all assets."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/assets"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all assets.
+
+<div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A array of assets entities
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"BBAN"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"description":"Basic Bank Account Number.","type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"IBAN"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `>= 3 characters`"}
+                              schema={{"description":"International Bank Account Number.","type":"string","minLength":3}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"reference"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"opened"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Date when the contract was opened"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      update
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={false}
+                                    name={"date"}
+                                    required={false}
+                                    schemaName={"date-time"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","format":"date-time","description":"Last date when the asset was updated"}}
+                                  >
+                                    
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"beneficiaries"}
+                              required={false}
+                              schemaName={"string[]"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"array","description":"List of customers ids that are beneficiary of this asset.","items":{"type":"string","minLength":1}}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"next"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"previous"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"BBAN\": \"string\",\n      \"IBAN\": \"string\",\n      \"reference\": \"string\",\n      \"opened\": \"2024-10-21T16:09:55.545Z\",\n      \"update\": {\n        \"date\": \"2024-10-21T16:09:55.545Z\"\n      },\n      \"beneficiaries\": [\n        \"string\"\n      ]\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

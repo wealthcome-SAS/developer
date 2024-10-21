@@ -53,41 +53,21 @@ const config: Config = {
   plugins: [
     [
       "docusaurus-plugin-openapi-docs",
-      // {
-      //   id: "openapi",
-      //   docsPluginId: "classic",
-      //   config: {
-      //     provider: {
-      //       specPath: "static/openapi/provider-specification.yaml",
-      //       // proxy: "https://cors.pan.dev",
-      //       outputDir: "docs/provider-specification",
-      //       sidebarOptions: {
-      //         groupPathsBy: "tag",
-      //         categoryLinkSource: "tag",
-      //       },
-      //       // template: "api.mustache", // Customize API MDX with mustache template
-      //       downloadUrl:
-      //         "/openapi/provider-specification.yaml",
-      //       hideSendButton: false,
-      //       showSchemas: true,
-      //     } satisfies OpenApiPlugin.Options,
-      //   } satisfies Plugin.PluginOptions,
-      // },
       {
         id: "openapi",
         docsPluginId: "classic",
         config: {
           provider: {
-            specPath: "static/openapi/aggregated-specification.yaml",
+            specPath: "static/openapi/provider-specification.yaml",
             // proxy: "https://cors.pan.dev",
-            outputDir: "docs/aggregated-specification",
+            outputDir: "docs/provider-specification",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
             },
             // template: "api.mustache", // Customize API MDX with mustache template
             downloadUrl:
-              "/openapi/aggregated-specification.yaml",
+              "/openapi/provider-specification.yaml",
             hideSendButton: false,
             showSchemas: true,
           } satisfies OpenApiPlugin.Options,

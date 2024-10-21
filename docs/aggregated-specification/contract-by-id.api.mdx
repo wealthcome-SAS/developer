@@ -1,0 +1,270 @@
+---
+id: contract-by-id
+title: "Get a contract detailed informations."
+description: "Get a contract detailed informations."
+sidebar_label: "Get a contract detailed informations."
+hide_title: true
+hide_table_of_contents: true
+api: eJytVU1P20AQ/SvWnkAKSag4+dRIrRASUiug6gGiamNP7IX1erszDkSW/3tnNo6TECSoxCnr3fl482bmpVWkC1TpvcpqR0FnpOYjVXsImkztrnKVDi9/Fus/Jlcj5XXQFRAEcWyV4499s2hjHF95TSWfA/xtTACORaGBkcoBs2C8JGCjuxKSq29JvUyIT9soCdVJAAoGVjDmGJiVUGmVtorWXtIhv7mCXyrjrsEVnCk977q5pENfOwQU6y/Tqfwcppzt0tSLR+CiRxE+OBJj7b01WSRg8oji0R7nHxx9ELrIbPJx8e9hHPWMvWtWaaeLyPJgqkPQa/WawmuDJARuHRKTI7NnNUEuRFJpcChZ2DQEFb5PJrPSINXV/2AYPD4PhEYE+jiCjflnpe/25/dexeHuAfGskSG7P/yqix4X04vjqZNBl1CAAomntG5CBgnDcjUly7px+fjzBrECRB6GtwqEF135CPtmC2JAEAuINRyCvwRK9G5tciBtLJdh3LIOVYSIgp51oaxFNQqImEQBUjXZOuKk3dOJThYbwmqrJE2wYryaKtljCR3h9xzPiiJAEfs5+3l11P4Hd8tzlzQIy8Ym1rgnTB/cWXL/G7SlMuPH+UlJ5DGdTJ6Hu/EynHIsVrMKfyxvGY3JJNtg+fw8PrCWWnITCz4rwLFSWsCzhow1GHnoeyjTwOi5WUaqymH19SCOYo6l8g366fh8PJUrXyPxHotrL6wfpf6AjqHrBC808VazIHP0yHDbt2Un+sju6b6AM/0lAxGbtl1ohF/Bdp1c8/yGNd/zcaWD0QvpDfcu5+r5zK1faouvVb7djbU6uen36TT5mPa/WclWCpwIwUrbRr74+ATrV39G3ZzNS9A5hIh0YzHLMvC053u0bDKDwzhffr/j1fgHc6h9TQ==
+sidebar_class_name: "get api-method"
+info_path: aggregated-specification/aggregated-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get a contract detailed informations."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/contracts/{contract_id}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get a contract detailed informations.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"contract_id","in":"path","required":true,"description":"The ID of the contract to retrieve.","schema":{"type":"string","minLength":1}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A contract object
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"id"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"name"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"managers"}
+                        required={false}
+                        schemaName={"string[]"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"array","description":"List of managers ids related to this contract.","items":{"type":"string","minLength":1}}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"customers"}
+                        required={false}
+                        schemaName={"string[]"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"array","description":"List of customers ids related to this contract.","items":{"type":"string","minLength":1}}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"assets"}
+                        required={true}
+                        schemaName={"string[]"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"array","description":"List of assets ids related to this contract.","items":{"type":"string","minLength":1}}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"managers\": [\n    \"string\"\n  ],\n  \"customers\": [\n    \"string\"\n  ],\n  \"assets\": [\n    \"string\"\n  ]\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          The requested resource is not found.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Resource not found"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"message\": \"Resource not found\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

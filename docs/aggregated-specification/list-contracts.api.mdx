@@ -1,0 +1,225 @@
+---
+id: list-contracts
+title: "List all contracts."
+description: "By default the call will only return the ongoing contracts."
+sidebar_label: "List all contracts."
+hide_title: true
+hide_table_of_contents: true
+api: eJytVE1v2zAM/SuCThuQOumOOS0DhqFAgQ7ohh3aoFBt2lYrS65IJwsM//eRSuI0XYd2aC/5EMnH98Qn9ppMhXp+pfPgKZqc9HKiC8A82pZs8Hquv2xUAaXpHCmqQeXGObW2/BG826gI1EWfIsFXwfpK7aEw0xMdWohGkM4KxnIW6WaMczgCtsEjMIdef5rN5Ou4/UKZGM1GhfIArMCTJQuCIIf8VwpN2zqbp27TO5TqXmNeQ2NS1LmLkqX2mjYtMHK4vQMWPNFtFJYJT9obSvm7rNSdkyxBI/FhmGgPv+lRClJk3ZzTWH8OvqJaz08HwYWVDR2+mDrIRTx0NkIhs0jwPAfW6KQo7yKGeNOaynpDnDNM3ijihWpbvEKdNw28Iq0x3lQQ8Rk2x4M+Z2/IlPcFyhbI9nKiWFFgi1kcLZA9I+afd5t3SKH5Hw5jxfuRMIhAr2ewTX+v9k8MxvMdCT322X4HcMGwlA+ZH1Ad5O1WkIxiBFJPHz9ihLhKt8tvq4tOwquZHhjZ+jIkdrsOi6qKUCU1i+9nf4m/9pd866pDKDunnPX3OL/2J+rqFxhHdc7B5YeaqMX5dLoez7IyfmQsgtjgRXnJbGwu3cbM9To7yhb2hZWmeFKB5w3lAE86sryf0vrY7RW5C2bPC8SKqgJWn49w+CFqUb5lP8tOs5kctQGJXSyl20eynaoszqPdeCS+P2yyN67cnRWIt8i0dcZ64ZTm0u/Gd1j3af4185XDvr81CD+jGwY5fuggbvicf65MtOZWRni1ZLAaTAExzfseNjLXPIdW7LEyrkvmfrqKxQ2jlb59/cEe+wPxtkAb
+sidebar_class_name: "get api-method"
+info_path: aggregated-specification/aggregated-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List all contracts."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/contracts"}
+>
+  
+</MethodEndpoint>
+
+
+
+By default the call will only return the ongoing contracts.
+
+<div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A array of contracts entities
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"managers"}
+                              required={false}
+                              schemaName={"string[]"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"array","description":"List of managers ids related to this contract.","items":{"type":"string","minLength":1}}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"customers"}
+                              required={false}
+                              schemaName={"string[]"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"array","description":"List of customers ids related to this contract.","items":{"type":"string","minLength":1}}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"assets"}
+                              required={true}
+                              schemaName={"string[]"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"array","description":"List of assets ids related to this contract.","items":{"type":"string","minLength":1}}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"next"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"previous"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"managers\": [\n        \"string\"\n      ],\n      \"customers\": [\n        \"string\"\n      ],\n      \"assets\": [\n        \"string\"\n      ]\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

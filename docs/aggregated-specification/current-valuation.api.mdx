@@ -1,0 +1,372 @@
+---
+id: current-valuation
+title: "The current valuation of an asset."
+description: "This call must return the current valuation of the asset."
+sidebar_label: "The current valuation of an asset."
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVdtu2zgQ/RWCTyng2MqmRQs9rXvBIkAXLXJBF0gNYyyNJLYUqSUpJ4agf+8MI6tynKJd7ALrF9HkXM7wzBx2MkDpZXorwXsMcjWTOfrMqSYoa2QqryvlRQZai7r1QTgMrTMiVCiy1jk0QWxBt8DWwhbxIEaay5m0Dbp4cpFTpMF+PdqTRQMOagzoGEInDf0hyxhgrXIyUIyhgVDR2uHfrXJIsYJr8Rgoiou3BxhEsAzYKdwi4/FZhTXItJNh13AiT2empJNamfdoSkqTnvX9inP5xhqPnq1/SxL+HOZbTgvffMEsUJzMmkA1sjU0jVZZPF988ezSHQMYHRvHlxXUQ8IcAj4Fs7CuBooeDU6DotvqZ3IDGkyGT4V9BNmIQhmyVaAjehR431CpHnOhjABRqi0aWlLGtmZyT97dXM7E6+s3M/HXn7RaLj++n4mbq+T85avz87MkefHsCH2MPEFj2nqDbgq/0Ja+PdO7z/RzVqYNcDv1nA0Zibaggo4dVNuWTvr4m8nnyfNjArlhOCL6QOXTLdjWZSio3Y0NoqAA+fy/o7SmW4bySVbxHuomwr7cgxgRTEp48U9LgC0oDRuN/2sZIwoZGYQh4ZE3dQnzmqMmPeDRJ+e14ohMctwJ1q4RnN7J1eN2GAKvhtsiTaksi06JsQYWkFQuoir4RbcXmH4xzvB6kCeWCXTbvSK1TrPjNpGsCsoUNoIf2mxZlg5L4Mtffrw4mrfP5srWKFqPRauFVuarTz+bU3H7CUGHKqPD1UkVQuPTxeJu3JsXjoeKVLH2H4orQqN4uuVoeXc3P7BeELm54qT+tERDoqvRn7ZBaeX3Ssv8Qxb5J6IVV5Xj9veDOMwQV/6APpmfzRPeaqwPNUTWBoG+/pH8g/mu/gd30X1vwH/1pAxtE/A+LBoN9DwQwEhSN7A8vGSejNPJQ3JMNPFZUWXs0XUb8HjjdN/zNg2U29H+it2cis3LzZDTddKa+qoA7R+/QNMSTy6H3nwmfuFderKoYRPMbhS4VNLyK+6mT2S/ItsKISeFZYwPx8sswyZMHI9mntt5nJI/3l2T0HwD+qTKMA==
+sidebar_class_name: "get api-method"
+info_path: aggregated-specification/aggregated-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"The current valuation of an asset."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/assets/{asset_id}/valuation_current"}
+>
+  
+</MethodEndpoint>
+
+
+
+This call must return the current valuation of the asset.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"asset_id","in":"path","required":true,"description":"The ID of the asset to retrieve.","schema":{"type":"string","minLength":1}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A valuation object
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"date"}
+                        required={false}
+                        schemaName={"date-time"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","format":"date-time"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                balance
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              An financial value expressed in a given instrument (EUR, BTC, XMR, AAPL, US0378331005)
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"value"}
+                              required={true}
+                              schemaName={"float"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","format":"float"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"instrument"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"date\": \"2024-10-21T16:09:55.554Z\",\n  \"balance\": {\n    \"value\": 0,\n    \"instrument\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          The requested resource is not found.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Resource not found"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"message\": \"Resource not found\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"405"}
+        value={"405"}
+      >
+        <div>
+          
+          
+          The requested resource is not available.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Resource not available"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"reason"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** [`deleted`, `not_implemented`, `too_early`]"}
+                        schema={{"type":"string","enum":["deleted","not_implemented","too_early"]}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"message\": \"Resource not available\",\n  \"reason\": \"deleted\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

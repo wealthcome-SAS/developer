@@ -1,0 +1,133 @@
+---
+id: asset
+title: "asset"
+description: ""
+sidebar_label: "asset"
+hide_title: true
+schema: true
+custom_edit_url: null
+---
+
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Heading from "@theme/Heading";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"asset"}
+>
+</Heading>
+
+
+
+
+
+<ul>
+  <SchemaItem
+    collapsible={false}
+    name={"id"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"name"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"BBAN"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"description":"Basic Bank Account Number.","type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"IBAN"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `>= 3 characters`"}
+    schema={{"description":"International Bank Account Number.","type":"string","minLength":3}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"reference"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"opened"}
+    required={false}
+    schemaName={"date-time"}
+    qualifierMessage={undefined}
+    schema={{"type":"string","format":"date-time","description":"Date when the contract was opened"}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={true}
+    className={"schemaItem"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details"}
+    >
+      <summary
+        style={{}}
+      >
+        <span
+          className={"openapi-schema__container"}
+        >
+          <strong
+            className={"openapi-schema__property"}
+          >
+            update
+          </strong><span
+            className={"openapi-schema__name"}
+          >
+             object
+          </span>
+        </span>
+      </summary><div
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"date"}
+          required={false}
+          schemaName={"date-time"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","format":"date-time","description":"Last date when the asset was updated"}}
+        >
+          
+        </SchemaItem>
+      </div>
+    </details>
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"beneficiaries"}
+    required={false}
+    schemaName={"string[]"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"array","description":"List of customers ids that are beneficiary of this asset.","items":{"type":"string","minLength":1}}}
+  >
+    
+  </SchemaItem>
+</ul>
+            
