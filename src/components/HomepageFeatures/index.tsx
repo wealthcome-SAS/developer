@@ -15,8 +15,7 @@ const FeatureList: FeatureItem[] = [
     title: "Authentification",
     Svg: require("@site/static/img/lock-closed.svg").default,
     description: <>Regroup and document all the step nessec.</>,
-    to: "/category/authentification",
-    comingSoon: true
+    to: "/authentications/introduction",
   },
   {
     title: "Migrations API",
@@ -26,11 +25,10 @@ const FeatureList: FeatureItem[] = [
     comingSoon: true,
   },
   {
-    title: "Aggregator API",
+    title: "Aggregated API",
     Svg: require("@site/static/img/arrows-expand.svg").default,
-    description: <>Coming soon.</>,
-    to: "/category/aggregator",
-    comingSoon: true,
+    description:(<>Wealthcome Pro API</>), 
+    to: "/aggregated-specification/aggregated-api",
   },
   {
     title: "Financial provider",
