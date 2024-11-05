@@ -24,6 +24,23 @@ components:
 paths:
   /companies:
     get:
+      parameters:
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
       responses:
         '200':
           description: Retrieve a list of companies
@@ -93,3 +110,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Company'
+  /companies/{id}/customers/statistics:
+    get:
+      responses:
+        '200':
+          description: retreive companies list wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{id}/customers:
+    get:
+      responses:
+        '200':
+          description: Retrieve a list of companies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/Company'
+                  - properties:
+                      id:
+                        type: string
+                        example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                      name:
+                        type: string
+                        example: Jean dupont
+                      totalValuation:
+                        type: number
+                        example: 1000000
