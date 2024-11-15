@@ -148,3 +148,228 @@ paths:
                       totalValuation:
                         type: number
                         example: 1000000
+  /companies/{id}/teams/statistics:
+    get:
+      responses:
+        '200':
+          description: retreive teams list wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{id}/teams:
+    get:
+      responses:
+        '200':
+          description: Retrieve the list of teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/Company'
+                  - properties:
+                      name:
+                        type: string
+                        example: interns
+                      descritpion:
+                        type: string
+                        example: a team of interns
+                    required:
+                    - name
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: interns
+                description:
+                  type: string
+                  example: a team of interns
+              required:
+              - name
+      responses:
+        '200':
+          description: Create a team
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Company'
+                - properties:
+                    name:
+                      type: string
+                      example: interns
+                    descritpion:
+                      type: string
+                      example: a team of interns
+                  required:
+                  - name
+  /companies/{id}/teams/{team_name}:
+    get:
+      parameters:
+      - schema:
+          type: string
+          example: interns
+        required: true
+        name: team_name
+        in: path
+      responses:
+        '200':
+          description: Retrieve a team
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/Company'
+                  - properties:
+                      name:
+                        type: string
+                        example: interns
+                      descritpion:
+                        type: string
+                        example: a team of interns
+                    required:
+                    - name
+    patch:
+      parameters:
+      - schema:
+          type: string
+          example: interns
+        required: true
+        name: team_name
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: interns
+                description:
+                  type: string
+                  example: a team of interns
+              required:
+              - name
+      responses:
+        '200':
+          description: Update a team
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Company'
+                - properties:
+                    name:
+                      type: string
+                      example: interns
+                    descritpion:
+                      type: string
+                      example: a team of interns
+                  required:
+                  - name
+    delete:
+      parameters:
+      - schema:
+          type: string
+          example: interns
+        required: true
+        name: team_name
+        in: path
+      responses:
+        '200':
+          description: Delete a team
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Company'
+                - properties:
+                    name:
+                      type: string
+                      example: interns
+                    descritpion:
+                      type: string
+                      example: a team of interns
+                  required:
+                  - name
+  /companies/{id}/teams/{team_name}/members:
+    get:
+      parameters:
+      - schema:
+          type: string
+          example: interns
+        required: true
+        name: team_name
+        in: path
+      responses:
+        '200':
+          description: Retrieve the list of team members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                    name:
+                      type: string
+                      example: John Doe
+                    email:
+                      type: string
+                      example: ''
+                    leader:
+                      type: boolean
+                  required:
+                  - id
+                  - name
+                  - email
+                  - leader
+    put:
+      parameters:
+      - schema:
+          type: string
+          example: interns
+        required: true
+        name: team_name
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  manager_id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                  leader:
+                    type: boolean
+                    example: true
+                required:
+                - manager_id
+                - leader
+      responses:
+        '204':
+          description: Manager added to the team
