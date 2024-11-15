@@ -71,6 +71,20 @@ const config: Config = {
             hideSendButton: false,
             showSchemas: true,
           } satisfies OpenApiPlugin.Options,
+          aggregated: {
+            specPath: "static/openapi/aggregated-specification.yaml",
+            // proxy: "https://cors.pan.dev",
+            outputDir: "docs/aggregated-specification",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+            // template: "api.mustache", // Customize API MDX with mustache template
+            downloadUrl:
+              "/openapi/aggregated-specification.yaml",
+            hideSendButton: false,
+            showSchemas: true,
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],
@@ -90,7 +104,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'Developer Wealthcome',
       logo: {
@@ -123,27 +137,11 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
           ],
         },
 

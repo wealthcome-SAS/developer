@@ -28,7 +28,7 @@ const FeatureList: FeatureItem[] = [
     title: "Aggregated API",
     Svg: require("@site/static/img/arrows-expand.svg").default,
     description:(<>Wealthcome Pro API</>), 
-    to: "/aggregated-specification/aggregated-api",
+    to: "/aggregated-specification/aggregated",
   },
   {
     title: "Financial provider",

@@ -24,6 +24,10 @@ components:
 paths:
   /companies:
     get:
+      operationId: company_list
+      summary: List companies
+      tags:
+      - Company
       parameters:
       - schema:
           type: number
@@ -43,7 +47,7 @@ paths:
         in: query
       responses:
         '200':
-          description: Retrieve a list of companies
+          description: sucess - a paginated list of companies
           content:
             application/json:
               schema:
@@ -52,9 +56,13 @@ paths:
                   $ref: '#/components/schemas/Company'
   /companies/statistics:
     get:
+      operationId: company_list_statistics
+      summary: Retrieve list companies statistics
+      tags:
+      - Company
       responses:
         '200':
-          description: retreive companies list wide statistics
+          description: success - list wide statistics
           content:
             application/json:
               schema:
@@ -68,6 +76,10 @@ paths:
                 - count
   /companies/{id}:
     get:
+      operationId: company_retrieve
+      tags:
+      - Company
+      summary: Retrieve a company information
       parameters:
       - schema:
           type: string
@@ -78,12 +90,16 @@ paths:
         in: path
       responses:
         '200':
-          description: Retrieve a company information
+          description: success - company information
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Company'
     patch:
+      tags:
+      - Company
+      operationId: company_update
+      summary: Update a company information
       parameters:
       - schema:
           type: string
@@ -105,16 +121,21 @@ paths:
               - name
       responses:
         '200':
-          description: Retrieve a company information
+          description: success - company updated information
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Company'
   /companies/{id}/customers/statistics:
     get:
+      tag:
+      - Customer
+      - Company
+      operationId: customer_list_statistics
+      summary: Customer list statistics
       responses:
         '200':
-          description: retreive companies list wide statistics
+          description: success - customers wide statistics
           content:
             application/json:
               schema:
@@ -128,9 +149,14 @@ paths:
                 - count
   /companies/{id}/customers:
     get:
+      operationId: customer_list
+      tag:
+      - Customer
+      - Company
+      summary: List of customers
       responses:
         '200':
-          description: Retrieve a list of companies
+          description: success - paginated list of customers
           content:
             application/json:
               schema:
@@ -150,9 +176,14 @@ paths:
                         example: 1000000
   /companies/{id}/teams/statistics:
     get:
+      opereationId: team_list_statistics
+      tags:
+      - Company
+      - Team
+      summary: Team list statistics
       responses:
         '200':
-          description: retreive teams list wide statistics
+          description: succes - retreive teams list wide statistics
           content:
             application/json:
               schema:
@@ -166,6 +197,11 @@ paths:
                 - count
   /companies/{id}/teams:
     get:
+      operationId: team_list
+      tags:
+      - Company
+      - Team
+      summary: Team list
       responses:
         '200':
           description: Retrieve the list of teams
@@ -186,6 +222,11 @@ paths:
                     required:
                     - name
     put:
+      operationId: team_creation
+      summary: Team creation
+      tags:
+      - Company
+      - Team
       requestBody:
         content:
           application/json:
@@ -202,7 +243,7 @@ paths:
               - name
       responses:
         '200':
-          description: Create a team
+          description: the created team
           content:
             application/json:
               schema:
@@ -219,6 +260,11 @@ paths:
                   - name
   /companies/{id}/teams/{team_name}:
     get:
+      operationId: team_retrieve
+      summary: Team retrieval
+      tags:
+      - Company
+      - Team
       parameters:
       - schema:
           type: string
@@ -228,7 +274,7 @@ paths:
         in: path
       responses:
         '200':
-          description: Retrieve a team
+          description: the team information
           content:
             application/json:
               schema:
@@ -246,6 +292,11 @@ paths:
                     required:
                     - name
     patch:
+      operationId: team_update
+      summary: Team update
+      tags:
+      - Company
+      - Team
       parameters:
       - schema:
           type: string
@@ -269,7 +320,7 @@ paths:
               - name
       responses:
         '200':
-          description: Update a team
+          description: updated team
           content:
             application/json:
               schema:
@@ -285,6 +336,11 @@ paths:
                   required:
                   - name
     delete:
+      summary: Team deletion
+      operationId: team_deletion
+      tags:
+      - Company
+      - Team
       parameters:
       - schema:
           type: string
@@ -311,6 +367,11 @@ paths:
                   - name
   /companies/{id}/teams/{team_name}/members:
     get:
+      operationId: team_member_list
+      tags:
+      - Company
+      - Team
+      summary: Team member list
       parameters:
       - schema:
           type: string
@@ -346,6 +407,11 @@ paths:
                   - email
                   - leader
     put:
+      tags:
+      - Company
+      - Team
+      summary: Team Member Add
+      operationId: team_member_add
       parameters:
       - schema:
           type: string
