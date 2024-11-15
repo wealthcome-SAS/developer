@@ -10,7 +10,7 @@ jobs:
     uses: ./.github/workflows/publish.yaml
     with:
       image: developer
-      tag: ${{ github.ref_name }}
+      tag: ${{ github.sha }}
     secrets:
       registry_url: ${{ secrets.APPLI_REGISTRY_URL }}
       registry_username: ${{ secrets.APPLI_REGISTRY_USER }}
@@ -22,7 +22,7 @@ jobs:
     uses: ./.github/workflows/rollout.yaml
     with:
       image: developer
-      tag: ${{ github.ref_name }}
+      tag: ${{ github.sha }}
     secrets:
       cluster_configuration: ${{ secrets.APPLI_CLUSTER_CONFIGURATION }}
       registry_secret: ${{ secrets.APPLI_REGISTRY_SECRET }}
