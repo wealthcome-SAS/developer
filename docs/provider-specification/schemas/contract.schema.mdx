@@ -1,0 +1,76 @@
+---
+id: contract
+title: "contract"
+description: ""
+sidebar_label: "contract"
+hide_title: true
+schema: true
+custom_edit_url: null
+---
+
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Heading from "@theme/Heading";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"contract"}
+>
+</Heading>
+
+
+
+
+
+<ul>
+  <SchemaItem
+    collapsible={false}
+    name={"id"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"name"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"managers"}
+    required={false}
+    schemaName={"string[]"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"array","description":"List of managers ids related to this contract.","items":{"type":"string","minLength":1}}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"customers"}
+    required={false}
+    schemaName={"string[]"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"array","description":"List of customers ids related to this contract.","items":{"type":"string","minLength":1}}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"assets"}
+    required={true}
+    schemaName={"string[]"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"array","description":"List of assets ids related to this contract.","items":{"type":"string","minLength":1}}}
+  >
+    
+  </SchemaItem>
+</ul>
+            

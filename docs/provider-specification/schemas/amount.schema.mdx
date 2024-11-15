@@ -1,0 +1,49 @@
+---
+id: amount
+title: "amount"
+description: "An financial value expressed in a given instrument (EUR, BTC, XMR, AAPL, US0378331005)"
+sidebar_label: "amount"
+hide_title: true
+schema: true
+custom_edit_url: null
+---
+
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Heading from "@theme/Heading";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"amount"}
+>
+</Heading>
+
+
+
+An financial value expressed in a given instrument (EUR, BTC, XMR, AAPL, US0378331005)
+
+<ul>
+  <SchemaItem
+    collapsible={false}
+    name={"value"}
+    required={true}
+    schemaName={"float"}
+    qualifierMessage={undefined}
+    schema={{"type":"number","format":"float"}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"instrument"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem>
+</ul>
+            

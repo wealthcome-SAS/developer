@@ -1,0 +1,58 @@
+---
+id: cursor-paginated
+title: "cursor_paginated"
+description: ""
+sidebar_label: "cursor_paginated"
+hide_title: true
+schema: true
+custom_edit_url: null
+---
+
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Heading from "@theme/Heading";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"cursor_paginated"}
+>
+</Heading>
+
+
+
+
+
+<ul>
+  <SchemaItem
+    collapsible={false}
+    name={"data"}
+    required={false}
+    schemaName={"undefined[]"}
+    qualifierMessage={undefined}
+    schema={{"type":"array","items":{}}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"next"}
+    required={true}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem><SchemaItem
+    collapsible={false}
+    name={"previous"}
+    required={false}
+    schemaName={"string"}
+    qualifierMessage={"**Possible values:** `non-empty`"}
+    schema={{"type":"string","minLength":1}}
+  >
+    
+  </SchemaItem>
+</ul>
+            

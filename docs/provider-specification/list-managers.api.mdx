@@ -1,0 +1,225 @@
+---
+id: list-managers
+title: "List all managers."
+description: "List all managers."
+sidebar_label: "List all managers."
+hide_title: true
+hide_table_of_contents: true
+api: eJylVMFu2zAM/RVBl7VAmqQ75rQdtmFAhw5ohx26oGAU2mYrS64kOw0C//tIxXGbrkMHDAXShHp8JJ+euNMJyqgXN7oGByUGvZxo32CARN59XeuFthTTt/1h1BMdMDbeReSknX4/n8u/NUYTqJEUTvioIATYKl+ogTQqdIkSoRAY7xL/lDxoGksml5rdRUne6WgqrCGfWntZcGs7nbYNMrFf3aFJTNEEaTHzSXVIGT+gcnEGUcJazvt+oh0+pmeQmAK5kjE1uQt0Zar04rwXXuzIt/FNaC86PLQUcC3aZXoWjme0kmTaEH24baAkB4kx/eQ/h3gjm9Z/tixjQ43/MDbrTfY1XOFDDSzcgBCFKu9epRyhe0Qv91w34IYG3xjrLyq/kJmnHGZ6zv5M94OHObNfygcTHHvzgs2s2FijM6dSFFPlxeolZmlByutZ/WT6iKGTb2LGNlg57ea659LkCp8HGVr4zDfuDIFV34PvaI1BxQYNFYPPpd5xS9cVRbUPrVClCo8TOALcsipG4uZAXLc8TOGt9ZuJSv5woCi9i8pY4lemTjYINlXDvLWERulOFThF/BrLIC5V+MiW4iyD8na5EwpKfCkYzy0MVFCWAUtIPqiT2585xpR4e/rLHf6u+LdqIxatVZbcfVz8cmfq5gm8PKlSauJiNtuMsWkRTlmdhKGOl8UVS05GJB2Rm830CD3jVbImESmeleh4aVmMZ20iXllZu2HbgMmPf7A5y999OOIRt8r17u9jPj2fzrPXfUwsm6TuH9Lr7jm6zdHRiVfCrLFATqiyZ3aDs8Zdm71bcRWJ7XYriPgj2L6X8EOLYctx/tpBIFiJu26WzFUh8OVnK97jVvatMdiIcTuwbX5lL9eqGHU0+ZdP1/xAfgO7JBMe
+sidebar_class_name: "get api-method"
+info_path: provider-specification/financial-provider-specification
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List all managers."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/managers"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all managers.
+
+<div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A array of managers entities
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"string","minLength":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"email"}
+                              required={false}
+                              schemaName={"email"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"email"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"phone"}
+                              required={false}
+                              schemaName={"phone"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"phone"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"companies"}
+                              required={true}
+                              schemaName={"string[]"}
+                              qualifierMessage={"**Possible values:** `non-empty`"}
+                              schema={{"type":"array","items":{"type":"string","minLength":1}}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"next"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"previous"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** `non-empty`"}
+                        schema={{"type":"string","minLength":1}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"user@example.com\",\n      \"phone\": \"string\",\n      \"companies\": [\n        \"string\"\n      ]\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
