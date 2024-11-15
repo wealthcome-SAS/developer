@@ -2,6 +2,21 @@ openapi: 3.0.0
 info:
   version: 0.x
   title: aggregated
+  contact:
+    email: dev@wealthcome.fr
+    url: https://wealthcome.fr
+servers:
+- url: https://services.preproduction.wealthcome.fr/aggregated
+  description: Preproduction
+tags:
+- name: Company
+  description: Company related endpoints
+- name: Customer
+  description: Customer related endpoints
+- name: Task
+  description: Task related endpoints
+- name: Team
+  description: Team related endpoints
 components:
   securitySchemes:
     Bearer:
