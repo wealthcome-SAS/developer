@@ -77,7 +77,7 @@ const config: Config = {
             outputDir: "docs/aggregated-specification",
             sidebarOptions: {
               groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+              // categoryLinkSource: "tag",
             },
             // template: "api.mustache", // Customize API MDX with mustache template
             downloadUrl:

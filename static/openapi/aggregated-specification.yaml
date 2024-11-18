@@ -35,6 +35,151 @@ components:
       required:
       - id
       - name
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          example: Jean dupont
+        general:
+          type: object
+          nullable: true
+          properties:
+            entryDateIntoRelationship:
+              type: string
+              nullable: true
+            originCustomerRelationship:
+              type: string
+            contactCustomerRelationship:
+              type: string
+            remoteOpening:
+              type: boolean
+            gender:
+              type: string
+              default: male
+            name:
+              type: string
+            birthName:
+              type: string
+            surname:
+              type: string
+            birthDate:
+              type: string
+              nullable: true
+            birthCity:
+              type: string
+            deathDate:
+              type: string
+              nullable: true
+            familySituation:
+              type: string
+            nationality:
+              type: string
+            matrimonialRegime:
+              type: string
+            studiesLevel:
+              type: string
+            occupation:
+              type: string
+            occupationWording:
+              type: string
+            retirementAge:
+              type: number
+            annualIncome:
+              type: string
+            heritageOrigin:
+              type: string
+            seniorAdvisor:
+              type: string
+            secondaryAdvisor:
+              type: string
+            dateEntryRelationship:
+              type: string
+              nullable: true
+            idCard:
+              type: string
+            idNumber:
+              type: string
+            issueDate:
+              type: string
+              nullable: true
+            authority:
+              type: string
+            expirationDate:
+              type: string
+              nullable: true
+            idNIF:
+              type: string
+            idMIF:
+              type: string
+            taxResidence:
+              type: string
+            customerClassificationMIF:
+              type: string
+            classificationDate:
+              type: string
+              nullable: true
+            pep:
+              type: boolean
+            usPerson:
+              type: string
+            legalCapacity:
+              type: string
+        details:
+          type: object
+          nullable: true
+          properties:
+            street:
+              type: string
+            zipCode:
+              type: string
+            city:
+              type: string
+            workStreet:
+              type: string
+            workZipCode:
+              type: string
+            workCity:
+              type: string
+            otherStreet:
+              type: string
+            otherZipCode:
+              type: string
+            otherCity:
+              type: string
+            firstPhoneNumber:
+              type: string
+            secondPhoneNumber:
+              type: string
+            personalEmail:
+              type: string
+            otherEmail:
+              type: string
+            fiscalAddress:
+              type: string
+            country:
+              type: string
+            otherCountry:
+              type: string
+            workCountry:
+              type: string
+      required:
+      - id
+      - name
+    Team:
+      type: object
+      properties:
+        name:
+          type: string
+          example: interns
+        descritpion:
+          type: string
+          example: a team of interns
+      required:
+      - name
   parameters: {}
 paths:
   /companies:
@@ -143,9 +288,8 @@ paths:
                 $ref: '#/components/schemas/Company'
   /companies/{id}/customers/statistics:
     get:
-      tag:
-      - Customer
-      - Company
+      tags:
+      - Customers
       operationId: customer_list_statistics
       summary: Customer list statistics
       responses:
@@ -165,9 +309,8 @@ paths:
   /companies/{id}/customers:
     get:
       operationId: customer_list
-      tag:
-      - Customer
-      - Company
+      tags:
+      - Customers
       summary: List of customers
       responses:
         '200':
@@ -177,23 +320,11 @@ paths:
               schema:
                 type: array
                 items:
-                  allOf:
-                  - $ref: '#/components/schemas/Company'
-                  - properties:
-                      id:
-                        type: string
-                        example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-                      name:
-                        type: string
-                        example: Jean dupont
-                      totalValuation:
-                        type: number
-                        example: 1000000
+                  $ref: '#/components/schemas/Customer'
   /companies/{id}/teams/statistics:
     get:
       opereationId: team_list_statistics
       tags:
-      - Company
       - Team
       summary: Team list statistics
       responses:
@@ -214,7 +345,6 @@ paths:
     get:
       operationId: team_list
       tags:
-      - Company
       - Team
       summary: Team list
       responses:
@@ -225,22 +355,11 @@ paths:
               schema:
                 type: array
                 items:
-                  allOf:
-                  - $ref: '#/components/schemas/Company'
-                  - properties:
-                      name:
-                        type: string
-                        example: interns
-                      descritpion:
-                        type: string
-                        example: a team of interns
-                    required:
-                    - name
+                  $ref: '#/components/schemas/Team'
     put:
       operationId: team_creation
       summary: Team creation
       tags:
-      - Company
       - Team
       requestBody:
         content:
@@ -262,23 +381,12 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/Company'
-                - properties:
-                    name:
-                      type: string
-                      example: interns
-                    descritpion:
-                      type: string
-                      example: a team of interns
-                  required:
-                  - name
+                $ref: '#/components/schemas/Team'
   /companies/{id}/teams/{team_name}:
     get:
       operationId: team_retrieve
       summary: Team retrieval
       tags:
-      - Company
       - Team
       parameters:
       - schema:
@@ -295,22 +403,11 @@ paths:
               schema:
                 type: array
                 items:
-                  allOf:
-                  - $ref: '#/components/schemas/Company'
-                  - properties:
-                      name:
-                        type: string
-                        example: interns
-                      descritpion:
-                        type: string
-                        example: a team of interns
-                    required:
-                    - name
+                  $ref: '#/components/schemas/Team'
     patch:
       operationId: team_update
       summary: Team update
       tags:
-      - Company
       - Team
       parameters:
       - schema:
@@ -339,22 +436,11 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/Company'
-                - properties:
-                    name:
-                      type: string
-                      example: interns
-                    descritpion:
-                      type: string
-                      example: a team of interns
-                  required:
-                  - name
+                $ref: '#/components/schemas/Team'
     delete:
       summary: Team deletion
       operationId: team_deletion
       tags:
-      - Company
       - Team
       parameters:
       - schema:
@@ -369,22 +455,11 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/Company'
-                - properties:
-                    name:
-                      type: string
-                      example: interns
-                    descritpion:
-                      type: string
-                      example: a team of interns
-                  required:
-                  - name
+                $ref: '#/components/schemas/Team'
   /companies/{id}/teams/{team_name}/members:
     get:
       operationId: team_member_list
       tags:
-      - Company
       - Team
       summary: Team member list
       parameters:
@@ -423,7 +498,6 @@ paths:
                   - leader
     put:
       tags:
-      - Company
       - Team
       summary: Team Member Add
       operationId: team_member_add
