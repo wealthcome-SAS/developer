@@ -17,6 +17,9 @@ tags:
   description: Task related endpoints
 - name: Team
   description: Team related endpoints
+security:
+- BearerAuth:
+  - bearer
 components:
   securitySchemes:
     Bearer:
@@ -481,14 +484,13 @@ paths:
                   properties:
                     id:
                       type: string
-                      format: uuid
                       example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
                     name:
                       type: string
-                      example: John Doe
+                      example: Jean dupont
                     email:
                       type: string
-                      example: ''
+                      example: jean.dupont@company.tld
                     leader:
                       type: boolean
                   required:
@@ -528,3 +530,44 @@ paths:
       responses:
         '204':
           description: Manager added to the team
+  /companies/{id}/managers/statistics:
+    get:
+      tags:
+      - Managers
+      operationId: manager_list_statistics
+      summary: Manager list statistics
+      responses:
+        '200':
+          description: success - manager wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{id}/managers:
+    get:
+      operationId: manger_list
+      tags:
+      - Managers
+      summary: List of customers
+      responses:
+        '200':
+          description: success - paginated list of managers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Jean dupont
+                  required:
+                  - name
