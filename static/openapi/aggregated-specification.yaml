@@ -473,9 +473,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/Team'
     patch:
       operationId: team_update
       summary: Team update
