@@ -600,7 +600,7 @@ paths:
   /companies/{company_id}/managers/statistics:
     get:
       tags:
-      - Managers
+      - Manager
       operationId: manager_list_statistics
       summary: Manager list statistics
       responses:
@@ -621,8 +621,8 @@ paths:
     get:
       operationId: manger_list
       tags:
-      - Managers
-      summary: List of customers
+      - Manager
+      summary: List of managers
       responses:
         '200':
           description: success - paginated list of managers
@@ -640,7 +640,7 @@ paths:
                   - name
     post:
       tags:
-      - Managers
+      - Manager
       operationId: manager_creation
       summary: Create a new manager
       requestBody:
