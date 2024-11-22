@@ -183,6 +183,75 @@ components:
           example: a team of interns
       required:
       - name
+    Manager:
+      type: object
+      properties:
+        id:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          example: Jean dupont
+        email:
+          type: string
+          example: jean.dupont@company.tld
+      required:
+      - id
+      - name
+      - email
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the asset
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          description: The name of the asset
+          example: Jean dupont
+        group:
+          type: string
+          enum:
+          - banking
+          - securities
+          - lifeInsurance_capitalization
+          - retirement_employee
+          - crowdfunding
+          - private_equity
+          - crypto
+          - benefits
+          - heritage_real_estate
+          - professional_real_estate
+          - commercial_real_estate
+          - other
+          - rock_paper
+          - exotic
+          - home_loan
+          - business_loan
+          - consumer_loan
+          - other_loan
+          - unrecognized
+          description: The group of the asset. Note that the group will determine the structure of the asset's metadata
+          example: banking
+        BBAN:
+          type: string
+          description: The BBAN of the asset
+        metadata:
+          nullable: true
+          description: The metadata of the asset
+        management:
+          type: string
+          enum:
+          - under
+          - none
+          description: The management of the asset, under if the assets is managed by the company, otherwise none
+      required:
+      - id
+      - name
+      - group
+      - BBAN
+      - management
   parameters: {}
 paths:
   /companies:
@@ -289,7 +358,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Company'
-  /companies/{id}/customers/statistics:
+  /companies/{company_id}/customers/statistics:
     get:
       tags:
       - Customers
@@ -309,7 +378,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{id}/customers:
+  /companies/{company_id}/customers:
     get:
       operationId: customer_list
       tags:
@@ -324,7 +393,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Customer'
-  /companies/{id}/teams/statistics:
+  /companies/{company_id}/teams/statistics:
     get:
       opereationId: team_list_statistics
       tags:
@@ -344,7 +413,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{id}/teams:
+  /companies/{company_id}/teams:
     get:
       operationId: team_list
       tags:
@@ -385,7 +454,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
-  /companies/{id}/teams/{team_name}:
+  /companies/{company_id}/teams/{team_name}:
     get:
       operationId: team_retrieve
       summary: Team retrieval
@@ -459,7 +528,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
-  /companies/{id}/teams/{team_name}/members:
+  /companies/{company_id}/teams/{team_name}/members:
     get:
       operationId: team_member_list
       tags:
@@ -530,7 +599,7 @@ paths:
       responses:
         '204':
           description: Manager added to the team
-  /companies/{id}/managers/statistics:
+  /companies/{company_id}/managers/statistics:
     get:
       tags:
       - Managers
@@ -550,7 +619,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{id}/managers:
+  /companies/{company_id}/managers:
     get:
       operationId: manger_list
       tags:
@@ -571,3 +640,100 @@ paths:
                       example: Jean dupont
                   required:
                   - name
+    post:
+      tags:
+      - Managers
+      operationId: manager_creation
+      summary: Create a new manager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the manager
+                  example: Jean dupont
+                email:
+                  type: string
+                  format: email
+                  description: The email of the manager
+                  example: jean.dupont@company.tld
+                claims:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - billing
+                    - managers_read
+                    - manager_invite
+                    - clients_invite
+                    - clients_reads
+                    - management
+                  minItems: 1
+                  example:
+                  - billing
+                  - management
+              required:
+              - name
+              - email
+              - claims
+      responses:
+        '200':
+          description: success - manager created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Manager'
+                - type: object
+                  properties:
+                    claims:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - billing
+                        - managers_read
+                        - manager_invite
+                        - clients_invite
+                        - clients_reads
+                        - management
+                      example:
+                      - billing
+                  required:
+                  - claims
+  /companies/{company_id}/assets:
+    get:
+      operationId: asset_list
+      summary: List assets
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: sucess - a paginated list of assets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+
