@@ -252,6 +252,101 @@ components:
       - group
       - BBAN
       - management
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the transaction
+          example: tx-123456-abcdef
+        name:
+          type: string
+          description: The name/description of the transaction
+          example: Payment for services
+        date:
+          type: string
+          nullable: true
+          description: The date of the transaction
+          example: 2024-03-15
+        amount:
+          type: number
+          description: The amount of the transaction (in EUR)
+          example: 1250.5
+        type:
+          type: string
+          description: The type of the transaction
+          example: payment
+      required:
+      - id
+      - name
+      - date
+      - amount
+      - type
+    Investment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the investment
+          example: inv-123456-abcdef
+        label:
+          type: string
+          description: The label/name of the investment
+          example: APPLE INC
+        unitPrice:
+          type: number
+          description: The price per unit
+          example: 150.25
+        unitValue:
+          type: number
+          description: The current value per unit
+          example: 155.75
+        quantity:
+          type: number
+          description: The number of units held
+          example: 100
+        valuation:
+          type: number
+          description: The total valuation of the investment
+          example: 15575
+        instrument:
+          type: string
+          description: The type of investment instrument
+          example: Stock
+        category:
+          type: string
+          description: The investment category
+          example: Equity
+        subcategory:
+          type: string
+          description: The investment subcategory
+          example: Technology
+        managementCompany:
+          type: string
+          description: The company managing the investment
+          example: BlackRock
+        riskIndicator:
+          type: string
+          description: Risk indicator of the investment
+          example: Moderate
+        sri:
+          type: string
+          description: Synthetic Risk Indicator
+          example: '4'
+      required:
+      - id
+      - label
+      - unitPrice
+      - unitValue
+      - quantity
+      - valuation
+      - instrument
+      - category
+      - subcategory
+      - managementCompany
+      - riskIndicator
+      - sri
   parameters: {}
 paths:
   /companies:
@@ -358,6 +453,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Company'
+    delete:
+      tags:
+      - company
+      operationId: company_deletion
+      summary: Delete a company
+      description: Deletes a company and logs the deletion
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      responses:
+        '200':
+          description: Company deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
   /companies/{company_id}/customers/statistics:
     get:
       tags:
@@ -393,9 +508,40 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Customer'
+  /companies/{company_id}/customers/{id}:
+    delete:
+      tags:
+      - customer
+      operationId: customer_deletion
+      summary: Delete a customer
+      description: Deletes a customer and their management relationships
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      responses:
+        '200':
+          description: Customer deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                  name:
+                    type: string
+                    example: Jean dupont
+                required:
+                - id
+                - name
   /companies/{company_id}/teams/statistics:
     get:
-      opereationId: team_list_statistics
+      operationId: team_list_statistics
       tags:
       - Team
       summary: Team list statistics
@@ -734,4 +880,84 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Asset'
+  /companies/{company_id}/assets/{asset_id}/transactions:
+    get:
+      operationId: asset_transaction_list
+      summary: List asset transactions
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+          description: The ID of the asset to list transactions
+          example: random-asset-id
+        required: true
+        name: asset_id
+        in: path
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions only after this date
+          example: 2024-01-01
+        required: false
+        name: from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions only before this date
+          example: 2024-12-31
+        required: false
+        name: to
+        in: query
+      responses:
+        '200':
+          description: A JSON array of asset transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+  /companies/{company_id}/assets/{asset_id}/investments:
+    get:
+      operationId: asset_investments_list
+      summary: List asset investments
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+          description: The ID of the asset to list investments
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: asset_id
+        in: path
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve investments only after this date
+          example: 2024-01-01
+        required: false
+        name: from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve investments only before this date
+          example: 2024-12-31
+        required: false
+        name: to
+        in: query
+      responses:
+        '200':
+          description: A JSON array of asset investments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Investment'
 
