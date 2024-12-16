@@ -47,6 +47,14 @@ components:
         name:
           type: string
           example: Jean dupont
+        created:
+          type: string
+          description: The date of creation of the customer
+          example: 2024-01-01T00:00:00.000Z
+        updated:
+          type: string
+          description: The date of the last update of the customer
+          example: 2024-01-01T00:00:00.000Z
         general:
           type: object
           nullable: true
@@ -73,6 +81,8 @@ components:
               type: string
               nullable: true
             birthCity:
+              type: string
+            birthZipCode:
               type: string
             deathDate:
               type: string
@@ -172,6 +182,8 @@ components:
       required:
       - id
       - name
+      - created
+      - updated
     Team:
       type: object
       properties:
@@ -266,7 +278,7 @@ components:
         date:
           type: string
           nullable: true
-          description: The date of the transaction
+          description: The date of the transaction.
           example: 2024-03-15
         amount:
           type: number
@@ -276,12 +288,30 @@ components:
           type: string
           description: The type of the transaction
           example: payment
+        processed:
+          type: string
+          description: The date when the transaction was last processed by the system
+        manager:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+              example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+            name:
+              type: string
+              example: Jean dupont
+          required:
+          - id
+          - name
+          description: The manager linked to the transaction
       required:
       - id
       - name
       - date
       - amount
       - type
+      - processed
     Investment:
       type: object
       properties:
@@ -455,7 +485,7 @@ paths:
                 $ref: '#/components/schemas/Company'
     delete:
       tags:
-      - Company
+      - company
       operationId: company_deletion
       summary: Delete a company
       description: Deletes a company and logs the deletion
@@ -476,7 +506,7 @@ paths:
   /companies/{company_id}/customers/statistics:
     get:
       tags:
-      - Customer
+      - Customers
       operationId: customer_list_statistics
       summary: Customer list statistics
       responses:
@@ -497,8 +527,57 @@ paths:
     get:
       operationId: customer_list
       tags:
-      - Customer
+      - Customers
       summary: List of customers
+      parameters:
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers created after this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: creation_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers created before this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: creation_to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers updated after this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: updated_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers updated before this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: updated_to
+        in: query
       responses:
         '200':
           description: success - paginated list of customers
@@ -511,7 +590,7 @@ paths:
   /companies/{company_id}/customers/{id}:
     delete:
       tags:
-      - Customer
+      - customer
       operationId: customer_deletion
       summary: Delete a customer
       description: Deletes a customer and their management relationships
@@ -539,6 +618,63 @@ paths:
                 required:
                 - id
                 - name
+  /companies/{company_id}/customers/{id}/fiscality:
+    get:
+      tags:
+      - Customer
+      operationId: customer_fiscality
+      summary: Customer fiscality
+      description: Get the fiscality forms of a customer
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      - schema:
+          type: number
+          nullable: true
+          example: 2024
+        required: false
+        name: year
+        in: query
+      responses:
+        '200':
+          description: success - customer fiscality forms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                    created:
+                      type: string
+                      example: 2024-01-01T00:00:00.000Z
+                    updated:
+                      type: string
+                      example: 2024-01-01T00:00:00.000Z
+                    input:
+                      type: object
+                      additionalProperties:
+                        nullable: true
+                      example:
+                        taxableIncome: 100000
+                        realEstateWealthTax: 1000
+                    year:
+                      type: number
+                      nullable: true
+                      example: 2024
+                  required:
+                  - id
+                  - created
+                  - updated
+                  - input
+                  - year
   /companies/{company_id}/teams/statistics:
     get:
       operationId: team_list_statistics
@@ -565,6 +701,23 @@ paths:
       tags:
       - Team
       summary: Team list
+      parameters:
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
       responses:
         '200':
           description: Retrieve the list of teams
@@ -672,6 +825,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
+  /companies/{company_id}/teams/{team_name}/statistics:
+    get:
+      operationId: team_statistics
+      tags:
+      - Team
+      summary: Statistics of a team
+      parameters:
+      - schema:
+          type: string
+          example: interns
+        required: true
+        name: team_name
+        in: path
+      responses:
+        '200':
+          description: Retrieve team statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: number
+                    description: Number of customers managed by the team
+                    minimum: 0
+                    example: 10
+                  contracts:
+                    type: number
+                    description: Number of contract managed by the team
+                    minimum: 0
+                    example: 10
+                  members:
+                    type: number
+                    description: Number of members in the team
+                    minimum: 0
+                    example: 10
+                  leaders:
+                    type: number
+                    description: Number of leaders in the team
+                    minimum: 0
+                    example: 10
+                  subordinate:
+                    type: number
+                    description: Number of subordinates in the team
+                    minimum: 0
+                    example: 10
+                required:
+                - customers
+                - contracts
+                - members
+                - leaders
+                - subordinate
   /companies/{company_id}/teams/{team_name}/members:
     get:
       operationId: team_member_list
@@ -685,6 +890,22 @@ paths:
         required: true
         name: team_name
         in: path
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
       responses:
         '200':
           description: Retrieve the list of team members
@@ -769,6 +990,23 @@ paths:
       tags:
       - Manager
       summary: List of managers
+      parameters:
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
       responses:
         '200':
           description: success - paginated list of managers
@@ -848,6 +1086,220 @@ paths:
                       - billing
                   required:
                   - claims
+  /companies/{company_id}/managers/{id}:
+    patch:
+      tags:
+      - Manager
+      operationId: manager_update
+      summary: Update a manager
+      description: Update a manager by his id
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Jean dupont
+              required:
+              - name
+      responses:
+        '200':
+          description: Manager updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                  name:
+                    type: string
+                    example: Jean dupont
+                required:
+                - id
+                - name
+  /companies/{company_id}/managers/{manager_id}/customers/statistics:
+    get:
+      tags:
+      - Customers
+      operationId: customer_list_statistics
+      summary: Customer list statistics
+      responses:
+        '200':
+          description: success - customers wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{company_id}/managers/{manager_id}/customers:
+    get:
+      operationId: customer_list
+      tags:
+      - Customers
+      summary: List of customers
+      parameters:
+      - schema:
+          type: number
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers created after this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: creation_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers created before this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: creation_to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers updated after this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: updated_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers updated before this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: updated_to
+        in: query
+      responses:
+        '200':
+          description: success - paginated list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+  /companies/{company_id}/managers/{manager_id}/customers/{id}:
+    delete:
+      tags:
+      - customer
+      operationId: customer_deletion
+      summary: Delete a customer
+      description: Deletes a customer and their management relationships
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      responses:
+        '200':
+          description: Customer deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                  name:
+                    type: string
+                    example: Jean dupont
+                required:
+                - id
+                - name
+  /companies/{company_id}/managers/{manager_id}/customers/{id}/fiscality:
+    get:
+      tags:
+      - Customer
+      operationId: customer_fiscality
+      summary: Customer fiscality
+      description: Get the fiscality forms of a customer
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      - schema:
+          type: number
+          nullable: true
+          example: 2024
+        required: false
+        name: year
+        in: query
+      responses:
+        '200':
+          description: success - customer fiscality forms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                    created:
+                      type: string
+                      example: 2024-01-01T00:00:00.000Z
+                    updated:
+                      type: string
+                      example: 2024-01-01T00:00:00.000Z
+                    input:
+                      type: object
+                      additionalProperties:
+                        nullable: true
+                      example:
+                        taxableIncome: 100000
+                        realEstateWealthTax: 1000
+                    year:
+                      type: number
+                      nullable: true
+                      example: 2024
+                  required:
+                  - id
+                  - created
+                  - updated
+                  - input
+                  - year
   /companies/{company_id}/assets:
     get:
       operationId: asset_list
@@ -910,6 +1362,22 @@ paths:
           example: 2024-12-31
         required: false
         name: to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions processed only after this date
+          example: 2024-01-01
+        required: false
+        name: processed_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions processed only before this date
+          example: 2024-12-31
+        required: false
+        name: processed_to
         in: query
       responses:
         '200':
