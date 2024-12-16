@@ -485,7 +485,7 @@ paths:
                 $ref: '#/components/schemas/Company'
     delete:
       tags:
-      - company
+      - Company
       operationId: company_deletion
       summary: Delete a company
       description: Deletes a company and logs the deletion
@@ -506,7 +506,7 @@ paths:
   /companies/{company_id}/customers/statistics:
     get:
       tags:
-      - Customers
+      - Customer
       operationId: customer_list_statistics
       summary: Customer list statistics
       responses:
@@ -527,7 +527,7 @@ paths:
     get:
       operationId: customer_list
       tags:
-      - Customers
+      - Customer
       summary: List of customers
       parameters:
       - schema:
@@ -590,7 +590,7 @@ paths:
   /companies/{company_id}/customers/{id}:
     delete:
       tags:
-      - customer
+      - Customer
       operationId: customer_deletion
       summary: Delete a customer
       description: Deletes a customer and their management relationships
@@ -1131,7 +1131,7 @@ paths:
   /companies/{company_id}/managers/{manager_id}/customers/statistics:
     get:
       tags:
-      - Customers
+      - Customer
       operationId: customer_list_statistics
       summary: Customer list statistics
       responses:
@@ -1152,7 +1152,7 @@ paths:
     get:
       operationId: customer_list
       tags:
-      - Customers
+      - Customer
       summary: List of customers
       parameters:
       - schema:
@@ -1215,7 +1215,7 @@ paths:
   /companies/{company_id}/managers/{manager_id}/customers/{id}:
     delete:
       tags:
-      - customer
+      - Customer
       operationId: customer_deletion
       summary: Delete a customer
       description: Deletes a customer and their management relationships
