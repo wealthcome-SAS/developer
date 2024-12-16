@@ -1148,7 +1148,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{company_id}/managers/{manager_id}/customers:
+  /companies/{company_id}/managers/{manager_id}/customers/:
     get:
       operationId: customer_list
       tags:
