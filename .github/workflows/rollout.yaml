@@ -21,19 +21,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Setup kubectl
-      - uses: azure/setup-kubectl@v3
+      - uses: azure/setup-kubectl@v4.0.0
         name: Set up kubectl
         id: install
 
       # Setup context
-      - uses: azure/k8s-set-context@v3
+      - uses: azure/k8s-set-context@v4
         name: Set up cluster configuration
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.cluster_configuration }}
 
       - name: Set up registry secret
-        uses: azure/k8s-create-secret@v4
+        uses: azure/k8s-create-secret@v5
         with:
           secret-type: "kubernetes.io/dockerconfigjson"
           secret-name: "registry-secret"
@@ -46,7 +46,7 @@ jobs:
       - name: Setup registry URL
         run: sed -i 's|registry-url|${{ secrets.registry_url }}|g' kubernetes/deployment.yaml
 
-      - uses: Azure/k8s-deploy@v4
+      - uses: Azure/k8s-deploy@v5
         name: Deploy
         with:
           action: deploy
