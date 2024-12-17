@@ -1,5 +1,7 @@
 node_modules
-docs/provider-specification
 .docusaurus
 kubernetes
 .github
+
+docs/provider-specification
+docs/aggregated-specification
