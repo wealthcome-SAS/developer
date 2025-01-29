@@ -388,6 +388,7 @@ paths:
       parameters:
       - schema:
           type: number
+          nullable: true
           default: 0
           minimum: 0
           example: 0
@@ -396,6 +397,7 @@ paths:
         in: query
       - schema:
           type: number
+          nullable: true
           default: 10
           minimum: 1
           example: 10
@@ -532,6 +534,7 @@ paths:
       parameters:
       - schema:
           type: number
+          nullable: true
           default: 0
           minimum: 0
           example: 0
@@ -540,6 +543,7 @@ paths:
         in: query
       - schema:
           type: number
+          nullable: true
           default: 10
           minimum: 1
           example: 10
@@ -704,6 +708,7 @@ paths:
       parameters:
       - schema:
           type: number
+          nullable: true
           default: 0
           minimum: 0
           example: 0
@@ -712,6 +717,7 @@ paths:
         in: query
       - schema:
           type: number
+          nullable: true
           default: 10
           minimum: 1
           example: 10
@@ -892,6 +898,7 @@ paths:
         in: path
       - schema:
           type: number
+          nullable: true
           default: 0
           minimum: 0
           example: 0
@@ -900,6 +907,7 @@ paths:
         in: query
       - schema:
           type: number
+          nullable: true
           default: 10
           minimum: 1
           example: 10
@@ -993,6 +1001,7 @@ paths:
       parameters:
       - schema:
           type: number
+          nullable: true
           default: 0
           minimum: 0
           example: 0
@@ -1001,6 +1010,7 @@ paths:
         in: query
       - schema:
           type: number
+          nullable: true
           default: 10
           minimum: 1
           example: 10
@@ -1128,178 +1138,6 @@ paths:
                 required:
                 - id
                 - name
-  /companies/{company_id}/managers/{manager_id}/customers/statistics:
-    get:
-      tags:
-      - Manager
-      operationId: customer_list_statistics
-      summary: Customer list statistics
-      responses:
-        '200':
-          description: success - customers wide statistics
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: number
-                    minimum: 0
-                    example: 10
-                required:
-                - count
-  /companies/{company_id}/managers/{manager_id}/customers/:
-    get:
-      operationId: customer_list
-      tags:
-      - Manager
-      summary: List of customers
-      parameters:
-      - schema:
-          type: number
-          default: 0
-          minimum: 0
-          example: 0
-        required: false
-        name: offset
-        in: query
-      - schema:
-          type: number
-          default: 10
-          minimum: 1
-          example: 10
-        required: false
-        name: limit
-        in: query
-      - schema:
-          type: string
-          nullable: true
-          description: Filter customers created after this date
-          example: 2024-01-01T00:00:00.000Z
-        required: false
-        name: creation_from
-        in: query
-      - schema:
-          type: string
-          nullable: true
-          description: Filter customers created before this date
-          example: 2024-01-01T00:00:00.000Z
-        required: false
-        name: creation_to
-        in: query
-      - schema:
-          type: string
-          nullable: true
-          description: Filter customers updated after this date
-          example: 2024-01-01T00:00:00.000Z
-        required: false
-        name: updated_from
-        in: query
-      - schema:
-          type: string
-          nullable: true
-          description: Filter customers updated before this date
-          example: 2024-01-01T00:00:00.000Z
-        required: false
-        name: updated_to
-        in: query
-      responses:
-        '200':
-          description: success - paginated list of customers
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Customer'
-  /companies/{company_id}/managers/{manager_id}/customers/{id}:
-    delete:
-      tags:
-      - Manager
-      operationId: customer_deletion
-      summary: Delete a customer
-      description: Deletes a customer and their management relationships
-      parameters:
-      - schema:
-          type: string
-          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-        required: true
-        name: id
-        in: path
-      responses:
-        '200':
-          description: Customer deleted successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-                  name:
-                    type: string
-                    example: Jean dupont
-                required:
-                - id
-                - name
-  /companies/{company_id}/managers/{manager_id}/customers/{id}/fiscality:
-    get:
-      tags:
-      - Manager
-      operationId: customer_fiscality
-      summary: Customer fiscality
-      description: Get the fiscality forms of a customer
-      parameters:
-      - schema:
-          type: string
-          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-        required: true
-        name: id
-        in: path
-      - schema:
-          type: number
-          nullable: true
-          example: 2024
-        required: false
-        name: year
-        in: query
-      responses:
-        '200':
-          description: success - customer fiscality forms
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-                    created:
-                      type: string
-                      example: 2024-01-01T00:00:00.000Z
-                    updated:
-                      type: string
-                      example: 2024-01-01T00:00:00.000Z
-                    input:
-                      type: object
-                      additionalProperties:
-                        nullable: true
-                      example:
-                        taxableIncome: 100000
-                        realEstateWealthTax: 1000
-                    year:
-                      type: number
-                      nullable: true
-                      example: 2024
-                  required:
-                  - id
-                  - created
-                  - updated
-                  - input
-                  - year
   /companies/{company_id}/assets:
     get:
       operationId: asset_list
@@ -1309,6 +1147,7 @@ paths:
       parameters:
       - schema:
           type: number
+          nullable: true
           default: 0
           minimum: 0
           example: 0
@@ -1317,6 +1156,7 @@ paths:
         in: query
       - schema:
           type: number
+          nullable: true
           default: 10
           minimum: 1
           example: 10
