@@ -31,6 +31,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
           example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
         name:
           type: string
@@ -462,7 +463,7 @@ paths:
       parameters:
       - schema:
           type: string
-          minLength: 1
+          format: uuid
           example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
         required: true
         name: id
@@ -494,6 +495,7 @@ paths:
       parameters:
       - schema:
           type: string
+          format: uuid
           example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
         required: true
         name: id
@@ -505,7 +507,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Company'
-  /companies/{company_id}/customers/statistics:
+  /companies/{companyId}/customers/statistics:
     get:
       tags:
       - Customer
@@ -525,7 +527,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{company_id}/customers:
+  /companies/{companyId}/customers:
     get:
       operationId: customer_list
       tags:
@@ -591,7 +593,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Customer'
-  /companies/{company_id}/customers/{id}:
+  /companies/{companyId}/customers/{id}:
     delete:
       tags:
       - Customer
@@ -622,7 +624,7 @@ paths:
                 required:
                 - id
                 - name
-  /companies/{company_id}/customers/{id}/fiscality:
+  /companies/{companyId}/customers/{id}/fiscality:
     get:
       tags:
       - Customer
@@ -679,7 +681,7 @@ paths:
                   - updated
                   - input
                   - year
-  /companies/{company_id}/teams/statistics:
+  /companies/{companyId}/teams/statistics:
     get:
       operationId: team_list_statistics
       tags:
@@ -699,7 +701,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{company_id}/teams:
+  /companies/{companyId}/teams:
     get:
       operationId: team_list
       tags:
@@ -759,7 +761,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
-  /companies/{company_id}/teams/{team_name}:
+  /companies/{companyId}/teams/{teamName}:
     get:
       operationId: team_retrieve
       summary: Team retrieval
@@ -770,7 +772,7 @@ paths:
           type: string
           example: interns
         required: true
-        name: team_name
+        name: teamName
         in: path
       responses:
         '200':
@@ -789,7 +791,7 @@ paths:
           type: string
           example: interns
         required: true
-        name: team_name
+        name: teamName
         in: path
       requestBody:
         content:
@@ -822,7 +824,7 @@ paths:
           type: string
           example: interns
         required: true
-        name: team_name
+        name: teamName
         in: path
       responses:
         '200':
@@ -831,7 +833,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
-  /companies/{company_id}/teams/{team_name}/statistics:
+  /companies/{companyId}/teams/{teamName}/statistics:
     get:
       operationId: team_statistics
       tags:
@@ -842,7 +844,7 @@ paths:
           type: string
           example: interns
         required: true
-        name: team_name
+        name: teamName
         in: path
       responses:
         '200':
@@ -883,7 +885,7 @@ paths:
                 - members
                 - leaders
                 - subordinate
-  /companies/{company_id}/teams/{team_name}/members:
+  /companies/{companyId}/teams/{teamName}/members:
     get:
       operationId: team_member_list
       tags:
@@ -894,7 +896,7 @@ paths:
           type: string
           example: interns
         required: true
-        name: team_name
+        name: teamName
         in: path
       - schema:
           type: number
@@ -950,7 +952,7 @@ paths:
           type: string
           example: interns
         required: true
-        name: team_name
+        name: teamName
         in: path
       requestBody:
         content:
@@ -960,19 +962,19 @@ paths:
               items:
                 type: object
                 properties:
-                  manager_id:
+                  managerId:
                     type: string
                     example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
                   leader:
                     type: boolean
                     example: true
                 required:
-                - manager_id
+                - managerId
                 - leader
       responses:
         '204':
           description: Manager added to the team
-  /companies/{company_id}/managers/statistics:
+  /companies/{companyId}/managers/statistics:
     get:
       tags:
       - Manager
@@ -992,7 +994,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{company_id}/managers:
+  /companies/{companyId}/managers:
     get:
       operationId: manger_list
       tags:
@@ -1096,7 +1098,7 @@ paths:
                       - billing
                   required:
                   - claims
-  /companies/{company_id}/managers/{id}:
+  /companies/{companyId}/managers/{id}:
     patch:
       tags:
       - Manager
@@ -1138,7 +1140,7 @@ paths:
                 required:
                 - id
                 - name
-  /companies/{company_id}/assets:
+  /companies/{companyId}/assets:
     get:
       operationId: asset_list
       summary: List assets
@@ -1172,7 +1174,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Asset'
-  /companies/{company_id}/assets/{asset_id}/transactions:
+  /companies/{companyId}/assets/{asset_id}/transactions:
     get:
       operationId: asset_transaction_list
       summary: List asset transactions
@@ -1228,7 +1230,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Transaction'
-  /companies/{company_id}/assets/{asset_id}/investments:
+  /companies/{companyId}/assets/{asset_id}/investments:
     get:
       operationId: asset_investments_list
       summary: List asset investments
@@ -1268,4 +1270,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Investment'
+  /companies/{companyId}/references/statistics:
+    get:
+      tags:
+      - References
+      operationId: customer_references_list_statistics
+      summary: Customer references list statistics
+      responses:
+        '200':
+          description: success - customer references wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{companyId}/references:
+    get:
+      operationId: references_list
+      tags:
+      - Reference
+      summary: List of reference
+      parameters:
+      - schema:
+          type: number
+          nullable: true
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          nullable: true
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers created after this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: creation_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Filter customers created before this date
+          example: 2024-01-01T00:00:00.000Z
+        required: false
+        name: creation_to
+        in: query
+      responses:
+        '200':
+          description: success - paginated list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: The references ID.
+                    companyId:
+                      type: string
+                      format: uuid
+                      description: The company in which the reference is part of.
+                    created:
+                      type: string
+                      nullable: true
+                      description: The date of creation of the reference.
+                      example: 2024-01-01T00:00:00.000Z
+                    tag:
+                      type: string
+                      nullable: true
+                      description: The tag of the reference.
+                      example: VIP
+                  required:
+                  - id
+                  - companyId
+                  - created
+                  description: A "customer" reference is like a folder containing one or more aggregations entities
 
