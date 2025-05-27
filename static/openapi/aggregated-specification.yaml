@@ -1857,7 +1857,7 @@ paths:
       operationId: references_informations
       tags:
       - Reference
-      summary: ''
+      summary: Reference information
       parameters:
       - schema:
           type: string
