@@ -1761,7 +1761,7 @@ paths:
     get:
       operationId: references_list
       tags:
-      - Reference
+      - References
       summary: List of reference
       parameters:
       - schema:
@@ -1854,10 +1854,10 @@ paths:
                   description: A "customer" reference is like a folder containing one or more aggregations entities
   /companies/{companyId}/references/:id:
     get:
-      operationId: references_list
+      operationId: references_details
       tags:
-      - Reference
-      summary: List of reference
+      - References
+      summary: ''
       parameters:
       - schema:
           type: string
@@ -1869,7 +1869,7 @@ paths:
         in: path
       responses:
         '200':
-          description: success - paginated list of customers
+          description: success - a reference information
           content:
             application/json:
               schema:
