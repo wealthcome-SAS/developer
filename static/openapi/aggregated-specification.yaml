@@ -2500,11 +2500,29 @@ paths:
                             - relation
                             description: The type of the aggregation entity.
                             example: customer
+                    access:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          managerId:
+                            type: string
+                            format: uuid
+                            description: The ID of the manager who has access to the reference.
+                            example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
+                          primary:
+                            type: boolean
+                            default: false
+                            description: Whether the manager is the primary contact for the reference.
+                            example: true
+                        required:
+                        - managerId
                   required:
                   - id
                   - companyId
                   - created
                   - entities
+                  - access
                   description: A "customer" reference is like a folder containing one or more aggregations entities
     put:
       operationId: references_creation
@@ -3307,11 +3325,29 @@ paths:
                           - relation
                           description: The type of the aggregation entity.
                           example: customer
+                  access:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        managerId:
+                          type: string
+                          format: uuid
+                          description: The ID of the manager who has access to the reference.
+                          example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
+                        primary:
+                          type: boolean
+                          default: false
+                          description: Whether the manager is the primary contact for the reference.
+                          example: true
+                      required:
+                      - managerId
                 required:
                 - id
                 - companyId
                 - created
                 - entities
+                - access
                 description: A "customer" reference is like a folder containing one or more aggregations entities
     patch:
       operationId: references_modification
@@ -3327,6 +3363,52 @@ paths:
         required: true
         name: id
         in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  nullable: true
+                  description: The tag of the reference.
+                  example: VIP
+                entities:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                        readOnly: true
+                      referenceType:
+                        type: string
+                        enum:
+                        - customer
+                        - prospect
+                        - relation
+                        default: customer
+                        description: The type of the aggregation entity.
+                        example: customer
+                    required:
+                    - id
+                access:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      managerId:
+                        type: string
+                        format: uuid
+                      primary:
+                        type: boolean
+                        default: false
+                    required:
+                    - managerId
       responses:
         '200':
           description: success - a reference information
@@ -3353,32 +3435,10 @@ paths:
                     nullable: true
                     description: The tag of the reference.
                     example: VIP
-                  entities:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          nullable: true
-                          format: uuid
-                          description: The ID of the aggregation entity.
-                          example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
-                        type:
-                          type: string
-                          nullable: true
-                          enum:
-                          - customer
-                          - prospect
-                          - relation
-                          description: The type of the aggregation entity.
-                          example: customer
                 required:
                 - id
                 - companyId
                 - created
-                - entities
-                description: A "customer" reference is like a folder containing one or more aggregations entities
   /companies/{companyId}/entities/statistics:
     get:
       tags:
