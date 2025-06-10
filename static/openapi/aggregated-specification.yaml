@@ -4241,10 +4241,10 @@ paths:
                 $ref: '#/components/schemas/Entity'
   /parent-companies:
     get:
-      operationId: company_list
-      summary: List companies
+      operationId: parent_company_list
+      summary: List parent companies
       tags:
-      - Company
+      - ParentCompany
       security:
       - Bearer: []
       parameters:
