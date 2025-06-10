@@ -1583,6 +1583,19 @@ components:
       - name
       - created
       - updated
+    ParentCompany:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          example: Apple Paris
+      required:
+      - id
+      - name
   parameters: {}
 paths:
   /companies:
@@ -4226,4 +4239,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entity'
+  /parent-companies:
+    get:
+      operationId: company_list
+      summary: List companies
+      tags:
+      - Company
+      security:
+      - Bearer: []
+      parameters:
+      - schema:
+          type: number
+          nullable: true
+          minimum: 0
+          default: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 1000
+          default: 10
+          example: 10
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: sucess - a paginated list of companies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParentCompany'
 
