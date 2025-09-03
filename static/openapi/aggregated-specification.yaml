@@ -1403,6 +1403,22 @@ components:
       - name
       - created
       - updated
+    Manager:
+      type: object
+      properties:
+        id:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          example: Jean dupont
+        email:
+          type: string
+          example: jean.dupont@company.tld
+      required:
+      - id
+      - name
+      - email
     Parent Company:
       type: object
       properties:
@@ -3597,7 +3613,7 @@ paths:
                 - id
                 - companyId
                 - created
-  /companies/{company-id}/references/:reference-id:
+  /companies/{company-id}/references/{reference-id}:
     get:
       operationId: references_informations
       tags:
@@ -3610,7 +3626,7 @@ paths:
           description: The ID of the reference to retrieve
           example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
         required: true
-        name: id
+        name: reference-id
         in: path
       responses:
         '200':
@@ -3682,6 +3698,7 @@ paths:
                 - entities
                 - access
                 description: A "customer" reference is like a folder containing one or more aggregations entities
+  /companies/{company-id}/references/:reference-id:
     patch:
       operationId: references_modification
       tags:
@@ -3772,6 +3789,172 @@ paths:
                 - id
                 - companyId
                 - created
+  /companies/{company-id}/{company-id}/managers/statistics:
+    get:
+      tags:
+      - Manager
+      operationId: manager_list_statistics
+      summary: Manager list statistics
+      responses:
+        '200':
+          description: success - manager wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{company-id}/{company-id}/managers:
+    get:
+      operationId: manger_list
+      tags:
+      - Manager
+      summary: List of managers
+      parameters:
+      - schema:
+          type: number
+          nullable: true
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          nullable: true
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: success - paginated list of managers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Jean dupont
+                  required:
+                  - name
+    post:
+      tags:
+      - Manager
+      operationId: manager_creation
+      summary: Create a new manager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the manager
+                  example: Jean dupont
+                email:
+                  type: string
+                  format: email
+                  description: The email of the manager
+                  example: jean.dupont@company.tld
+                claims:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - billing
+                    - managers_read
+                    - manager_invite
+                    - clients_invite
+                    - clients_reads
+                    - management
+                  minItems: 1
+                  example:
+                  - billing
+                  - management
+              required:
+              - name
+              - email
+              - claims
+      responses:
+        '200':
+          description: success - manager created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Manager'
+                - type: object
+                  properties:
+                    claims:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - billing
+                        - managers_read
+                        - manager_invite
+                        - clients_invite
+                        - clients_reads
+                        - management
+                      example:
+                      - billing
+                  required:
+                  - claims
+  /companies/{company-id}/{company-id}/managers/{id}:
+    patch:
+      tags:
+      - Manager
+      operationId: manager_update
+      summary: Update a manager
+      description: Update a manager by his id
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Jean dupont
+              required:
+              - name
+      responses:
+        '200':
+          description: Manager updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                  name:
+                    type: string
+                    example: Jean dupont
+                required:
+                - id
+                - name
   /parent-companies:
     get:
       operationId: parent_company_list
@@ -5490,7 +5673,7 @@ paths:
                 - id
                 - companyId
                 - created
-  /parent-companies/{parentCompanyID}/references/:reference-id:
+  /parent-companies/{parentCompanyID}/references/{reference-id}:
     get:
       operationId: references_informations
       tags:
@@ -5503,7 +5686,7 @@ paths:
           description: The ID of the reference to retrieve
           example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
         required: true
-        name: id
+        name: reference-id
         in: path
       responses:
         '200':
@@ -5575,6 +5758,7 @@ paths:
                 - entities
                 - access
                 description: A "customer" reference is like a folder containing one or more aggregations entities
+  /parent-companies/{parentCompanyID}/references/:reference-id:
     patch:
       operationId: references_modification
       tags:
