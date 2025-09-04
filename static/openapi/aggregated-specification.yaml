@@ -2801,6 +2801,18 @@ paths:
         required: false
         name: creation_to
         in: query
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter to show only references containing prospects
+          example: prospect
+        required: false
+        name: type
+        in: query
       responses:
         '200':
           description: success - paginated list of customers
@@ -4860,6 +4872,18 @@ paths:
           example: 2024-01-01T00:00:00.000Z
         required: false
         name: creation_to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter to show only references containing prospects
+          example: prospect
+        required: false
+        name: type
         in: query
       responses:
         '200':
