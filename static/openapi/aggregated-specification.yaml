@@ -1403,6 +1403,169 @@ components:
       - name
       - created
       - updated
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the asset
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          description: The name of the asset
+          example: Jean dupont
+        group:
+          type: string
+          enum:
+          - banking
+          - securities
+          - lifeInsurance_capitalization
+          - retirement_employee
+          - crowdfunding
+          - private_equity
+          - crypto
+          - benefits
+          - heritage_real_estate
+          - professional_real_estate
+          - commercial_real_estate
+          - other
+          - rock_paper
+          - exotic
+          - home_loan
+          - business_loan
+          - consumer_loan
+          - other_loan
+          - unrecognized
+          description: The group of the asset. Note that the group will determine the structure of the asset's metadata
+          example: banking
+        BBAN:
+          type: string
+          nullable: true
+          description: The BBAN of the asset
+        management:
+          type: string
+          enum:
+          - under
+          - none
+          description: The management of the asset, under if the assets is managed by the company, otherwise none
+      required:
+      - id
+      - name
+      - group
+      - management
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the transaction
+          example: tx-123456-abcdef
+        name:
+          type: string
+          description: The name/description of the transaction
+          example: Payment for services
+        date:
+          type: string
+          nullable: true
+          description: The date of the transaction.
+          example: 2024-03-15
+        amount:
+          type: number
+          description: The amount of the transaction (in EUR)
+          example: 1250.5
+        type:
+          type: string
+          description: The type of the transaction
+          example: payment
+        processed:
+          type: string
+          description: The date when the transaction was last processed by the system
+        manager:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+              example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+            name:
+              type: string
+              example: Jean dupont
+          required:
+          - id
+          - name
+          description: The manager linked to the transaction
+      required:
+      - id
+      - name
+      - date
+      - amount
+      - type
+      - processed
+    Investment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the investment
+          example: inv-123456-abcdef
+        label:
+          type: string
+          description: The label/name of the investment
+          example: APPLE INC
+        unitPrice:
+          type: number
+          description: The price per unit
+          example: 150.25
+        unitValue:
+          type: number
+          description: The current value per unit
+          example: 155.75
+        quantity:
+          type: number
+          description: The number of units held
+          example: 100
+        valuation:
+          type: number
+          description: The total valuation of the investment
+          example: 15575
+        instrument:
+          type: string
+          description: The type of investment instrument
+          example: Stock
+        category:
+          type: string
+          description: The investment category
+          example: Equity
+        subcategory:
+          type: string
+          description: The investment subcategory
+          example: Technology
+        managementCompany:
+          type: string
+          description: The company managing the investment
+          example: BlackRock
+        riskIndicator:
+          type: string
+          description: Risk indicator of the investment
+          example: Moderate
+        sri:
+          type: string
+          description: Synthetic Risk Indicator
+          example: '4'
+      required:
+      - id
+      - label
+      - unitPrice
+      - unitValue
+      - quantity
+      - valuation
+      - instrument
+      - category
+      - subcategory
+      - managementCompany
+      - riskIndicator
+      - sri
     Manager:
       type: object
       properties:
@@ -3801,7 +3964,137 @@ paths:
                 - id
                 - companyId
                 - created
-  /companies/{company-id}/managers/statistics:
+  /companies/{company-id}/assets:
+    get:
+      operationId: asset_list
+      summary: List assets
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: number
+          nullable: true
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          nullable: true
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: sucess - a paginated list of assets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+  /companies/{company-id}/assets/{asset_id}/transactions:
+    get:
+      operationId: asset_transaction_list
+      summary: List asset transactions
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+          description: The ID of the asset to list transactions
+          example: random-asset-id
+        required: true
+        name: asset_id
+        in: path
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions only after this date
+          example: 2024-01-01
+        required: false
+        name: from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions only before this date
+          example: 2024-12-31
+        required: false
+        name: to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions processed only after this date
+          example: 2024-01-01
+        required: false
+        name: processed_from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve transactions processed only before this date
+          example: 2024-12-31
+        required: false
+        name: processed_to
+        in: query
+      responses:
+        '200':
+          description: A JSON array of asset transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+  /companies/{company-id}/assets/{asset_id}/investments:
+    get:
+      operationId: asset_investments_list
+      summary: List asset investments
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+          description: The ID of the asset to list investments
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: asset_id
+        in: path
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve investments only after this date
+          example: 2024-01-01
+        required: false
+        name: from
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          description: Retrieve investments only before this date
+          example: 2024-12-31
+        required: false
+        name: to
+        in: query
+      responses:
+        '200':
+          description: A JSON array of asset investments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Investment'
+  /companies/{company-id}/{company-id}/managers/statistics:
     get:
       tags:
       - Manager
@@ -3821,7 +4114,7 @@ paths:
                     example: 10
                 required:
                 - count
-  /companies/{company-id}/managers:
+  /companies/{company-id}/{company-id}/managers:
     get:
       operationId: manger_list
       tags:
@@ -3925,7 +4218,7 @@ paths:
                       - billing
                   required:
                   - claims
-  /companies/{company-id}/managers/{manager-id}:
+  /companies/{company-id}/{company-id}/managers/{id}:
     patch:
       tags:
       - Manager
@@ -3935,9 +4228,9 @@ paths:
       parameters:
       - schema:
           type: string
-          format: uuid
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
         required: true
-        name: manager-id
+        name: id
         in: path
       requestBody:
         content:
@@ -5873,170 +6166,4 @@ paths:
                 - id
                 - companyId
                 - created
-  /parent-companies/{parentCompanyID}/managers/statistics:
-    get:
-      tags:
-      - Manager
-      operationId: manager_list_statistics
-      summary: Manager list statistics
-      responses:
-        '200':
-          description: success - manager wide statistics
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: number
-                    minimum: 0
-                    example: 10
-                required:
-                - count
-  /parent-companies/{parentCompanyID}/managers:
-    get:
-      operationId: manger_list
-      tags:
-      - Manager
-      summary: List of managers
-      parameters:
-      - schema:
-          type: number
-          nullable: true
-          default: 0
-          minimum: 0
-          example: 0
-        required: false
-        name: offset
-        in: query
-      - schema:
-          type: number
-          nullable: true
-          default: 10
-          minimum: 1
-          example: 10
-        required: false
-        name: limit
-        in: query
-      responses:
-        '200':
-          description: success - paginated list of managers
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      example: Jean dupont
-                  required:
-                  - name
-    post:
-      tags:
-      - Manager
-      operationId: manager_creation
-      summary: Create a new manager
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: The name of the manager
-                  example: Jean dupont
-                email:
-                  type: string
-                  format: email
-                  description: The email of the manager
-                  example: jean.dupont@company.tld
-                claims:
-                  type: array
-                  items:
-                    type: string
-                    enum:
-                    - billing
-                    - managers_read
-                    - manager_invite
-                    - clients_invite
-                    - clients_reads
-                    - management
-                  minItems: 1
-                  example:
-                  - billing
-                  - management
-              required:
-              - name
-              - email
-              - claims
-      responses:
-        '200':
-          description: success - manager created
-          content:
-            application/json:
-              schema:
-                allOf:
-                - $ref: '#/components/schemas/Manager'
-                - type: object
-                  properties:
-                    claims:
-                      type: array
-                      items:
-                        type: string
-                        enum:
-                        - billing
-                        - managers_read
-                        - manager_invite
-                        - clients_invite
-                        - clients_reads
-                        - management
-                      example:
-                      - billing
-                  required:
-                  - claims
-  /parent-companies/{parentCompanyID}/managers/{manager-id}:
-    patch:
-      tags:
-      - Manager
-      operationId: manager_update
-      summary: Update a manager
-      description: Update a manager by his id
-      parameters:
-      - schema:
-          type: string
-          format: uuid
-        required: true
-        name: manager-id
-        in: path
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Jean dupont
-              required:
-              - name
-      responses:
-        '200':
-          description: Manager updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-                  name:
-                    type: string
-                    example: Jean dupont
-                required:
-                - id
-                - name
 
