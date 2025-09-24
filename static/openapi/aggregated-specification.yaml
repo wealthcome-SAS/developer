@@ -1448,11 +1448,25 @@ components:
           - under
           - none
           description: The management of the asset, under if the assets is managed by the company, otherwise none
+        distribution:
+          type: array
+          items:
+            type: object
+            properties:
+              ownership:
+                type: number
+              entityId:
+                type: string
+                format: uuid
+            required:
+            - ownership
+            - entityId
       required:
       - id
       - name
       - group
       - management
+      - distribution
     Transaction:
       type: object
       properties:
@@ -3998,6 +4012,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Asset'
+  /companies/{company-id}/assets/{asset_id}:
+    get:
+      operationId: asset_informations
+      summary: Asset Information
+      tags:
+      - Assets
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+          description: The ID of the asset to list transactions
+          example: random-asset-id
+        required: true
+        name: asset_id
+        in: path
+      responses:
+        '200':
+          description: the asset information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
   /companies/{company-id}/assets/{asset_id}/transactions:
     get:
       operationId: asset_transaction_list
