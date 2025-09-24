@@ -733,6 +733,7 @@ components:
           readOnly: true
         created:
           type: string
+          nullable: true
           description: The date of creation of the customer
           example: 2024-01-01T00:00:00.000Z
           readOnly: true
@@ -1398,11 +1399,25 @@ components:
           enum:
           - person
           - company
+        assets:
+          type: array
+          items:
+            type: object
+            properties:
+              ownership:
+                type: number
+              id:
+                type: string
+                format: uuid
+            required:
+            - ownership
+            - id
+          description: Assets (partially or fully) owned by the entity
       required:
       - id
       - name
-      - created
       - updated
+      - assets
     Asset:
       type: object
       properties:
@@ -1461,6 +1476,7 @@ components:
             required:
             - ownership
             - entityId
+            description: the distribution of ownership shares between entities
       required:
       - id
       - name
@@ -2916,7 +2932,688 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Entity'
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                    readOnly: true
+                  name:
+                    type: string
+                    example: Jean dupont
+                    readOnly: true
+                  created:
+                    type: string
+                    nullable: true
+                    description: The date of creation of the customer
+                    example: 2024-01-01T00:00:00.000Z
+                    readOnly: true
+                  updated:
+                    type: string
+                    description: The date of the last update of the customer
+                    example: 2024-01-01T00:00:00.000Z
+                  general:
+                    anyOf:
+                    - type: object
+                      nullable: true
+                      properties:
+                        entryDateIntoRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        originCustomerRelationship:
+                          type: string
+                          nullable: true
+                        contactCustomerRelationship:
+                          type: string
+                          nullable: true
+                        remoteOpening:
+                          type: boolean
+                          nullable: true
+                        dateLastMeeting:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        entryIntoRelationshipNote:
+                          type: string
+                          nullable: true
+                        gender:
+                          type: string
+                          nullable: true
+                          enum:
+                          - male
+                          - female
+                          default: male
+                        name:
+                          type: string
+                          nullable: true
+                        lastName:
+                          type: string
+                          nullable: true
+                        firstName:
+                          type: string
+                          nullable: true
+                        birthDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        birthZipCode:
+                          type: string
+                          nullable: true
+                        birthRegion:
+                          type: string
+                          nullable: true
+                        birthCity:
+                          type: string
+                          nullable: true
+                        birthName:
+                          type: string
+                          nullable: true
+                        deathDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        familySituation:
+                          type: string
+                          nullable: true
+                          enum:
+                          - single
+                          - inARelationship
+                          - married
+                          - civilUnion
+                          - divorced
+                          - separated
+                          - widowed
+                          - domesticPartnership
+                          - freeUnion
+                          - cohabitation
+                          - pendingDivorce
+                          - remarried
+                          - deceased
+                        nationality:
+                          type: string
+                          nullable: true
+                        matrimonialRegime:
+                          type: string
+                          nullable: true
+                        studiesLevel:
+                          type: string
+                          nullable: true
+                          enum:
+                          - none
+                          - certificate
+                          - highSchool
+                          - bachelor
+                          - master
+                          - doctorate
+                        occupation:
+                          type: string
+                          nullable: true
+                        occupationWording:
+                          type: string
+                          nullable: true
+                        retirementAge:
+                          type: number
+                          nullable: true
+                        annualIncome:
+                          anyOf:
+                          - type: string
+                          - type: number
+                          - nullable: true
+                        heritageOrigin:
+                          type: string
+                          nullable: true
+                        seniorAdvisor:
+                          type: string
+                          nullable: true
+                        secondaryAdvisor:
+                          type: string
+                          nullable: true
+                        dateEntryRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idCard:
+                          type: string
+                          nullable: true
+                        idNumber:
+                          type: string
+                          nullable: true
+                        issueDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        authority:
+                          type: string
+                          nullable: true
+                        expirationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idNIF:
+                          type: string
+                          nullable: true
+                        idMIF:
+                          type: string
+                          nullable: true
+                        taxResidence:
+                          type: string
+                          nullable: true
+                        customerClassificationMIF:
+                          type: string
+                          nullable: true
+                        classificationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        pep:
+                          type: boolean
+                          nullable: true
+                        usPerson:
+                          type: boolean
+                          nullable: true
+                        legalCapacity:
+                          type: string
+                          nullable: true
+                        tag:
+                          type: string
+                          nullable: true
+                        updated:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        homeAdress:
+                          type: string
+                          nullable: true
+                        complement:
+                          type: string
+                          nullable: true
+                        postalCode:
+                          type: string
+                          nullable: true
+                        note:
+                          type: string
+                          nullable: true
+                        city:
+                          type: string
+                          nullable: true
+                        secondaryNationality:
+                          type: string
+                          nullable: true
+                        country:
+                          type: string
+                          nullable: true
+                        professionalCategory:
+                          type: string
+                          nullable: true
+                    - type: object
+                      nullable: true
+                      properties:
+                        entryDateIntoRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        originCustomerRelationship:
+                          type: string
+                          nullable: true
+                        contactCustomerRelationship:
+                          type: string
+                          nullable: true
+                        remoteOpening:
+                          type: boolean
+                          nullable: true
+                        dateLastMeeting:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        entryIntoRelationshipNote:
+                          type: string
+                          nullable: true
+                        gender:
+                          type: string
+                          nullable: true
+                          enum:
+                          - male
+                          - female
+                          default: male
+                        name:
+                          type: string
+                          nullable: true
+                        lastName:
+                          type: string
+                          nullable: true
+                        firstName:
+                          type: string
+                          nullable: true
+                        birthDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        birthZipCode:
+                          type: string
+                          nullable: true
+                        birthRegion:
+                          type: string
+                          nullable: true
+                        birthCity:
+                          type: string
+                          nullable: true
+                        birthName:
+                          type: string
+                          nullable: true
+                        deathDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        familySituation:
+                          type: string
+                          nullable: true
+                          enum:
+                          - single
+                          - inARelationship
+                          - married
+                          - civilUnion
+                          - divorced
+                          - separated
+                          - widowed
+                          - domesticPartnership
+                          - freeUnion
+                          - cohabitation
+                          - pendingDivorce
+                          - remarried
+                          - deceased
+                        nationality:
+                          type: string
+                          nullable: true
+                        matrimonialRegime:
+                          type: string
+                          nullable: true
+                        studiesLevel:
+                          type: string
+                          nullable: true
+                          enum:
+                          - none
+                          - certificate
+                          - highSchool
+                          - bachelor
+                          - master
+                          - doctorate
+                        occupation:
+                          type: string
+                          nullable: true
+                        occupationWording:
+                          type: string
+                          nullable: true
+                        retirementAge:
+                          type: number
+                          nullable: true
+                        annualIncome:
+                          anyOf:
+                          - type: string
+                          - type: number
+                          - nullable: true
+                        heritageOrigin:
+                          type: string
+                          nullable: true
+                        seniorAdvisor:
+                          type: string
+                          nullable: true
+                        secondaryAdvisor:
+                          type: string
+                          nullable: true
+                        dateEntryRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idCard:
+                          type: string
+                          nullable: true
+                        idNumber:
+                          type: string
+                          nullable: true
+                        issueDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        authority:
+                          type: string
+                          nullable: true
+                        expirationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idNIF:
+                          type: string
+                          nullable: true
+                        idMIF:
+                          type: string
+                          nullable: true
+                        taxResidence:
+                          type: string
+                          nullable: true
+                        customerClassificationMIF:
+                          type: string
+                          nullable: true
+                        classificationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        pep:
+                          type: boolean
+                          nullable: true
+                        usPerson:
+                          type: boolean
+                          nullable: true
+                        legalCapacity:
+                          type: string
+                          nullable: true
+                        tag:
+                          type: string
+                          nullable: true
+                        updated:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        homeAdress:
+                          type: string
+                          nullable: true
+                        complement:
+                          type: string
+                          nullable: true
+                        postalCode:
+                          type: string
+                          nullable: true
+                        note:
+                          type: string
+                          nullable: true
+                        city:
+                          type: string
+                          nullable: true
+                        secondaryNationality:
+                          type: string
+                          nullable: true
+                        country:
+                          type: string
+                          nullable: true
+                        professionalCategory:
+                          type: string
+                          nullable: true
+                        information:
+                          anyOf:
+                          - type: object
+                            properties:
+                              socialReason:
+                                type: string
+                              contact:
+                                type: string
+                                nullable: true
+                              firstAddress:
+                                type: string
+                                nullable: true
+                              secondAddress:
+                                type: string
+                                nullable: true
+                              postalCode:
+                                type: string
+                                nullable: true
+                              city:
+                                type: string
+                                nullable: true
+                              country:
+                                type: string
+                                nullable: true
+                              phone:
+                                type: string
+                                nullable: true
+                              fax:
+                                type: string
+                                nullable: true
+                              email:
+                                type: string
+                                nullable: true
+                              website:
+                                type: string
+                                nullable: true
+                          - type: object
+                            properties:
+                              socialReason:
+                                type: string
+                                minLength: 1
+                              holdingId:
+                                type: string
+                                nullable: true
+                              siren:
+                                type: string
+                              siret:
+                                type: string
+                              ape:
+                                type: string
+                              creationDate:
+                                type: string
+                                nullable: true
+                              legalForm:
+                                type: string
+                                nullable: true
+                              socialCapital:
+                                type: number
+                              headOfficeAddress:
+                                type: string
+                              phone:
+                                type: string
+                              email:
+                                type: string
+                              managers:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    managerID:
+                                      type: string
+                                    primary:
+                                      type: boolean
+                                  required:
+                                  - managerID
+                                  - primary
+                              seniorAdvisor:
+                                type: string
+                              secondaryAdvisor:
+                                type: string
+                              entryDateIntoRelationship:
+                                type: string
+                                nullable: true
+                              originCustomerRelationship:
+                                type: string
+                              contactCustomerRelationship:
+                                type: string
+                              remoteOpening:
+                                type: boolean
+                              dateLastMeeting:
+                                type: string
+                                nullable: true
+                              entryIntoRelationshipNote:
+                                type: string
+                              ownership:
+                                type: number
+                                nullable: true
+                              valuation:
+                                type: number
+                                nullable: true
+                          - nullable: true
+                        managers:
+                          type: object
+                          nullable: true
+                          properties:
+                            lastNameFirstName:
+                              type: string
+                            function:
+                              type: string
+                            birthDate:
+                              type: string
+                              nullable: true
+                            nationality:
+                              type: string
+                            personalAddress:
+                              type: string
+                            personalPhoneNumber:
+                              type: string
+                            personalEmailAddress:
+                              type: string
+                            shareholderInformation:
+                              type: string
+                            idCard:
+                              type: string
+                            idNumber:
+                              type: string
+                        nbManagers:
+                          type: object
+                          nullable: true
+                          properties:
+                            lastNameFirstName:
+                              type: string
+                            function:
+                              type: string
+                            birthDate:
+                              type: string
+                              nullable: true
+                            nationality:
+                              type: string
+                            personalAddress:
+                              type: string
+                            personalPhoneNumber:
+                              type: string
+                            personalEmailAddress:
+                              type: string
+                            shareholderInformation:
+                              type: string
+                            idCard:
+                              type: string
+                            idNumber:
+                              type: string
+                        bankAccounts:
+                          type: object
+                          nullable: true
+                          properties:
+                            banks:
+                              type: string
+                            iban:
+                              type: string
+                            bankAccountNumbers:
+                              type: string
+                            bic:
+                              type: string
+                        activities:
+                          type: object
+                          nullable: true
+                          properties:
+                            mainActivities:
+                              type: string
+                            secondaryActivities:
+                              type: string
+                            clients:
+                              type: string
+                            suppliers:
+                              type: string
+                            competitors:
+                              type: string
+                    - nullable: true
+                    description: |-
+                      General information about the entity
+                       This field is treated as a scalar
+                  details:
+                    type: object
+                    nullable: true
+                    properties:
+                      street:
+                        type: string
+                        nullable: true
+                      zipCode:
+                        type: string
+                        nullable: true
+                      city:
+                        type: string
+                        nullable: true
+                      addressSupplement:
+                        type: string
+                        nullable: true
+                      workStreet:
+                        type: string
+                        nullable: true
+                      workZipCode:
+                        type: string
+                        nullable: true
+                      workCity:
+                        type: string
+                        nullable: true
+                      workAddressSupplement:
+                        type: string
+                        nullable: true
+                      otherStreet:
+                        type: string
+                        nullable: true
+                      otherZipCode:
+                        type: string
+                        nullable: true
+                      otherCity:
+                        type: string
+                        nullable: true
+                      otherAddressSupplement:
+                        type: string
+                        nullable: true
+                      firstPhoneNumber:
+                        type: string
+                        nullable: true
+                      secondPhoneNumber:
+                        type: string
+                        nullable: true
+                      personalEmail:
+                        type: string
+                        nullable: true
+                      otherEmail:
+                        type: string
+                        nullable: true
+                      fiscalAddress:
+                        type: string
+                        nullable: true
+                      country:
+                        type: string
+                        nullable: true
+                      otherCountry:
+                        type: string
+                        nullable: true
+                      workCountry:
+                        type: string
+                        nullable: true
+                    description: |-
+                      Detailed information about the entity
+                       This field is treated as a scalar
+                  type:
+                    type: string
+                    nullable: true
+                    enum:
+                    - person
+                    - company
+                required:
+                - id
+                - name
+                - updated
   /companies/{company-id}/references/statistics:
     get:
       tags:
@@ -5140,7 +5837,688 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Entity'
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                    readOnly: true
+                  name:
+                    type: string
+                    example: Jean dupont
+                    readOnly: true
+                  created:
+                    type: string
+                    nullable: true
+                    description: The date of creation of the customer
+                    example: 2024-01-01T00:00:00.000Z
+                    readOnly: true
+                  updated:
+                    type: string
+                    description: The date of the last update of the customer
+                    example: 2024-01-01T00:00:00.000Z
+                  general:
+                    anyOf:
+                    - type: object
+                      nullable: true
+                      properties:
+                        entryDateIntoRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        originCustomerRelationship:
+                          type: string
+                          nullable: true
+                        contactCustomerRelationship:
+                          type: string
+                          nullable: true
+                        remoteOpening:
+                          type: boolean
+                          nullable: true
+                        dateLastMeeting:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        entryIntoRelationshipNote:
+                          type: string
+                          nullable: true
+                        gender:
+                          type: string
+                          nullable: true
+                          enum:
+                          - male
+                          - female
+                          default: male
+                        name:
+                          type: string
+                          nullable: true
+                        lastName:
+                          type: string
+                          nullable: true
+                        firstName:
+                          type: string
+                          nullable: true
+                        birthDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        birthZipCode:
+                          type: string
+                          nullable: true
+                        birthRegion:
+                          type: string
+                          nullable: true
+                        birthCity:
+                          type: string
+                          nullable: true
+                        birthName:
+                          type: string
+                          nullable: true
+                        deathDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        familySituation:
+                          type: string
+                          nullable: true
+                          enum:
+                          - single
+                          - inARelationship
+                          - married
+                          - civilUnion
+                          - divorced
+                          - separated
+                          - widowed
+                          - domesticPartnership
+                          - freeUnion
+                          - cohabitation
+                          - pendingDivorce
+                          - remarried
+                          - deceased
+                        nationality:
+                          type: string
+                          nullable: true
+                        matrimonialRegime:
+                          type: string
+                          nullable: true
+                        studiesLevel:
+                          type: string
+                          nullable: true
+                          enum:
+                          - none
+                          - certificate
+                          - highSchool
+                          - bachelor
+                          - master
+                          - doctorate
+                        occupation:
+                          type: string
+                          nullable: true
+                        occupationWording:
+                          type: string
+                          nullable: true
+                        retirementAge:
+                          type: number
+                          nullable: true
+                        annualIncome:
+                          anyOf:
+                          - type: string
+                          - type: number
+                          - nullable: true
+                        heritageOrigin:
+                          type: string
+                          nullable: true
+                        seniorAdvisor:
+                          type: string
+                          nullable: true
+                        secondaryAdvisor:
+                          type: string
+                          nullable: true
+                        dateEntryRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idCard:
+                          type: string
+                          nullable: true
+                        idNumber:
+                          type: string
+                          nullable: true
+                        issueDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        authority:
+                          type: string
+                          nullable: true
+                        expirationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idNIF:
+                          type: string
+                          nullable: true
+                        idMIF:
+                          type: string
+                          nullable: true
+                        taxResidence:
+                          type: string
+                          nullable: true
+                        customerClassificationMIF:
+                          type: string
+                          nullable: true
+                        classificationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        pep:
+                          type: boolean
+                          nullable: true
+                        usPerson:
+                          type: boolean
+                          nullable: true
+                        legalCapacity:
+                          type: string
+                          nullable: true
+                        tag:
+                          type: string
+                          nullable: true
+                        updated:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        homeAdress:
+                          type: string
+                          nullable: true
+                        complement:
+                          type: string
+                          nullable: true
+                        postalCode:
+                          type: string
+                          nullable: true
+                        note:
+                          type: string
+                          nullable: true
+                        city:
+                          type: string
+                          nullable: true
+                        secondaryNationality:
+                          type: string
+                          nullable: true
+                        country:
+                          type: string
+                          nullable: true
+                        professionalCategory:
+                          type: string
+                          nullable: true
+                    - type: object
+                      nullable: true
+                      properties:
+                        entryDateIntoRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        originCustomerRelationship:
+                          type: string
+                          nullable: true
+                        contactCustomerRelationship:
+                          type: string
+                          nullable: true
+                        remoteOpening:
+                          type: boolean
+                          nullable: true
+                        dateLastMeeting:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        entryIntoRelationshipNote:
+                          type: string
+                          nullable: true
+                        gender:
+                          type: string
+                          nullable: true
+                          enum:
+                          - male
+                          - female
+                          default: male
+                        name:
+                          type: string
+                          nullable: true
+                        lastName:
+                          type: string
+                          nullable: true
+                        firstName:
+                          type: string
+                          nullable: true
+                        birthDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        birthZipCode:
+                          type: string
+                          nullable: true
+                        birthRegion:
+                          type: string
+                          nullable: true
+                        birthCity:
+                          type: string
+                          nullable: true
+                        birthName:
+                          type: string
+                          nullable: true
+                        deathDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        familySituation:
+                          type: string
+                          nullable: true
+                          enum:
+                          - single
+                          - inARelationship
+                          - married
+                          - civilUnion
+                          - divorced
+                          - separated
+                          - widowed
+                          - domesticPartnership
+                          - freeUnion
+                          - cohabitation
+                          - pendingDivorce
+                          - remarried
+                          - deceased
+                        nationality:
+                          type: string
+                          nullable: true
+                        matrimonialRegime:
+                          type: string
+                          nullable: true
+                        studiesLevel:
+                          type: string
+                          nullable: true
+                          enum:
+                          - none
+                          - certificate
+                          - highSchool
+                          - bachelor
+                          - master
+                          - doctorate
+                        occupation:
+                          type: string
+                          nullable: true
+                        occupationWording:
+                          type: string
+                          nullable: true
+                        retirementAge:
+                          type: number
+                          nullable: true
+                        annualIncome:
+                          anyOf:
+                          - type: string
+                          - type: number
+                          - nullable: true
+                        heritageOrigin:
+                          type: string
+                          nullable: true
+                        seniorAdvisor:
+                          type: string
+                          nullable: true
+                        secondaryAdvisor:
+                          type: string
+                          nullable: true
+                        dateEntryRelationship:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idCard:
+                          type: string
+                          nullable: true
+                        idNumber:
+                          type: string
+                          nullable: true
+                        issueDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        authority:
+                          type: string
+                          nullable: true
+                        expirationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        idNIF:
+                          type: string
+                          nullable: true
+                        idMIF:
+                          type: string
+                          nullable: true
+                        taxResidence:
+                          type: string
+                          nullable: true
+                        customerClassificationMIF:
+                          type: string
+                          nullable: true
+                        classificationDate:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        pep:
+                          type: boolean
+                          nullable: true
+                        usPerson:
+                          type: boolean
+                          nullable: true
+                        legalCapacity:
+                          type: string
+                          nullable: true
+                        tag:
+                          type: string
+                          nullable: true
+                        updated:
+                          anyOf:
+                          - type: string
+                          - type: string
+                          - nullable: true
+                        homeAdress:
+                          type: string
+                          nullable: true
+                        complement:
+                          type: string
+                          nullable: true
+                        postalCode:
+                          type: string
+                          nullable: true
+                        note:
+                          type: string
+                          nullable: true
+                        city:
+                          type: string
+                          nullable: true
+                        secondaryNationality:
+                          type: string
+                          nullable: true
+                        country:
+                          type: string
+                          nullable: true
+                        professionalCategory:
+                          type: string
+                          nullable: true
+                        information:
+                          anyOf:
+                          - type: object
+                            properties:
+                              socialReason:
+                                type: string
+                              contact:
+                                type: string
+                                nullable: true
+                              firstAddress:
+                                type: string
+                                nullable: true
+                              secondAddress:
+                                type: string
+                                nullable: true
+                              postalCode:
+                                type: string
+                                nullable: true
+                              city:
+                                type: string
+                                nullable: true
+                              country:
+                                type: string
+                                nullable: true
+                              phone:
+                                type: string
+                                nullable: true
+                              fax:
+                                type: string
+                                nullable: true
+                              email:
+                                type: string
+                                nullable: true
+                              website:
+                                type: string
+                                nullable: true
+                          - type: object
+                            properties:
+                              socialReason:
+                                type: string
+                                minLength: 1
+                              holdingId:
+                                type: string
+                                nullable: true
+                              siren:
+                                type: string
+                              siret:
+                                type: string
+                              ape:
+                                type: string
+                              creationDate:
+                                type: string
+                                nullable: true
+                              legalForm:
+                                type: string
+                                nullable: true
+                              socialCapital:
+                                type: number
+                              headOfficeAddress:
+                                type: string
+                              phone:
+                                type: string
+                              email:
+                                type: string
+                              managers:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    managerID:
+                                      type: string
+                                    primary:
+                                      type: boolean
+                                  required:
+                                  - managerID
+                                  - primary
+                              seniorAdvisor:
+                                type: string
+                              secondaryAdvisor:
+                                type: string
+                              entryDateIntoRelationship:
+                                type: string
+                                nullable: true
+                              originCustomerRelationship:
+                                type: string
+                              contactCustomerRelationship:
+                                type: string
+                              remoteOpening:
+                                type: boolean
+                              dateLastMeeting:
+                                type: string
+                                nullable: true
+                              entryIntoRelationshipNote:
+                                type: string
+                              ownership:
+                                type: number
+                                nullable: true
+                              valuation:
+                                type: number
+                                nullable: true
+                          - nullable: true
+                        managers:
+                          type: object
+                          nullable: true
+                          properties:
+                            lastNameFirstName:
+                              type: string
+                            function:
+                              type: string
+                            birthDate:
+                              type: string
+                              nullable: true
+                            nationality:
+                              type: string
+                            personalAddress:
+                              type: string
+                            personalPhoneNumber:
+                              type: string
+                            personalEmailAddress:
+                              type: string
+                            shareholderInformation:
+                              type: string
+                            idCard:
+                              type: string
+                            idNumber:
+                              type: string
+                        nbManagers:
+                          type: object
+                          nullable: true
+                          properties:
+                            lastNameFirstName:
+                              type: string
+                            function:
+                              type: string
+                            birthDate:
+                              type: string
+                              nullable: true
+                            nationality:
+                              type: string
+                            personalAddress:
+                              type: string
+                            personalPhoneNumber:
+                              type: string
+                            personalEmailAddress:
+                              type: string
+                            shareholderInformation:
+                              type: string
+                            idCard:
+                              type: string
+                            idNumber:
+                              type: string
+                        bankAccounts:
+                          type: object
+                          nullable: true
+                          properties:
+                            banks:
+                              type: string
+                            iban:
+                              type: string
+                            bankAccountNumbers:
+                              type: string
+                            bic:
+                              type: string
+                        activities:
+                          type: object
+                          nullable: true
+                          properties:
+                            mainActivities:
+                              type: string
+                            secondaryActivities:
+                              type: string
+                            clients:
+                              type: string
+                            suppliers:
+                              type: string
+                            competitors:
+                              type: string
+                    - nullable: true
+                    description: |-
+                      General information about the entity
+                       This field is treated as a scalar
+                  details:
+                    type: object
+                    nullable: true
+                    properties:
+                      street:
+                        type: string
+                        nullable: true
+                      zipCode:
+                        type: string
+                        nullable: true
+                      city:
+                        type: string
+                        nullable: true
+                      addressSupplement:
+                        type: string
+                        nullable: true
+                      workStreet:
+                        type: string
+                        nullable: true
+                      workZipCode:
+                        type: string
+                        nullable: true
+                      workCity:
+                        type: string
+                        nullable: true
+                      workAddressSupplement:
+                        type: string
+                        nullable: true
+                      otherStreet:
+                        type: string
+                        nullable: true
+                      otherZipCode:
+                        type: string
+                        nullable: true
+                      otherCity:
+                        type: string
+                        nullable: true
+                      otherAddressSupplement:
+                        type: string
+                        nullable: true
+                      firstPhoneNumber:
+                        type: string
+                        nullable: true
+                      secondPhoneNumber:
+                        type: string
+                        nullable: true
+                      personalEmail:
+                        type: string
+                        nullable: true
+                      otherEmail:
+                        type: string
+                        nullable: true
+                      fiscalAddress:
+                        type: string
+                        nullable: true
+                      country:
+                        type: string
+                        nullable: true
+                      otherCountry:
+                        type: string
+                        nullable: true
+                      workCountry:
+                        type: string
+                        nullable: true
+                    description: |-
+                      Detailed information about the entity
+                       This field is treated as a scalar
+                  type:
+                    type: string
+                    nullable: true
+                    enum:
+                    - person
+                    - company
+                required:
+                - id
+                - name
+                - updated
   /parent-companies/{parentCompanyID}/references/statistics:
     get:
       tags:
