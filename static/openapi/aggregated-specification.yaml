@@ -1413,11 +1413,41 @@ components:
             - ownership
             - id
           description: Assets (partially or fully) owned by the entity
+        providers:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: Provider IDs associated with the entity. This field contains a mapping where each key represents a provider name and the value is an array of provider-specific IDs for this entity. This data comes from the funnel.entities.provider_ids column.
+          example:
+            provider1:
+            - id1
+            - id2
+            provider2:
+            - id3
       required:
       - id
       - name
       - updated
       - assets
+    Manager:
+      type: object
+      properties:
+        id:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        name:
+          type: string
+          example: Jean dupont
+        email:
+          type: string
+          example: jean.dupont@company.tld
+      required:
+      - id
+      - name
+      - email
     Asset:
       type: object
       properties:
@@ -1477,6 +1507,15 @@ components:
             - ownership
             - entityId
             description: the distribution of ownership shares between entities
+        providers:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: Provider IDs associated with the asset. Each key represents a provider name and the value is the provider-specific ID for this asset.
+          example:
+            provider1: id1
+            provider2: id2
       required:
       - id
       - name
@@ -1596,22 +1635,6 @@ components:
       - managementCompany
       - riskIndicator
       - sri
-    Manager:
-      type: object
-      properties:
-        id:
-          type: string
-          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-        name:
-          type: string
-          example: Jean dupont
-        email:
-          type: string
-          example: jean.dupont@company.tld
-      required:
-      - id
-      - name
-      - email
     Parent Company:
       type: object
       properties:
@@ -3610,6 +3633,20 @@ paths:
                     enum:
                     - person
                     - company
+                  providers:
+                    type: object
+                    nullable: true
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    description: Provider IDs associated with the entity. This field contains a mapping where each key represents a provider name and the value is an array of provider-specific IDs for this entity. This data comes from the funnel.entities.provider_ids column.
+                    example:
+                      provider1:
+                      - id1
+                      - id2
+                      provider2:
+                      - id3
                 required:
                 - id
                 - name
@@ -4675,6 +4712,172 @@ paths:
                 - id
                 - companyId
                 - created
+  /companies/{company-id}/managers/statistics:
+    get:
+      tags:
+      - Manager
+      operationId: manager_list_statistics
+      summary: Manager list statistics
+      responses:
+        '200':
+          description: success - manager wide statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    minimum: 0
+                    example: 10
+                required:
+                - count
+  /companies/{company-id}/managers:
+    get:
+      operationId: manger_list
+      tags:
+      - Manager
+      summary: List of managers
+      parameters:
+      - schema:
+          type: number
+          nullable: true
+          default: 0
+          minimum: 0
+          example: 0
+        required: false
+        name: offset
+        in: query
+      - schema:
+          type: number
+          nullable: true
+          default: 10
+          minimum: 1
+          example: 10
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: success - paginated list of managers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Jean dupont
+                  required:
+                  - name
+    post:
+      tags:
+      - Manager
+      operationId: manager_creation
+      summary: Create a new manager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the manager
+                  example: Jean dupont
+                email:
+                  type: string
+                  format: email
+                  description: The email of the manager
+                  example: jean.dupont@company.tld
+                claims:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - billing
+                    - managers_read
+                    - manager_invite
+                    - clients_invite
+                    - clients_reads
+                    - management
+                  minItems: 1
+                  example:
+                  - billing
+                  - management
+              required:
+              - name
+              - email
+              - claims
+      responses:
+        '200':
+          description: success - manager created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Manager'
+                - type: object
+                  properties:
+                    claims:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - billing
+                        - managers_read
+                        - manager_invite
+                        - clients_invite
+                        - clients_reads
+                        - management
+                      example:
+                      - billing
+                  required:
+                  - claims
+  /companies/{company-id}/managers/{id}:
+    patch:
+      tags:
+      - Manager
+      operationId: manager_update
+      summary: Update a manager
+      description: Update a manager by his id
+      parameters:
+      - schema:
+          type: string
+          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+        required: true
+        name: id
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Jean dupont
+              required:
+              - name
+      responses:
+        '200':
+          description: Manager updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
+                  name:
+                    type: string
+                    example: Jean dupont
+                required:
+                - id
+                - name
   /companies/{company-id}/assets:
     get:
       operationId: asset_list
@@ -4827,172 +5030,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Investment'
-  /companies/{company-id}/{company-id}/managers/statistics:
-    get:
-      tags:
-      - Manager
-      operationId: manager_list_statistics
-      summary: Manager list statistics
-      responses:
-        '200':
-          description: success - manager wide statistics
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: number
-                    minimum: 0
-                    example: 10
-                required:
-                - count
-  /companies/{company-id}/{company-id}/managers:
-    get:
-      operationId: manger_list
-      tags:
-      - Manager
-      summary: List of managers
-      parameters:
-      - schema:
-          type: number
-          nullable: true
-          default: 0
-          minimum: 0
-          example: 0
-        required: false
-        name: offset
-        in: query
-      - schema:
-          type: number
-          nullable: true
-          default: 10
-          minimum: 1
-          example: 10
-        required: false
-        name: limit
-        in: query
-      responses:
-        '200':
-          description: success - paginated list of managers
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      example: Jean dupont
-                  required:
-                  - name
-    post:
-      tags:
-      - Manager
-      operationId: manager_creation
-      summary: Create a new manager
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: The name of the manager
-                  example: Jean dupont
-                email:
-                  type: string
-                  format: email
-                  description: The email of the manager
-                  example: jean.dupont@company.tld
-                claims:
-                  type: array
-                  items:
-                    type: string
-                    enum:
-                    - billing
-                    - managers_read
-                    - manager_invite
-                    - clients_invite
-                    - clients_reads
-                    - management
-                  minItems: 1
-                  example:
-                  - billing
-                  - management
-              required:
-              - name
-              - email
-              - claims
-      responses:
-        '200':
-          description: success - manager created
-          content:
-            application/json:
-              schema:
-                allOf:
-                - $ref: '#/components/schemas/Manager'
-                - type: object
-                  properties:
-                    claims:
-                      type: array
-                      items:
-                        type: string
-                        enum:
-                        - billing
-                        - managers_read
-                        - manager_invite
-                        - clients_invite
-                        - clients_reads
-                        - management
-                      example:
-                      - billing
-                  required:
-                  - claims
-  /companies/{company-id}/{company-id}/managers/{id}:
-    patch:
-      tags:
-      - Manager
-      operationId: manager_update
-      summary: Update a manager
-      description: Update a manager by his id
-      parameters:
-      - schema:
-          type: string
-          example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-        required: true
-        name: id
-        in: path
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Jean dupont
-              required:
-              - name
-      responses:
-        '200':
-          description: Manager updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: adfdfaca-48f0-4f3b-b30a-c6d97293090c
-                  name:
-                    type: string
-                    example: Jean dupont
-                required:
-                - id
-                - name
   /parent-companies:
     get:
       operationId: parent_company_list
@@ -6515,6 +6552,20 @@ paths:
                     enum:
                     - person
                     - company
+                  providers:
+                    type: object
+                    nullable: true
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    description: Provider IDs associated with the entity. This field contains a mapping where each key represents a provider name and the value is an array of provider-specific IDs for this entity. This data comes from the funnel.entities.provider_ids column.
+                    example:
+                      provider1:
+                      - id1
+                      - id2
+                      provider2:
+                      - id3
                 required:
                 - id
                 - name
