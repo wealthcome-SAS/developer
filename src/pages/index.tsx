@@ -22,14 +22,14 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle w-1/2 text-center text-lg md:text-xl">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+        {/* <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/category/authentification"
           >
             Get started
           </Link>
-        </div>
+        </div> */}
       </div>
     </header>
   );
