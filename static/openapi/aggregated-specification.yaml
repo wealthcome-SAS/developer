@@ -3187,7 +3187,7 @@ paths:
                           format: uuid
                           description: The ID of the reference entity.
                           example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
-                        type:
+                        referenceType:
                           type: string
                           nullable: true
                           enum:
@@ -7048,7 +7048,7 @@ paths:
                           format: uuid
                           description: The ID of the reference entity.
                           example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
-                        type:
+                        referenceType:
                           type: string
                           nullable: true
                           enum:
@@ -11035,7 +11035,7 @@ paths:
                           format: uuid
                           description: The ID of the reference entity.
                           example: e1f2d3c4-b5a6-7b8c-9d0e-f1a2b3c4d5e6
-                        type:
+                        referenceType:
                           type: string
                           nullable: true
                           enum:
