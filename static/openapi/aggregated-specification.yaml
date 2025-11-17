@@ -2316,6 +2316,20 @@ paths:
       - Entity
       operationId: entities_list_statistics
       summary: entities list statistics
+      parameters:
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter by reference type
+          example: customer
+        required: false
+        description: Filter by reference type
+        name: reference_type
+        in: query
       responses:
         '200':
           description: success - entities wide statistics
@@ -2394,6 +2408,19 @@ paths:
         required: false
         description: Filter customers updated before this date
         name: updated_to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter by reference type
+          example: customer
+        required: false
+        description: Filter by reference type
+        name: reference_type
         in: query
       responses:
         '200':
@@ -6144,6 +6171,20 @@ paths:
       - Entity
       operationId: entities_list_statistics
       summary: entities list statistics
+      parameters:
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter by reference type
+          example: customer
+        required: false
+        description: Filter by reference type
+        name: reference_type
+        in: query
       responses:
         '200':
           description: success - entities wide statistics
@@ -6222,6 +6263,19 @@ paths:
         required: false
         description: Filter customers updated before this date
         name: updated_to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter by reference type
+          example: customer
+        required: false
+        description: Filter by reference type
+        name: reference_type
         in: query
       responses:
         '200':
@@ -10131,6 +10185,20 @@ paths:
       - Entity
       operationId: entities_list_statistics
       summary: entities list statistics
+      parameters:
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter by reference type
+          example: customer
+        required: false
+        description: Filter by reference type
+        name: reference_type
+        in: query
       responses:
         '200':
           description: success - entities wide statistics
@@ -10209,6 +10277,19 @@ paths:
         required: false
         description: Filter customers updated before this date
         name: updated_to
+        in: query
+      - schema:
+          type: string
+          nullable: true
+          enum:
+          - customer
+          - prospect
+          - relation
+          description: Filter by reference type
+          example: customer
+        required: false
+        description: Filter by reference type
+        name: reference_type
         in: query
       responses:
         '200':
