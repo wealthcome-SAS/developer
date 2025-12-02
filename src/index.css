@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+:root {
+	font-family: "Hanken Grotesk", sans-serif;
+
+	--color-slate-50: #f8fafc;
+	--color-slate-100: #f1f5f9;
+	--color-slate-200: #e2e8f0;
+	--color-slate-300: #cbd5e1;
+	--color-slate-400: #94a3b8;
+	--color-slate-500: #64748b;
+	--color-slate-600: #334155;
+	--color-slate-700: #1e293b;
+
+	--color-indigo-50: #ecf3ff;
+	--color-indigo-100: #dce9ff;
+	--color-indigo-200: #c0d5ff;
+	--color-indigo-300: #a4c8ff;
+	--color-indigo-400: #7290ff;
+	--color-indigo-500: #4f6fff;
+	--color-indigo-600: #424cf9;
+	--color-indigo-700: #262cdc;
+	--color-indigo-950: #04182b;
+
+	--color-grey-300: #f6f4f3;
+	--color-grey-400: #ebe7e5;
+	--color-grey-500: #a8b1b7;
+	--color-grey-600: #a0a1ad;
+	--color-grey-700: #757a86;
+	--color-grey-800: #52566d;
+
+	--color-emerald-50: #ecfdf5;
+	--color-emerald-100: #d1fae5;
+	--color-emerald-200: #a7f3d0;
+	--color-emerald-400: #34d399;
+	--color-emerald-600: #059669;
+	--color-emerald-700: #047857;
+	--color-emerald-950: #022c22;
+
+	--color-yellow-50: #fefce8;
+	--color-yellow-100: #fef9c3;
+	--color-yellow-200: #fef08a;
+	--color-yellow-400: #facc15;
+	--color-yellow-600: #eab308;
+	--color-yellow-700: #a16207;
+	--color-yellow-950: #422006;
+
+	--color-orange-50: #fff7ed;
+	--color-orange-100: #ffedd5;
+	--color-orange-200: #fed7aa;
+	--color-orange-400: #fb923c;
+	--color-orange-600: #ea540c;
+	--color-orange-700: #c2410c;
+	--color-orange-950: #431407;
+
+	--color-red-50: #fef2f2;
+	--color-red-100: #fee2e2;
+	--color-red-200: #fecaca;
+	--color-red-500: #ef4444;
+	--color-red-600: #dc2626;
+	--color-red-700: #b91c1c;
+	--color-red-950: #450a0a;
+
+	--color-purple-50: #faf5ff;
+	--color-purple-100: #f3e8ff;
+	--color-purple-200: #e9d5ff;
+	--color-purple-400: #c084fc;
+	--color-purple-500: #a855f7;
+	--color-purple-700: #7e22ce;
+	--color-purple-950: #3b0764;
+}

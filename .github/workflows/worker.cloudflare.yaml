@@ -1,0 +1,64 @@
+name: Deploy Worker
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          token: ${{ secrets.GIT_PAT_PULL }}
+      
+      - name: Configure Git for private repos
+        run: git config --global url."https://${{ secrets.GIT_PAT_PULL }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the project
+        run: npm run build
+      
+      - name: Deploy to Cloudflare Workers
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+          # Optional: Enable GitHub Deployments
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Comment PR with deployment URL
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deploymentUrl = '${{ steps.deploy.outputs.deployment-url }}';
+            
+            const commentBody = `🚀 **Deployment successful!**
+            
+            **Deployment URL:** ${deploymentUrl}
+            
+            **Target Branch:** \`chantier/v2\`
+            **Source Branch:** \`${context.payload.pull_request.head.ref}\`
+            **Commit:** \`${context.sha.substring(0, 7)}\`
+            **Deployed at:** ${new Date().toISOString()}
+            
+            You can test your changes at the URL above.`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: commentBody
+            });

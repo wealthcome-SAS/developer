@@ -1,51 +1,45 @@
 {
-  "name": "wealthcome-developer",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "postinstall": "npm run openapi:generate",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
-    "openapi:generate": "npx docusaurus clean-api-docs all; npx docusaurus gen-api-docs all"
-  },
-  "dependencies": {
-    "@docusaurus/core": "3.2.1",
-    "@docusaurus/preset-classic": "3.2.1",
-    "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
-    "docusaurus-plugin-openapi-docs": "^3.0.0-beta.10",
-    "docusaurus-theme-openapi-docs": "^3.0.0-beta.10",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^18.0.0"
-  },
-  "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.2.1",
-    "@docusaurus/tsconfig": "3.2.1",
-    "@docusaurus/types": "3.2.1",
-    "tailwindcss": "^3.4.3",
-    "typescript": "~5.2.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 3 chrome version",
-      "last 3 firefox version",
-      "last 5 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=18.0"
-  }
+	"name": "wealth-partners",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@markdoc/markdoc": "^0.5.4",
+		"@radix-ui/react-collapsible": "^1.1.12",
+		"@radix-ui/react-slot": "^1.2.3",
+		"@tailwindcss/vite": "^4.1.16",
+		"@tanstack/react-router": "^1.133.36",
+		"buffer": "^6.0.3",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"design-system": "wealthcome-SAS/design-system#semver:3.x.x",
+		"gray-matter": "^4.0.3",
+		"lucide-react": "^0.548.0",
+		"mermaid": "^11.12.1",
+		"react": "^19.1.1",
+		"react-dom": "^19.1.1",
+		"tailwind-merge": "^3.3.1",
+		"tailwindcss": "^4.1.16"
+	},
+	"devDependencies": {
+		"@tanstack/router-devtools": "^1.133.36",
+		"@tanstack/router-plugin": "^1.133.36",
+		"@tanstack/router-vite-plugin": "^1.133.36",
+		"@types/node": "^24.6.0",
+		"@types/react": "^19.1.16",
+		"@types/react-dom": "^19.1.9",
+		"@vitejs/plugin-react": "^5.0.4",
+		"globals": "^16.4.0",
+		"typescript": "~5.9.3",
+		"vite": "^7.1.7"
+	},
+	"optionalDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"wrangler": "^4.51.0"
+	}
 }

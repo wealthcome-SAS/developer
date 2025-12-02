@@ -1,23 +1,58 @@
-# Dependencies
-/node_modules
+# Disabling all files by default
+*
 
-# Production
-/build
+!README.md
 
-# Generated files
-.docusaurus
-.cache-loader
+# Git
+!.gitignore
 
-# Misc
+# VSCode
+!.vscode/
+!.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Source code
+!src
+!src/*
+!src/**/*
+library/.DS_Store
+library/**/.DS_Store
+
+# Public files
+!public
+!public/**
+!public/**/.DS_Store
+
+
+# Vite
+!index.html
+!vite.config.ts
+
+# Biome
+!biome.json
+
+
+# Github
+!.github
+# Github Actions
+!.github/workflows
+!.github/workflows/*
+!.github/workflows/**/*.yaml
+
+!wrangler.jsonc
+
+# NPM
+!.npmignore
+!package.json
+!package-lock.json
+
+# TypeScript
+!tsconfig.json
+!tsconfig.library.json
+!tsconfig.node.json
+
+!components.json
+
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-docs/provider-specification
-docs/aggregated-specification
