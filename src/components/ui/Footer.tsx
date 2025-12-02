@@ -21,10 +21,10 @@ export function Footer() {
 								<span className="sr-only">Website</span>🌐
 							</a>
 							<a
-								href="https://developer.wealthcome.fr"
+								href="https://partners.wealthcome.fr"
 								className="text-gray-300 hover:text-white transition-colors"
 							>
-								<span className="sr-only">Developer Docs</span>📚
+								<span className="sr-only">Partners Docs</span>📚
 							</a>
 						</div>
 					</div>

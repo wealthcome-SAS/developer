@@ -15,7 +15,7 @@ This specification describes the Aggregated API for managing companies, customer
 
 **Useful Links:**
 - [Wealthcome](https://wealthcome.fr)
-- [Developer Documentation](https://developer.wealthcome.fr)
+- [Partner Documentation](https://developer.wealthcome.fr)
 
 **Contact:** dev@wealthcome.fr
 

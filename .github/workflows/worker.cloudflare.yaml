@@ -1,25 +1,13 @@
-name: validate
-
+name: Deploy Worker
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  quality:
+  deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Biome
-        uses: biomejs/setup-biome@v2
-        with:
-          version: 1.9.4
-
-      - name: Run Biome
-        run: npx biome ci
-
-  build:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with: 
@@ -40,11 +28,13 @@ jobs:
 
       - name: Build the project
         run: npm run build
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
+      
+      - name: Deploy to Cloudflare Workers
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+          # Optional: Enable GitHub Deployments
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -15,7 +15,7 @@ This specification describes what a financial provider must comply with to offer
 
 **Useful Links:**
 - [Wealthcome](https://wealthcome.fr)
-- [Developer Documentation](https://developer.wealthcome.fr)
+- [Partner Documentation](https://partners.wealthcome.fr)
 
 **Contact:** dev@wealthcome.fr
 
