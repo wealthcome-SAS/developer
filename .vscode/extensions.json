@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "biomejs.biome",
+        "github.vscode-pull-request-github",
+        "vitest.explorer",
+        "github.vscode-github-actions"
+    ]
+}

@@ -1,11 +1,10 @@
 ---
-title: First Steps
-description: Your first steps with our platform
+title: Setup
+description: Get started with wealthcome services
 ---
 
 # First Steps
-
-After installation, here's what you should do next.
+Test
 
 ## Configuration
 

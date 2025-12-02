@@ -10,7 +10,7 @@ import { Footer } from './ui/Footer'
 export function Layout() {
     const location = useLocation()
     const [breadcrumbItems, setBreadcrumbItems] = React.useState<BreadcrumbItemType[]>([
-        { label: 'Wealthcome Developer Portal', href: '/' }
+        { label: 'WealthPartners', href: '/' }
     ])
 
     React.useEffect(() => {
@@ -30,7 +30,7 @@ export function Layout() {
     React.useEffect(() => {
         if (!location.pathname.startsWith('/docs/')) {
             setBreadcrumbItems([
-                { label: 'Wealthcome Developer Portal', href: '/', isActive: true }
+                { label: 'WealthPartners', href: '/', isActive: true }
             ])
         }
     }, [location.pathname])

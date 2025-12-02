@@ -305,7 +305,7 @@ export const HeroSection: React.FC = () => {
       <div className="z-10 w-full flex mx-auto flex-col items-center">
         <Link
           to="/docs/$slug"
-          params={{ slug: 'authentication/introduction' }}
+          params={{ slug: 'guides/first-steps' }}
           className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
         >
           Get Started

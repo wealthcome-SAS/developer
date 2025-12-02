@@ -14,7 +14,7 @@ export interface BreadcrumbItem {
 export function getBreadcrumbItems(slug: string): BreadcrumbItem[] {
   const parts = slug.split('/')
   const items: BreadcrumbItem[] = [
-    { label: 'Wealthcome Developer Portal', href: '/' }
+    { label: 'WealthPartners', href: '/' }
   ]
 
   let currentPath = ''
@@ -127,9 +127,7 @@ export async function loadMarkdownFile(path: string): Promise<DocPage> {
 }
 
 export const docsList = [
-  { slug: 'getting-started', title: 'Getting Started', path: '/content/getting-started.md' },
-  { slug: 'guides/first-steps', title: 'First Steps', path: '/content/guides/first-steps.md' },
-
+  { slug: 'guides/first-steps', title: 'Getting Started', path: '/content/guides/get-started.md' },
   // Authentication
   { slug: 'authentication/introduction', title: 'Authentication — Introduction', path: '/content/authentication/introduction.md' },
 

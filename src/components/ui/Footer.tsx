@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">Wealthcome Developer Portal</h3>
+            <h3 className="text-xl font-bold mb-4">WealthPartners</h3>
             <p className="text-gray-300 mb-4">
               Comprehensive documentation for integrating with Wealthcome's financial ecosystem.
               Build powerful applications with our APIs and specifications.
