@@ -1,7 +1,0 @@
-node_modules
-.docusaurus
-kubernetes
-.github
-
-docs/provider-specification
-docs/aggregated-specification
