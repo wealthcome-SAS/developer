@@ -41,6 +41,8 @@ library/**/.DS_Store
 !.github/workflows/*
 !.github/workflows/**/*.yaml
 
+!wrangler.jsonc
+
 # NPM
 !.npmignore
 !package.json
