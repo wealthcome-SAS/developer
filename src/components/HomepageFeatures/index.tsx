@@ -27,7 +27,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: "Aggregated API",
     Svg: require("@site/static/img/arrows-expand.svg").default,
-    description:(<>Wealthcome Pro API</>), 
+    description: (<>Wealthcome Pro API</>),
     to: "/aggregated-specification/aggregated",
   },
   {
@@ -90,10 +90,10 @@ function Feature({ title, Svg, description, to, comingSoon }: FeatureItem) {
       className="flex flex-col gap-y-2 w-full h-auto border-2 border-slate-500 rounded-xl hover:bg-slate-300/35 no-underline hover:text-gray-900 hover:no-underline overflow-hidden"
     >
       <div className="w-full bg-gradient-to-r from-slate-500 to-slate-800 flex items-center justify-center">
-      <Svg
-        className="w-16 h-16 p-3 rounded-2xl border-2 border-slate-600 bg-slate-100/75 my-10"
-        role="img"
-      />
+        <Svg
+          className="w-16 h-16 p-3 rounded-2xl border-2 border-slate-600 bg-slate-100/75 my-10"
+          role="img"
+        />
       </div>
       <div className="flex flex-col p-4">
         <Heading as="h2" className="text-2xl font-semibold mb-2">

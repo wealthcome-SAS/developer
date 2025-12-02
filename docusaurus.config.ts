@@ -85,6 +85,20 @@ const config: Config = {
             hideSendButton: false,
             showSchemas: true,
           } satisfies OpenApiPlugin.Options,
+          authentication: {
+            specPath: "static/openapi/authentication-specification.json",
+            // proxy: "https://cors.pan.dev",
+            outputDir: "docs/authentications",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              // categoryLinkSource: "tag",
+            },
+            // template: "api.mustache", // Customize API MDX with mustache template
+            downloadUrl:
+              "/openapi/authentication-specification.json",
+            hideSendButton: false,
+            showSchemas: true,
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],
