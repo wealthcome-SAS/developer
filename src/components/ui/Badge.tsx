@@ -1,5 +1,5 @@
-import { cn } from "../../lib/utils"
-import { Typography } from 'design-system'
+import { Typography } from "design-system";
+import { cn } from "../../lib/utils";
 
 export type BadgeVariant =
 	| "accent"
@@ -34,12 +34,12 @@ const textClassnames: Record<NonNullable<BadgeVariant>, string> = {
 };
 
 const chipClassnames: Record<NonNullable<BadgeVariant>, string> = {
-    accent: "bg-indigo-500",
-    incomplete: "bg-orange-500",
-    low: "bg-emerald-500",
-    medium: "bg-yellow-500",
-    high: "bg-red-500",
-    neutral: "bg-slate-500",
+	accent: "bg-indigo-500",
+	incomplete: "bg-orange-500",
+	low: "bg-emerald-500",
+	medium: "bg-yellow-500",
+	high: "bg-red-500",
+	neutral: "bg-slate-500",
 };
 
 export const Badge = ({
@@ -59,7 +59,9 @@ export const Badge = ({
 			{...props}
 		>
 			{chip === true && (
-				<div className={cn("w-1.5 h-1.5 rounded-full", chipClassnames[variant])} />
+				<div
+					className={cn("w-1.5 h-1.5 rounded-full", chipClassnames[variant])}
+				/>
 			)}
 			<Typography
 				as="label"
