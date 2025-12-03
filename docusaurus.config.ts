@@ -72,7 +72,7 @@ const config: Config = {
             showSchemas: true,
           } satisfies OpenApiPlugin.Options,
           aggregated: {
-            specPath: "static/openapi/aggregated-specification.yaml",
+            specPath: "static/openapi/aggregated-specification.jsons",
             // proxy: "https://cors.pan.dev",
             outputDir: "docs/aggregated-specification",
             sidebarOptions: {
@@ -81,7 +81,7 @@ const config: Config = {
             },
             // template: "api.mustache", // Customize API MDX with mustache template
             downloadUrl:
-              "/openapi/aggregated-specification.yaml",
+              "/openapi/aggregated-specification.json",
             hideSendButton: false,
             showSchemas: true,
           } satisfies OpenApiPlugin.Options,
