@@ -72,7 +72,7 @@ const config: Config = {
             showSchemas: true,
           } satisfies OpenApiPlugin.Options,
           aggregated: {
-            specPath: "static/openapi/aggregated-specification.jsons",
+            specPath: "static/openapi/aggregated-specification.json",
             // proxy: "https://cors.pan.dev",
             outputDir: "docs/aggregated-specification",
             sidebarOptions: {
