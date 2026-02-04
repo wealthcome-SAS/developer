@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://services.wealthcome.fr",
+			"url": "https://services.wealthcome.fr/authentications",
 			"description": "production"
 		}
 	],
