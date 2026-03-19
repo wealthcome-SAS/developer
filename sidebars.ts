@@ -38,7 +38,14 @@ const sidebars: SidebarsConfig = {
         title: "Aggregated API",
         slug: "/category/aggregated-specification",
       },
-      items: aggregatedSidebar,
+      items: [
+        {
+          type: "doc",
+          id: "aggregated-guides/manual-penelop-import",
+          label: "Manual Penelop Import",
+        },
+        ...aggregatedSidebar,
+      ],
     },
     {
       type: "category",
