@@ -17824,7 +17824,7 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/transactions": {
       "get": {
-        "operationId": "transaction_list",
+        "operationId": "parent_company_asset_transaction_list",
         "summary": "List cabinet transactions (movements)",
         "tags": [
           "Transactions"
@@ -17950,7 +17950,7 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/transactions/{transaction_id}": {
       "get": {
-        "operationId": "transaction_show",
+        "operationId": "parent_company_asset_transaction_show",
         "summary": "Get a specific transaction (movement) detail",
         "tags": [
           "Transactions"
