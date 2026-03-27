@@ -39,7 +39,7 @@ const config: Config = {
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           editUrl:
-            "https://github.com/PaloAltoNetworks/docusaurus-openapi-docs/tree/main/demo",
+            "https://github.com/wealthcome-SAS/developer/tree/stable/",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
         },
         blog: false,
@@ -138,8 +138,16 @@ const config: Config = {
           position: "left",
           items: [
             {
+              label: "Aggregated API",
+              to: "/aggregated-specification/aggregated",
+            },
+            {
               label: "Provider Specification",
               to: "/provider-specification/financial-provider-specification",
+            },
+            {
+              label: "Authentication",
+              to: "/authentications/authentication-layer",
             },
           ],
         },
@@ -160,7 +168,7 @@ const config: Config = {
         },
 
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Wealthcome SAS.`,
     },
     prism: {
       theme: prismThemes.github,

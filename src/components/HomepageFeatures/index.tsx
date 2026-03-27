@@ -14,8 +14,8 @@ const FeatureList: FeatureItem[] = [
   {
     title: "Authentification",
     Svg: require("@site/static/img/lock-closed.svg").default,
-    description: <>Regroup and document all the step nessec.</>,
-    to: "/authentications/introduction",
+    description: <>Authentication flow and credentials management for Wealthcome APIs.</>,
+    to: "/authentications/authentication-layer",
   },
   {
     title: "Migrations API",
@@ -27,7 +27,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: "Aggregated API",
     Svg: require("@site/static/img/arrows-expand.svg").default,
-    description: (<>Wealthcome Pro API</>),
+    description: (<>Aggregated API for managing companies, entities, assets, transactions and tasks.</>),
     to: "/aggregated-specification/aggregated",
   },
   {
@@ -35,9 +35,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/cash-outline.svg").default,
     description: (
       <>
-        The documentation related to specification that financial provider, to
-        provide with a fully integrated experience into Wealthcome Pro for their
-        clients.
+        Specification for financial providers to integrate their data into Wealthcome Pro.
       </>
     ),
     to: "/provider-specification/financial-provider-specification",
