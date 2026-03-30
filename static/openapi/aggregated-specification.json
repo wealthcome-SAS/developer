@@ -34,14 +34,6 @@
     {
       "name": "Team",
       "description": "Team related endpoints"
-    },
-    {
-      "name": "Transactions",
-      "description": "Transaction related endpoints"
-    },
-    {
-      "name": "Tasks",
-      "description": "Import and extraction task endpoints"
     }
   ],
   "security": [
@@ -59,159 +51,6 @@
       }
     },
     "schemas": {
-      "Extract": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
-          },
-          "start": {
-            "type": "string",
-            "nullable": true,
-            "example": "2021-01-01"
-          },
-          "end": {
-            "type": "string",
-            "nullable": true,
-            "description": "End date of the extract",
-            "example": "2021-01-01"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "managers_extraction",
-              "sample",
-              "collecte_extraction",
-              "collecte_extraction_month",
-              "collecte_PP",
-              "collecte_PP_PER"
-            ],
-            "example": "sample"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "INITIATED",
-              "IN_PROGRESS",
-              "PAUSED",
-              "EMPTY",
-              "PROCESSING",
-              "FINISHED",
-              "FAILED",
-              "PARTIAL_FAILED"
-            ],
-            "description": "Status of the extract",
-            "example": "INITIATED"
-          },
-          "progression": {
-            "type": "number",
-            "nullable": true,
-            "description": "Progression ration 0-1 (0% - 100%)",
-            "example": 1
-          },
-          "options": {
-            "type": "object",
-            "nullable": true,
-            "additionalProperties": {
-              "nullable": true
-            },
-            "description": "Custom options depending on the extract type"
-          },
-          "extract": {
-            "type": "object",
-            "properties": {
-              "url": {
-                "type": "string",
-                "description": "Presigned URL for file upload",
-                "example": "https://s3.example.com/..."
-              }
-            }
-          }
-        },
-        "required": [
-          "id",
-          "start",
-          "end",
-          "type",
-          "status",
-          "progression",
-          "extract"
-        ],
-        "description": "Extract of data"
-      },
-      "Import": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
-          },
-          "start": {
-            "type": "string",
-            "nullable": true,
-            "example": "2021-01-01"
-          },
-          "end": {
-            "type": "string",
-            "nullable": true,
-            "example": "2021-01-01"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "structure.theseis.specific.imports",
-              "fdv.theseis.specific.imports"
-            ],
-            "examples": [
-              "structure.theseis.specific.imports",
-              "fdv.theseis.specific.imports"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "nullable": true,
-            "enum": [
-              "INITIATED",
-              "IN_PROGRESS",
-              "PAUSED",
-              "EMPTY",
-              "PROCESSING",
-              "FINISHED",
-              "FAILED",
-              "PARTIAL_FAILED"
-            ],
-            "description": "Status of the import",
-            "example": "INITIATED"
-          },
-          "progression": {
-            "type": "number",
-            "nullable": true,
-            "description": "Progression in percentage value is 0 or 1",
-            "example": 1
-          },
-          "upload": {
-            "type": "object",
-            "properties": {
-              "url": {
-                "type": "string",
-                "description": "Presigned URL for file upload",
-                "example": "https://s3.example.com/..."
-              }
-            }
-          }
-        },
-        "required": [
-          "id",
-          "start",
-          "end",
-          "type",
-          "status",
-          "progression",
-          "upload"
-        ],
-        "description": "Import of data"
-      },
       "Entity": {
         "type": "object",
         "properties": {
@@ -256,7 +95,36 @@
               },
               "originCustomerRelationship": {
                 "type": "string",
-                "nullable": true
+                "nullable": true,
+                "enum": [
+                  "incomingCall",
+                  "outgoingCall",
+                  "affiliate",
+                  "eContact",
+                  "eContactTmp",
+                  "businessCapital",
+                  "boogeLeads",
+                  "prospecting",
+                  "portfolioBuyout",
+                  "aktifPlusMeeting",
+                  "ifbMeeting",
+                  "recommendation",
+                  "signatureClient",
+                  "meetingTmp",
+                  "meeting",
+                  "socialNetwork",
+                  "retiree",
+                  "tradeShows",
+                  "website",
+                  "dinner",
+                  "spontaneousSolicitation",
+                  "internalFollowUp",
+                  "guardianshipAssociation",
+                  "relationship",
+                  "prescriber",
+                  "formerClient",
+                  "other"
+                ]
               },
               "contactCustomerRelationship": {
                 "type": "string",
@@ -526,7 +394,35 @@
               },
               "legalCapacity": {
                 "type": "string",
-                "nullable": true
+                "nullable": true,
+                "enum": [
+                  "noMeasure",
+                  "capable",
+                  "protectedUnderGuardianship",
+                  "protectedUnderCuratorship",
+                  "underJudicialSafeguard",
+                  "unemancipatedMinor",
+                  "emancipatedMinor",
+                  "underJudicialConstraint",
+                  "underGuardianship",
+                  "absentOrOtherCapableMajor",
+                  "other",
+                  "judicialSafeguard",
+                  "guardianship",
+                  "enhancedGuardianship",
+                  "custody",
+                  "futureProtectionMandate",
+                  "adHocAdministrator",
+                  "posthumousMandate",
+                  "oldStateGuardianship",
+                  "oldGuardianshipManagement",
+                  "oldGuardianshipArt511",
+                  "oldGuardianshipArt512",
+                  "privateManagementCustody",
+                  "familyEmpowermentRepresentation",
+                  "legalAdministration",
+                  "familyEmpowermentAssistance"
+                ]
               },
               "tag": {
                 "type": "string",
@@ -711,7 +607,36 @@
                   },
                   "originCustomerRelationship": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "enum": [
+                      "incomingCall",
+                      "outgoingCall",
+                      "affiliate",
+                      "eContact",
+                      "eContactTmp",
+                      "businessCapital",
+                      "boogeLeads",
+                      "prospecting",
+                      "portfolioBuyout",
+                      "aktifPlusMeeting",
+                      "ifbMeeting",
+                      "recommendation",
+                      "signatureClient",
+                      "meetingTmp",
+                      "meeting",
+                      "socialNetwork",
+                      "retiree",
+                      "tradeShows",
+                      "website",
+                      "dinner",
+                      "spontaneousSolicitation",
+                      "internalFollowUp",
+                      "guardianshipAssociation",
+                      "relationship",
+                      "prescriber",
+                      "formerClient",
+                      "other"
+                    ]
                   },
                   "contactCustomerRelationship": {
                     "type": "string",
@@ -1164,7 +1089,7 @@
           "distribution"
         ]
       },
-      "Transaction": {
+      "AssetTransaction": {
         "type": "object",
         "properties": {
           "id": {
@@ -1196,26 +1121,8 @@
           },
           "processed": {
             "type": "string",
-            "description": "The date when the transaction was last processed by the system"
-          },
-          "manager": {
-            "type": "object",
             "nullable": true,
-            "properties": {
-              "id": {
-                "type": "string",
-                "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
-              },
-              "name": {
-                "type": "string",
-                "example": "Jean dupont"
-              }
-            },
-            "required": [
-              "id",
-              "name"
-            ],
-            "description": "The manager linked to the transaction"
+            "description": "The date when the transaction was last processed by the system"
           }
         },
         "required": [
@@ -1794,26 +1701,30 @@
           "fees"
         ]
       },
-      "Movement": {
+      "Transaction": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "The unique identifier of the movement"
+            "description": "The unique identifier of the transaction",
+            "example": "tx-123456-abcdef"
           },
           "name": {
             "type": "string",
-            "description": "The name/description of the movement"
+            "description": "The name/description of the transaction",
+            "example": "Payment for services"
           },
           "date": {
             "type": "string",
             "nullable": true,
-            "description": "The date of the movement"
+            "description": "The date of the transaction",
+            "example": "2024-03-15"
           },
           "amount": {
             "type": "number",
-            "description": "The amount of the movement (in EUR)"
+            "description": "The amount of the transaction (in EUR)",
+            "example": 1250.5
           },
           "type": {
             "type": "string",
@@ -1837,24 +1748,25 @@
           },
           "processed": {
             "type": "boolean",
-            "description": "Whether the movement has been processed"
+            "nullable": true,
+            "description": "Whether the transaction has been processed"
           },
           "comment": {
             "type": "string",
             "nullable": true,
-            "description": "Optional comment on the movement"
+            "description": "Optional comment on the transaction"
           },
           "manager": {
             "type": "string",
             "nullable": true,
             "format": "uuid",
-            "description": "The manager linked to the movement"
+            "description": "The manager linked to the transaction"
           },
           "managerBo": {
             "type": "string",
             "nullable": true,
             "format": "uuid",
-            "description": "The back-office manager linked to the movement"
+            "description": "The back-office manager linked to the transaction"
           },
           "created": {
             "type": "string",
@@ -1894,50 +1806,46 @@
           "date",
           "amount",
           "type",
-          "processed",
           "created",
           "updated",
           "assetId"
         ]
       },
-      "Pagination": {
-        "type": "object",
-        "properties": {
-          "page": {
-            "type": "number",
-            "description": "Current page number"
-          },
-          "limit": {
-            "type": "number",
-            "description": "Items per page"
-          },
-          "total": {
-            "type": "number",
-            "description": "Total number of items"
-          },
-          "totalPages": {
-            "type": "number",
-            "description": "Total number of pages"
-          }
-        },
-        "required": [
-          "page",
-          "limit",
-          "total",
-          "totalPages"
-        ]
-      },
-      "PaginatedMovements": {
+      "TransactionListResponse": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Movement"
+              "$ref": "#/components/schemas/Transaction"
             }
           },
           "pagination": {
-            "$ref": "#/components/schemas/Pagination"
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "number",
+                "description": "Current pagination page"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of transactions per page"
+              },
+              "total": {
+                "type": "number",
+                "description": "Total number of matching transactions"
+              },
+              "totalPages": {
+                "type": "number",
+                "description": "Total number of pages"
+              }
+            },
+            "required": [
+              "page",
+              "limit",
+              "total",
+              "totalPages"
+            ]
           }
         },
         "required": [
@@ -1945,10 +1853,10 @@
           "pagination"
         ]
       },
-      "MovementDetail": {
+      "TransactionDetail": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Movement"
+            "$ref": "#/components/schemas/Transaction"
           },
           {
             "type": "object",
@@ -1964,7 +1872,7 @@
                 "additionalProperties": {
                   "nullable": true
                 },
-                "description": "Source data for the movement"
+                "description": "Source data for the transaction"
               }
             }
           }
@@ -2011,487 +1919,6 @@
     "parameters": {}
   },
   "paths": {
-    "/task/extraction": {
-      "post": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "createExtract",
-        "summary": "Create a new extraction task",
-        "description": "Creates a new data extraction task with specified type",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "managers_extraction",
-                      "sample",
-                      "collecte_extraction",
-                      "collecte_extraction_month",
-                      "collecte_PP",
-                      "collecte_PP_PER"
-                    ],
-                    "example": "sample"
-                  }
-                },
-                "required": [
-                  "type"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Extraction task created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Extract"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request payload"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "listExtracts",
-        "summary": "List all extraction tasks",
-        "description": "Retrieves all extraction tasks with optional date range filters",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "description": "End date of the extract",
-              "example": "2021-01-01"
-            },
-            "required": false,
-            "name": "end",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "example": "2021-01-01"
-            },
-            "required": false,
-            "name": "start",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "managers_extraction",
-                  "sample",
-                  "collecte_extraction",
-                  "collecte_extraction_month",
-                  "collecte_PP",
-                  "collecte_PP_PER"
-                ]
-              },
-              "example": [
-                "sample"
-              ]
-            },
-            "required": false,
-            "name": "type",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of extraction tasks retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Extract"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/task/extraction/{id}": {
-      "get": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "getExtractById",
-        "summary": "Get extraction task by ID",
-        "description": "Retrieves a single extraction task by its ID",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Extraction task retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Extract"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Extraction task not found"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "deleteExtract",
-        "summary": "Delete extraction task",
-        "description": "Deletes an existing extraction task",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Extraction task deleted successfully"
-          },
-          "404": {
-            "description": "Extraction task not found"
-          }
-        }
-      }
-    },
-    "/task/extraction/:extraction-id": {
-      "patch": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "updateExtract",
-        "summary": "Update extraction task status",
-        "description": "Updates the status of an existing extraction task",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "enum": [
-                      "INITIATED",
-                      "IN_PROGRESS",
-                      "PAUSED",
-                      "EMPTY",
-                      "PROCESSING",
-                      "FINISHED",
-                      "FAILED",
-                      "PARTIAL_FAILED"
-                    ],
-                    "description": "Status of the extract",
-                    "example": "INITIATED"
-                  }
-                },
-                "required": [
-                  "status"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Extraction task updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Extract"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Extraction task not found"
-          }
-        }
-      }
-    },
-    "/task/import": {
-      "post": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "createImport",
-        "summary": "Create a new import task",
-        "description": "Creates a new import task and returns a presigned URL for file upload if status is null",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "structure.theseis.specific.imports",
-                      "fdv.theseis.specific.imports"
-                    ],
-                    "examples": [
-                      "structure.theseis.specific.imports",
-                      "fdv.theseis.specific.imports"
-                    ]
-                  }
-                },
-                "required": [
-                  "type"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Import task created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Import"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request payload"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "listImports",
-        "summary": "List all import tasks",
-        "description": "Retrieves all import tasks with optional date range filters",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "example": "2021-01-01"
-            },
-            "required": false,
-            "name": "end",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "example": "2021-01-01"
-            },
-            "required": false,
-            "name": "start",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "enum": [
-                "structure.theseis.specific.imports",
-                "fdv.theseis.specific.imports"
-              ],
-              "examples": [
-                "structure.theseis.specific.imports",
-                "fdv.theseis.specific.imports"
-              ]
-            },
-            "required": false,
-            "name": "type",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of import tasks retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Import"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/task/import/{importID}": {
-      "get": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "getImportById",
-        "summary": "Get import task by ID",
-        "description": "Retrieves a single import task by its ID. Returns presigned URL if status is null",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "required": true,
-            "name": "importID",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Import task retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Import"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Import task not found"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "updateImport",
-        "summary": "Update import task status",
-        "description": "Updates the status of an existing import task. Only allows setting status to INITIATED and checks for uploaded file.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "required": true,
-            "name": "importID",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "enum": [
-                      "INITIATED"
-                    ],
-                    "description": "Status of the import - only INITIATED is allowed",
-                    "example": "INITIATED"
-                  }
-                },
-                "required": [
-                  "status"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Import task updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Import"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status or missing/invalid upload file"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Tasks"
-        ],
-        "operationId": "deleteImport",
-        "summary": "Delete import task",
-        "description": "Deletes an existing import task",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "required": true,
-            "name": "importID",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Import task deleted successfully"
-          },
-          "404": {
-            "description": "Import task not found"
-          }
-        }
-      }
-    },
     "/companies": {
       "get": {
         "operationId": "company_list",
@@ -3739,7 +3166,36 @@
                         },
                         "originCustomerRelationship": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "incomingCall",
+                            "outgoingCall",
+                            "affiliate",
+                            "eContact",
+                            "eContactTmp",
+                            "businessCapital",
+                            "boogeLeads",
+                            "prospecting",
+                            "portfolioBuyout",
+                            "aktifPlusMeeting",
+                            "ifbMeeting",
+                            "recommendation",
+                            "signatureClient",
+                            "meetingTmp",
+                            "meeting",
+                            "socialNetwork",
+                            "retiree",
+                            "tradeShows",
+                            "website",
+                            "dinner",
+                            "spontaneousSolicitation",
+                            "internalFollowUp",
+                            "guardianshipAssociation",
+                            "relationship",
+                            "prescriber",
+                            "formerClient",
+                            "other"
+                          ]
                         },
                         "contactCustomerRelationship": {
                           "type": "string",
@@ -4009,7 +3465,35 @@
                         },
                         "legalCapacity": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "noMeasure",
+                            "capable",
+                            "protectedUnderGuardianship",
+                            "protectedUnderCuratorship",
+                            "underJudicialSafeguard",
+                            "unemancipatedMinor",
+                            "emancipatedMinor",
+                            "underJudicialConstraint",
+                            "underGuardianship",
+                            "absentOrOtherCapableMajor",
+                            "other",
+                            "judicialSafeguard",
+                            "guardianship",
+                            "enhancedGuardianship",
+                            "custody",
+                            "futureProtectionMandate",
+                            "adHocAdministrator",
+                            "posthumousMandate",
+                            "oldStateGuardianship",
+                            "oldGuardianshipManagement",
+                            "oldGuardianshipArt511",
+                            "oldGuardianshipArt512",
+                            "privateManagementCustody",
+                            "familyEmpowermentRepresentation",
+                            "legalAdministration",
+                            "familyEmpowermentAssistance"
+                          ]
                         },
                         "tag": {
                           "type": "string",
@@ -4194,7 +3678,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -4571,7 +4084,36 @@
                       },
                       "originCustomerRelationship": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "enum": [
+                          "incomingCall",
+                          "outgoingCall",
+                          "affiliate",
+                          "eContact",
+                          "eContactTmp",
+                          "businessCapital",
+                          "boogeLeads",
+                          "prospecting",
+                          "portfolioBuyout",
+                          "aktifPlusMeeting",
+                          "ifbMeeting",
+                          "recommendation",
+                          "signatureClient",
+                          "meetingTmp",
+                          "meeting",
+                          "socialNetwork",
+                          "retiree",
+                          "tradeShows",
+                          "website",
+                          "dinner",
+                          "spontaneousSolicitation",
+                          "internalFollowUp",
+                          "guardianshipAssociation",
+                          "relationship",
+                          "prescriber",
+                          "formerClient",
+                          "other"
+                        ]
                       },
                       "contactCustomerRelationship": {
                         "type": "string",
@@ -4841,7 +4383,35 @@
                       },
                       "legalCapacity": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "enum": [
+                          "noMeasure",
+                          "capable",
+                          "protectedUnderGuardianship",
+                          "protectedUnderCuratorship",
+                          "underJudicialSafeguard",
+                          "unemancipatedMinor",
+                          "emancipatedMinor",
+                          "underJudicialConstraint",
+                          "underGuardianship",
+                          "absentOrOtherCapableMajor",
+                          "other",
+                          "judicialSafeguard",
+                          "guardianship",
+                          "enhancedGuardianship",
+                          "custody",
+                          "futureProtectionMandate",
+                          "adHocAdministrator",
+                          "posthumousMandate",
+                          "oldStateGuardianship",
+                          "oldGuardianshipManagement",
+                          "oldGuardianshipArt511",
+                          "oldGuardianshipArt512",
+                          "privateManagementCustody",
+                          "familyEmpowermentRepresentation",
+                          "legalAdministration",
+                          "familyEmpowermentAssistance"
+                        ]
                       },
                       "tag": {
                         "type": "string",
@@ -5026,7 +4596,36 @@
                           },
                           "originCustomerRelationship": {
                             "type": "string",
-                            "nullable": true
+                            "nullable": true,
+                            "enum": [
+                              "incomingCall",
+                              "outgoingCall",
+                              "affiliate",
+                              "eContact",
+                              "eContactTmp",
+                              "businessCapital",
+                              "boogeLeads",
+                              "prospecting",
+                              "portfolioBuyout",
+                              "aktifPlusMeeting",
+                              "ifbMeeting",
+                              "recommendation",
+                              "signatureClient",
+                              "meetingTmp",
+                              "meeting",
+                              "socialNetwork",
+                              "retiree",
+                              "tradeShows",
+                              "website",
+                              "dinner",
+                              "spontaneousSolicitation",
+                              "internalFollowUp",
+                              "guardianshipAssociation",
+                              "relationship",
+                              "prescriber",
+                              "formerClient",
+                              "other"
+                            ]
                           },
                           "contactCustomerRelationship": {
                             "type": "string",
@@ -5317,7 +4916,36 @@
                         },
                         "originCustomerRelationship": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "incomingCall",
+                            "outgoingCall",
+                            "affiliate",
+                            "eContact",
+                            "eContactTmp",
+                            "businessCapital",
+                            "boogeLeads",
+                            "prospecting",
+                            "portfolioBuyout",
+                            "aktifPlusMeeting",
+                            "ifbMeeting",
+                            "recommendation",
+                            "signatureClient",
+                            "meetingTmp",
+                            "meeting",
+                            "socialNetwork",
+                            "retiree",
+                            "tradeShows",
+                            "website",
+                            "dinner",
+                            "spontaneousSolicitation",
+                            "internalFollowUp",
+                            "guardianshipAssociation",
+                            "relationship",
+                            "prescriber",
+                            "formerClient",
+                            "other"
+                          ]
                         },
                         "contactCustomerRelationship": {
                           "type": "string",
@@ -5587,7 +5215,35 @@
                         },
                         "legalCapacity": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "noMeasure",
+                            "capable",
+                            "protectedUnderGuardianship",
+                            "protectedUnderCuratorship",
+                            "underJudicialSafeguard",
+                            "unemancipatedMinor",
+                            "emancipatedMinor",
+                            "underJudicialConstraint",
+                            "underGuardianship",
+                            "absentOrOtherCapableMajor",
+                            "other",
+                            "judicialSafeguard",
+                            "guardianship",
+                            "enhancedGuardianship",
+                            "custody",
+                            "futureProtectionMandate",
+                            "adHocAdministrator",
+                            "posthumousMandate",
+                            "oldStateGuardianship",
+                            "oldGuardianshipManagement",
+                            "oldGuardianshipArt511",
+                            "oldGuardianshipArt512",
+                            "privateManagementCustody",
+                            "familyEmpowermentRepresentation",
+                            "legalAdministration",
+                            "familyEmpowermentAssistance"
+                          ]
                         },
                         "tag": {
                           "type": "string",
@@ -5772,7 +5428,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -6335,7 +6020,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -6605,7 +6319,35 @@
                             },
                             "legalCapacity": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "noMeasure",
+                                "capable",
+                                "protectedUnderGuardianship",
+                                "protectedUnderCuratorship",
+                                "underJudicialSafeguard",
+                                "unemancipatedMinor",
+                                "emancipatedMinor",
+                                "underJudicialConstraint",
+                                "underGuardianship",
+                                "absentOrOtherCapableMajor",
+                                "other",
+                                "judicialSafeguard",
+                                "guardianship",
+                                "enhancedGuardianship",
+                                "custody",
+                                "futureProtectionMandate",
+                                "adHocAdministrator",
+                                "posthumousMandate",
+                                "oldStateGuardianship",
+                                "oldGuardianshipManagement",
+                                "oldGuardianshipArt511",
+                                "oldGuardianshipArt512",
+                                "privateManagementCustody",
+                                "familyEmpowermentRepresentation",
+                                "legalAdministration",
+                                "familyEmpowermentAssistance"
+                              ]
                             },
                             "tag": {
                               "type": "string",
@@ -6790,7 +6532,36 @@
                                 },
                                 "originCustomerRelationship": {
                                   "type": "string",
-                                  "nullable": true
+                                  "nullable": true,
+                                  "enum": [
+                                    "incomingCall",
+                                    "outgoingCall",
+                                    "affiliate",
+                                    "eContact",
+                                    "eContactTmp",
+                                    "businessCapital",
+                                    "boogeLeads",
+                                    "prospecting",
+                                    "portfolioBuyout",
+                                    "aktifPlusMeeting",
+                                    "ifbMeeting",
+                                    "recommendation",
+                                    "signatureClient",
+                                    "meetingTmp",
+                                    "meeting",
+                                    "socialNetwork",
+                                    "retiree",
+                                    "tradeShows",
+                                    "website",
+                                    "dinner",
+                                    "spontaneousSolicitation",
+                                    "internalFollowUp",
+                                    "guardianshipAssociation",
+                                    "relationship",
+                                    "prescriber",
+                                    "formerClient",
+                                    "other"
+                                  ]
                                 },
                                 "contactCustomerRelationship": {
                                   "type": "string",
@@ -7802,7 +7573,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transaction"
+                    "$ref": "#/components/schemas/AssetTransaction"
                   }
                 }
               }
@@ -7942,7 +7713,7 @@
     "/companies/{companyID}/transactions": {
       "get": {
         "operationId": "transaction_list",
-        "summary": "List cabinet transactions (movements)",
+        "summary": "List company transactions",
         "tags": [
           "Transactions"
         ],
@@ -7950,9 +7721,10 @@
           {
             "schema": {
               "type": "number",
+              "nullable": true,
               "minimum": 1,
               "default": 1,
-              "description": "Page number (1-indexed)",
+              "description": "Current pagination page",
               "example": 1
             },
             "required": false,
@@ -8006,20 +7778,6 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "true",
-                "false"
-              ],
-              "description": "Filter by processed status (true/false)",
-              "example": "false"
-            },
-            "required": false,
-            "name": "processed",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
               "nullable": true,
               "description": "Filter transactions from this date (inclusive)",
               "example": "2024-01-01"
@@ -8053,11 +7811,11 @@
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of movements for the cabinet",
+            "description": "A list of transactions for the company",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedMovements"
+                  "$ref": "#/components/schemas/TransactionListResponse"
                 }
               }
             }
@@ -8065,10 +7823,10 @@
         }
       }
     },
-    "/companies/{companyID}/transactions/{transaction_id}": {
+    "/companies/{companyID}/transactions/{transactionID}": {
       "get": {
         "operationId": "transaction_show",
-        "summary": "Get a specific transaction (movement) detail",
+        "summary": "Get a specific transaction detail",
         "tags": [
           "Transactions"
         ],
@@ -8081,23 +7839,92 @@
               "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
             },
             "required": true,
-            "name": "transaction_id",
+            "name": "transactionID",
             "in": "path"
           }
         ],
         "responses": {
           "200": {
-            "description": "The movement detail",
+            "description": "The transaction detail",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MovementDetail"
+                  "$ref": "#/components/schemas/TransactionDetail"
                 }
               }
             }
           },
           "404": {
             "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "/companies/{companyID}/transactions/{transactionID}/processed": {
+      "patch": {
+        "operationId": "transaction_set_processed_true",
+        "summary": "Set a specific transaction 'processed' field",
+        "tags": [
+          "Transactions"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "The unique identifier of the transaction",
+              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+            },
+            "required": true,
+            "name": "transactionID",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "processed": {
+                    "type": "boolean",
+                    "description": "Boolean value to set for the transaction 'processed' field",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "processed"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction 'processed' field set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "processed": {
+                      "type": "boolean",
+                      "description": "Boolean value set for the transaction's 'processed' field",
+                      "example": true
+                    }
+                  },
+                  "required": [
+                    "processed"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden operation on transaction"
+          },
+          "404": {
+            "description": "Transaction not found or archived"
           }
         }
       }
@@ -8462,7 +8289,36 @@
                         },
                         "originCustomerRelationship": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "incomingCall",
+                            "outgoingCall",
+                            "affiliate",
+                            "eContact",
+                            "eContactTmp",
+                            "businessCapital",
+                            "boogeLeads",
+                            "prospecting",
+                            "portfolioBuyout",
+                            "aktifPlusMeeting",
+                            "ifbMeeting",
+                            "recommendation",
+                            "signatureClient",
+                            "meetingTmp",
+                            "meeting",
+                            "socialNetwork",
+                            "retiree",
+                            "tradeShows",
+                            "website",
+                            "dinner",
+                            "spontaneousSolicitation",
+                            "internalFollowUp",
+                            "guardianshipAssociation",
+                            "relationship",
+                            "prescriber",
+                            "formerClient",
+                            "other"
+                          ]
                         },
                         "contactCustomerRelationship": {
                           "type": "string",
@@ -8732,7 +8588,35 @@
                         },
                         "legalCapacity": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "noMeasure",
+                            "capable",
+                            "protectedUnderGuardianship",
+                            "protectedUnderCuratorship",
+                            "underJudicialSafeguard",
+                            "unemancipatedMinor",
+                            "emancipatedMinor",
+                            "underJudicialConstraint",
+                            "underGuardianship",
+                            "absentOrOtherCapableMajor",
+                            "other",
+                            "judicialSafeguard",
+                            "guardianship",
+                            "enhancedGuardianship",
+                            "custody",
+                            "futureProtectionMandate",
+                            "adHocAdministrator",
+                            "posthumousMandate",
+                            "oldStateGuardianship",
+                            "oldGuardianshipManagement",
+                            "oldGuardianshipArt511",
+                            "oldGuardianshipArt512",
+                            "privateManagementCustody",
+                            "familyEmpowermentRepresentation",
+                            "legalAdministration",
+                            "familyEmpowermentAssistance"
+                          ]
                         },
                         "tag": {
                           "type": "string",
@@ -8917,7 +8801,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -9294,7 +9207,36 @@
                       },
                       "originCustomerRelationship": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "enum": [
+                          "incomingCall",
+                          "outgoingCall",
+                          "affiliate",
+                          "eContact",
+                          "eContactTmp",
+                          "businessCapital",
+                          "boogeLeads",
+                          "prospecting",
+                          "portfolioBuyout",
+                          "aktifPlusMeeting",
+                          "ifbMeeting",
+                          "recommendation",
+                          "signatureClient",
+                          "meetingTmp",
+                          "meeting",
+                          "socialNetwork",
+                          "retiree",
+                          "tradeShows",
+                          "website",
+                          "dinner",
+                          "spontaneousSolicitation",
+                          "internalFollowUp",
+                          "guardianshipAssociation",
+                          "relationship",
+                          "prescriber",
+                          "formerClient",
+                          "other"
+                        ]
                       },
                       "contactCustomerRelationship": {
                         "type": "string",
@@ -9564,7 +9506,35 @@
                       },
                       "legalCapacity": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "enum": [
+                          "noMeasure",
+                          "capable",
+                          "protectedUnderGuardianship",
+                          "protectedUnderCuratorship",
+                          "underJudicialSafeguard",
+                          "unemancipatedMinor",
+                          "emancipatedMinor",
+                          "underJudicialConstraint",
+                          "underGuardianship",
+                          "absentOrOtherCapableMajor",
+                          "other",
+                          "judicialSafeguard",
+                          "guardianship",
+                          "enhancedGuardianship",
+                          "custody",
+                          "futureProtectionMandate",
+                          "adHocAdministrator",
+                          "posthumousMandate",
+                          "oldStateGuardianship",
+                          "oldGuardianshipManagement",
+                          "oldGuardianshipArt511",
+                          "oldGuardianshipArt512",
+                          "privateManagementCustody",
+                          "familyEmpowermentRepresentation",
+                          "legalAdministration",
+                          "familyEmpowermentAssistance"
+                        ]
                       },
                       "tag": {
                         "type": "string",
@@ -9749,7 +9719,36 @@
                           },
                           "originCustomerRelationship": {
                             "type": "string",
-                            "nullable": true
+                            "nullable": true,
+                            "enum": [
+                              "incomingCall",
+                              "outgoingCall",
+                              "affiliate",
+                              "eContact",
+                              "eContactTmp",
+                              "businessCapital",
+                              "boogeLeads",
+                              "prospecting",
+                              "portfolioBuyout",
+                              "aktifPlusMeeting",
+                              "ifbMeeting",
+                              "recommendation",
+                              "signatureClient",
+                              "meetingTmp",
+                              "meeting",
+                              "socialNetwork",
+                              "retiree",
+                              "tradeShows",
+                              "website",
+                              "dinner",
+                              "spontaneousSolicitation",
+                              "internalFollowUp",
+                              "guardianshipAssociation",
+                              "relationship",
+                              "prescriber",
+                              "formerClient",
+                              "other"
+                            ]
                           },
                           "contactCustomerRelationship": {
                             "type": "string",
@@ -10040,7 +10039,36 @@
                         },
                         "originCustomerRelationship": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "incomingCall",
+                            "outgoingCall",
+                            "affiliate",
+                            "eContact",
+                            "eContactTmp",
+                            "businessCapital",
+                            "boogeLeads",
+                            "prospecting",
+                            "portfolioBuyout",
+                            "aktifPlusMeeting",
+                            "ifbMeeting",
+                            "recommendation",
+                            "signatureClient",
+                            "meetingTmp",
+                            "meeting",
+                            "socialNetwork",
+                            "retiree",
+                            "tradeShows",
+                            "website",
+                            "dinner",
+                            "spontaneousSolicitation",
+                            "internalFollowUp",
+                            "guardianshipAssociation",
+                            "relationship",
+                            "prescriber",
+                            "formerClient",
+                            "other"
+                          ]
                         },
                         "contactCustomerRelationship": {
                           "type": "string",
@@ -10310,7 +10338,35 @@
                         },
                         "legalCapacity": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "noMeasure",
+                            "capable",
+                            "protectedUnderGuardianship",
+                            "protectedUnderCuratorship",
+                            "underJudicialSafeguard",
+                            "unemancipatedMinor",
+                            "emancipatedMinor",
+                            "underJudicialConstraint",
+                            "underGuardianship",
+                            "absentOrOtherCapableMajor",
+                            "other",
+                            "judicialSafeguard",
+                            "guardianship",
+                            "enhancedGuardianship",
+                            "custody",
+                            "futureProtectionMandate",
+                            "adHocAdministrator",
+                            "posthumousMandate",
+                            "oldStateGuardianship",
+                            "oldGuardianshipManagement",
+                            "oldGuardianshipArt511",
+                            "oldGuardianshipArt512",
+                            "privateManagementCustody",
+                            "familyEmpowermentRepresentation",
+                            "legalAdministration",
+                            "familyEmpowermentAssistance"
+                          ]
                         },
                         "tag": {
                           "type": "string",
@@ -10495,7 +10551,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -11058,7 +11143,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -11328,7 +11442,35 @@
                             },
                             "legalCapacity": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "noMeasure",
+                                "capable",
+                                "protectedUnderGuardianship",
+                                "protectedUnderCuratorship",
+                                "underJudicialSafeguard",
+                                "unemancipatedMinor",
+                                "emancipatedMinor",
+                                "underJudicialConstraint",
+                                "underGuardianship",
+                                "absentOrOtherCapableMajor",
+                                "other",
+                                "judicialSafeguard",
+                                "guardianship",
+                                "enhancedGuardianship",
+                                "custody",
+                                "futureProtectionMandate",
+                                "adHocAdministrator",
+                                "posthumousMandate",
+                                "oldStateGuardianship",
+                                "oldGuardianshipManagement",
+                                "oldGuardianshipArt511",
+                                "oldGuardianshipArt512",
+                                "privateManagementCustody",
+                                "familyEmpowermentRepresentation",
+                                "legalAdministration",
+                                "familyEmpowermentAssistance"
+                              ]
                             },
                             "tag": {
                               "type": "string",
@@ -11513,7 +11655,36 @@
                                 },
                                 "originCustomerRelationship": {
                                   "type": "string",
-                                  "nullable": true
+                                  "nullable": true,
+                                  "enum": [
+                                    "incomingCall",
+                                    "outgoingCall",
+                                    "affiliate",
+                                    "eContact",
+                                    "eContactTmp",
+                                    "businessCapital",
+                                    "boogeLeads",
+                                    "prospecting",
+                                    "portfolioBuyout",
+                                    "aktifPlusMeeting",
+                                    "ifbMeeting",
+                                    "recommendation",
+                                    "signatureClient",
+                                    "meetingTmp",
+                                    "meeting",
+                                    "socialNetwork",
+                                    "retiree",
+                                    "tradeShows",
+                                    "website",
+                                    "dinner",
+                                    "spontaneousSolicitation",
+                                    "internalFollowUp",
+                                    "guardianshipAssociation",
+                                    "relationship",
+                                    "prescriber",
+                                    "formerClient",
+                                    "other"
+                                  ]
                                 },
                                 "contactCustomerRelationship": {
                                   "type": "string",
@@ -13622,7 +13793,36 @@
                         },
                         "originCustomerRelationship": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "incomingCall",
+                            "outgoingCall",
+                            "affiliate",
+                            "eContact",
+                            "eContactTmp",
+                            "businessCapital",
+                            "boogeLeads",
+                            "prospecting",
+                            "portfolioBuyout",
+                            "aktifPlusMeeting",
+                            "ifbMeeting",
+                            "recommendation",
+                            "signatureClient",
+                            "meetingTmp",
+                            "meeting",
+                            "socialNetwork",
+                            "retiree",
+                            "tradeShows",
+                            "website",
+                            "dinner",
+                            "spontaneousSolicitation",
+                            "internalFollowUp",
+                            "guardianshipAssociation",
+                            "relationship",
+                            "prescriber",
+                            "formerClient",
+                            "other"
+                          ]
                         },
                         "contactCustomerRelationship": {
                           "type": "string",
@@ -13892,7 +14092,35 @@
                         },
                         "legalCapacity": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "noMeasure",
+                            "capable",
+                            "protectedUnderGuardianship",
+                            "protectedUnderCuratorship",
+                            "underJudicialSafeguard",
+                            "unemancipatedMinor",
+                            "emancipatedMinor",
+                            "underJudicialConstraint",
+                            "underGuardianship",
+                            "absentOrOtherCapableMajor",
+                            "other",
+                            "judicialSafeguard",
+                            "guardianship",
+                            "enhancedGuardianship",
+                            "custody",
+                            "futureProtectionMandate",
+                            "adHocAdministrator",
+                            "posthumousMandate",
+                            "oldStateGuardianship",
+                            "oldGuardianshipManagement",
+                            "oldGuardianshipArt511",
+                            "oldGuardianshipArt512",
+                            "privateManagementCustody",
+                            "familyEmpowermentRepresentation",
+                            "legalAdministration",
+                            "familyEmpowermentAssistance"
+                          ]
                         },
                         "tag": {
                           "type": "string",
@@ -14077,7 +14305,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -14454,7 +14711,36 @@
                       },
                       "originCustomerRelationship": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "enum": [
+                          "incomingCall",
+                          "outgoingCall",
+                          "affiliate",
+                          "eContact",
+                          "eContactTmp",
+                          "businessCapital",
+                          "boogeLeads",
+                          "prospecting",
+                          "portfolioBuyout",
+                          "aktifPlusMeeting",
+                          "ifbMeeting",
+                          "recommendation",
+                          "signatureClient",
+                          "meetingTmp",
+                          "meeting",
+                          "socialNetwork",
+                          "retiree",
+                          "tradeShows",
+                          "website",
+                          "dinner",
+                          "spontaneousSolicitation",
+                          "internalFollowUp",
+                          "guardianshipAssociation",
+                          "relationship",
+                          "prescriber",
+                          "formerClient",
+                          "other"
+                        ]
                       },
                       "contactCustomerRelationship": {
                         "type": "string",
@@ -14724,7 +15010,35 @@
                       },
                       "legalCapacity": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "enum": [
+                          "noMeasure",
+                          "capable",
+                          "protectedUnderGuardianship",
+                          "protectedUnderCuratorship",
+                          "underJudicialSafeguard",
+                          "unemancipatedMinor",
+                          "emancipatedMinor",
+                          "underJudicialConstraint",
+                          "underGuardianship",
+                          "absentOrOtherCapableMajor",
+                          "other",
+                          "judicialSafeguard",
+                          "guardianship",
+                          "enhancedGuardianship",
+                          "custody",
+                          "futureProtectionMandate",
+                          "adHocAdministrator",
+                          "posthumousMandate",
+                          "oldStateGuardianship",
+                          "oldGuardianshipManagement",
+                          "oldGuardianshipArt511",
+                          "oldGuardianshipArt512",
+                          "privateManagementCustody",
+                          "familyEmpowermentRepresentation",
+                          "legalAdministration",
+                          "familyEmpowermentAssistance"
+                        ]
                       },
                       "tag": {
                         "type": "string",
@@ -14909,7 +15223,36 @@
                           },
                           "originCustomerRelationship": {
                             "type": "string",
-                            "nullable": true
+                            "nullable": true,
+                            "enum": [
+                              "incomingCall",
+                              "outgoingCall",
+                              "affiliate",
+                              "eContact",
+                              "eContactTmp",
+                              "businessCapital",
+                              "boogeLeads",
+                              "prospecting",
+                              "portfolioBuyout",
+                              "aktifPlusMeeting",
+                              "ifbMeeting",
+                              "recommendation",
+                              "signatureClient",
+                              "meetingTmp",
+                              "meeting",
+                              "socialNetwork",
+                              "retiree",
+                              "tradeShows",
+                              "website",
+                              "dinner",
+                              "spontaneousSolicitation",
+                              "internalFollowUp",
+                              "guardianshipAssociation",
+                              "relationship",
+                              "prescriber",
+                              "formerClient",
+                              "other"
+                            ]
                           },
                           "contactCustomerRelationship": {
                             "type": "string",
@@ -15200,7 +15543,36 @@
                         },
                         "originCustomerRelationship": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "incomingCall",
+                            "outgoingCall",
+                            "affiliate",
+                            "eContact",
+                            "eContactTmp",
+                            "businessCapital",
+                            "boogeLeads",
+                            "prospecting",
+                            "portfolioBuyout",
+                            "aktifPlusMeeting",
+                            "ifbMeeting",
+                            "recommendation",
+                            "signatureClient",
+                            "meetingTmp",
+                            "meeting",
+                            "socialNetwork",
+                            "retiree",
+                            "tradeShows",
+                            "website",
+                            "dinner",
+                            "spontaneousSolicitation",
+                            "internalFollowUp",
+                            "guardianshipAssociation",
+                            "relationship",
+                            "prescriber",
+                            "formerClient",
+                            "other"
+                          ]
                         },
                         "contactCustomerRelationship": {
                           "type": "string",
@@ -15470,7 +15842,35 @@
                         },
                         "legalCapacity": {
                           "type": "string",
-                          "nullable": true
+                          "nullable": true,
+                          "enum": [
+                            "noMeasure",
+                            "capable",
+                            "protectedUnderGuardianship",
+                            "protectedUnderCuratorship",
+                            "underJudicialSafeguard",
+                            "unemancipatedMinor",
+                            "emancipatedMinor",
+                            "underJudicialConstraint",
+                            "underGuardianship",
+                            "absentOrOtherCapableMajor",
+                            "other",
+                            "judicialSafeguard",
+                            "guardianship",
+                            "enhancedGuardianship",
+                            "custody",
+                            "futureProtectionMandate",
+                            "adHocAdministrator",
+                            "posthumousMandate",
+                            "oldStateGuardianship",
+                            "oldGuardianshipManagement",
+                            "oldGuardianshipArt511",
+                            "oldGuardianshipArt512",
+                            "privateManagementCustody",
+                            "familyEmpowermentRepresentation",
+                            "legalAdministration",
+                            "familyEmpowermentAssistance"
+                          ]
                         },
                         "tag": {
                           "type": "string",
@@ -15655,7 +16055,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -16218,7 +16647,36 @@
                             },
                             "originCustomerRelationship": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "incomingCall",
+                                "outgoingCall",
+                                "affiliate",
+                                "eContact",
+                                "eContactTmp",
+                                "businessCapital",
+                                "boogeLeads",
+                                "prospecting",
+                                "portfolioBuyout",
+                                "aktifPlusMeeting",
+                                "ifbMeeting",
+                                "recommendation",
+                                "signatureClient",
+                                "meetingTmp",
+                                "meeting",
+                                "socialNetwork",
+                                "retiree",
+                                "tradeShows",
+                                "website",
+                                "dinner",
+                                "spontaneousSolicitation",
+                                "internalFollowUp",
+                                "guardianshipAssociation",
+                                "relationship",
+                                "prescriber",
+                                "formerClient",
+                                "other"
+                              ]
                             },
                             "contactCustomerRelationship": {
                               "type": "string",
@@ -16488,7 +16946,35 @@
                             },
                             "legalCapacity": {
                               "type": "string",
-                              "nullable": true
+                              "nullable": true,
+                              "enum": [
+                                "noMeasure",
+                                "capable",
+                                "protectedUnderGuardianship",
+                                "protectedUnderCuratorship",
+                                "underJudicialSafeguard",
+                                "unemancipatedMinor",
+                                "emancipatedMinor",
+                                "underJudicialConstraint",
+                                "underGuardianship",
+                                "absentOrOtherCapableMajor",
+                                "other",
+                                "judicialSafeguard",
+                                "guardianship",
+                                "enhancedGuardianship",
+                                "custody",
+                                "futureProtectionMandate",
+                                "adHocAdministrator",
+                                "posthumousMandate",
+                                "oldStateGuardianship",
+                                "oldGuardianshipManagement",
+                                "oldGuardianshipArt511",
+                                "oldGuardianshipArt512",
+                                "privateManagementCustody",
+                                "familyEmpowermentRepresentation",
+                                "legalAdministration",
+                                "familyEmpowermentAssistance"
+                              ]
                             },
                             "tag": {
                               "type": "string",
@@ -16673,7 +17159,36 @@
                                 },
                                 "originCustomerRelationship": {
                                   "type": "string",
-                                  "nullable": true
+                                  "nullable": true,
+                                  "enum": [
+                                    "incomingCall",
+                                    "outgoingCall",
+                                    "affiliate",
+                                    "eContact",
+                                    "eContactTmp",
+                                    "businessCapital",
+                                    "boogeLeads",
+                                    "prospecting",
+                                    "portfolioBuyout",
+                                    "aktifPlusMeeting",
+                                    "ifbMeeting",
+                                    "recommendation",
+                                    "signatureClient",
+                                    "meetingTmp",
+                                    "meeting",
+                                    "socialNetwork",
+                                    "retiree",
+                                    "tradeShows",
+                                    "website",
+                                    "dinner",
+                                    "spontaneousSolicitation",
+                                    "internalFollowUp",
+                                    "guardianshipAssociation",
+                                    "relationship",
+                                    "prescriber",
+                                    "formerClient",
+                                    "other"
+                                  ]
                                 },
                                 "contactCustomerRelationship": {
                                   "type": "string",
@@ -17685,7 +18200,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transaction"
+                    "$ref": "#/components/schemas/AssetTransaction"
                   }
                 }
               }
@@ -17824,8 +18339,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/transactions": {
       "get": {
-        "operationId": "parent_company_asset_transaction_list",
-        "summary": "List cabinet transactions (movements)",
+        "operationId": "transaction_list",
+        "summary": "List company transactions",
         "tags": [
           "Transactions"
         ],
@@ -17833,9 +18348,10 @@
           {
             "schema": {
               "type": "number",
+              "nullable": true,
               "minimum": 1,
               "default": 1,
-              "description": "Page number (1-indexed)",
+              "description": "Current pagination page",
               "example": 1
             },
             "required": false,
@@ -17889,20 +18405,6 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "true",
-                "false"
-              ],
-              "description": "Filter by processed status (true/false)",
-              "example": "false"
-            },
-            "required": false,
-            "name": "processed",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
               "nullable": true,
               "description": "Filter transactions from this date (inclusive)",
               "example": "2024-01-01"
@@ -17936,11 +18438,11 @@
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of movements for the cabinet",
+            "description": "A list of transactions for the company",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedMovements"
+                  "$ref": "#/components/schemas/TransactionListResponse"
                 }
               }
             }
@@ -17948,10 +18450,10 @@
         }
       }
     },
-    "/parent-companies/{parent_company_id}/companies/{companyID}/transactions/{transaction_id}": {
+    "/parent-companies/{parent_company_id}/companies/{companyID}/transactions/{transactionID}": {
       "get": {
-        "operationId": "parent_company_asset_transaction_show",
-        "summary": "Get a specific transaction (movement) detail",
+        "operationId": "transaction_show",
+        "summary": "Get a specific transaction detail",
         "tags": [
           "Transactions"
         ],
@@ -17964,23 +18466,92 @@
               "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
             },
             "required": true,
-            "name": "transaction_id",
+            "name": "transactionID",
             "in": "path"
           }
         ],
         "responses": {
           "200": {
-            "description": "The movement detail",
+            "description": "The transaction detail",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MovementDetail"
+                  "$ref": "#/components/schemas/TransactionDetail"
                 }
               }
             }
           },
           "404": {
             "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "/parent-companies/{parent_company_id}/companies/{companyID}/transactions/{transactionID}/processed": {
+      "patch": {
+        "operationId": "parent_company_transaction_set_processed_true",
+        "summary": "Set a specific transaction 'processed' field",
+        "tags": [
+          "Transactions"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "The unique identifier of the transaction",
+              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+            },
+            "required": true,
+            "name": "transactionID",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "processed": {
+                    "type": "boolean",
+                    "description": "Boolean value to set for the transaction 'processed' field",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "processed"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction 'processed' field set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "processed": {
+                      "type": "boolean",
+                      "description": "Boolean value set for the transaction's 'processed' field",
+                      "example": true
+                    }
+                  },
+                  "required": [
+                    "processed"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden operation on transaction"
+          },
+          "404": {
+            "description": "Transaction not found or archived"
           }
         }
       }
