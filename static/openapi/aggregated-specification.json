@@ -7989,7 +7989,7 @@
     "/parent-companies/{parent_company_id}": {
       "get": {
         "operationId": "parent_company_informations",
-        "summary": "Retrieve the parent company informations",
+        "summary": "Retrieve the parent company informations for a parent company",
         "tags": [
           "Parent Company"
         ],
@@ -8022,8 +8022,8 @@
     },
     "/parent-companies/{parent_company_id}/entities": {
       "get": {
-        "operationId": "entities_list",
-        "summary": "Entities list",
+        "operationId": "parent_company_entities_list",
+        "summary": "Entities list for a parent company",
         "tags": [
           "Entity"
         ],
@@ -8144,8 +8144,8 @@
     },
     "/parent-companies/{parent_company_id}/entities/statistics": {
       "get": {
-        "operationId": "entities_list_statistics",
-        "summary": "Entities list statistics",
+        "operationId": "parent_company_entities_list_statistics",
+        "summary": "Entities list statistics for a parent company",
         "tags": [
           "Entity"
         ],
@@ -8205,11 +8205,11 @@
     },
     "/parent-companies/{parent_company_id}/entities/{entityID}": {
       "get": {
-        "operationId": "entity_informations",
+        "operationId": "parent_company_entity_informations",
         "tags": [
           "Entity"
         ],
-        "summary": "Get entity informations",
+        "summary": "Get entity informations for a parent company",
         "parameters": [
           {
             "schema": {
@@ -9163,11 +9163,11 @@
         }
       },
       "patch": {
-        "operationId": "entity_modification",
+        "operationId": "parent_company_entity_modification",
         "tags": [
           "Entity"
         ],
-        "summary": "Update entity informations",
+        "summary": "Update entity informations for a parent company",
         "parameters": [
           {
             "schema": {
@@ -10866,8 +10866,8 @@
     },
     "/parent-companies/{parent_company_id}/references/statistics": {
       "get": {
-        "operationId": "customer_references_list_statistics",
-        "summary": "Customer references list statistics",
+        "operationId": "parent_company_customer_references_list_statistics",
+        "summary": "Customer references list statistics for a parent company",
         "tags": [
           "Reference"
         ],
@@ -10916,8 +10916,8 @@
     },
     "/parent-companies/{parent_company_id}/references": {
       "get": {
-        "operationId": "references_list",
-        "summary": "List of reference",
+        "operationId": "parent_company_references_list",
+        "summary": "List of reference for a parent company",
         "tags": [
           "Reference"
         ],
@@ -11096,8 +11096,8 @@
         }
       },
       "put": {
-        "operationId": "references_creation",
-        "summary": "Create a reference",
+        "operationId": "parent_company_references_creation",
+        "summary": "Create a reference for a parent company",
         "tags": [
           "Reference"
         ],
@@ -12034,8 +12034,8 @@
     },
     "/parent-companies/{parent_company_id}/references/{reference-id}": {
       "get": {
-        "operationId": "references_informations",
-        "summary": "Reference information",
+        "operationId": "parent_company_references_informations",
+        "summary": "Reference information for a parent company",
         "tags": [
           "Reference"
         ],
@@ -12161,8 +12161,8 @@
     },
     "/parent-companies/{parent_company_id}/references/:reference-id": {
       "patch": {
-        "operationId": "references_modification_parent",
-        "summary": "Update a reference from parent company (supports companyId reassignment)",
+        "operationId": "parent_company_references_modification_parent",
+        "summary": "Update a reference from parent company (supports companyId reassignment) for a parent company",
         "tags": [
           "Reference"
         ],
@@ -12306,8 +12306,8 @@
     },
     "/parent-companies/{parent_company_id}/managers/statistics": {
       "get": {
-        "operationId": "manager_list_statistics",
-        "summary": "Manager list statistics",
+        "operationId": "parent_company_manager_list_statistics",
+        "summary": "Manager list statistics for a parent company",
         "tags": [
           "Manager"
         ],
@@ -12337,8 +12337,8 @@
     },
     "/parent-companies/{parent_company_id}/managers": {
       "get": {
-        "operationId": "manager_list",
-        "summary": "List of managers",
+        "operationId": "parent_company_manager_list",
+        "summary": "List of managers for a parent company",
         "tags": [
           "Manager"
         ],
@@ -12385,8 +12385,8 @@
         }
       },
       "post": {
-        "operationId": "manager_creation",
-        "summary": "Create a new manager",
+        "operationId": "parent_company_manager_creation",
+        "summary": "Create a new manager for a parent company",
         "tags": [
           "Manager"
         ],
@@ -12482,8 +12482,8 @@
     },
     "/parent-companies/{parent_company_id}/managers/{id}": {
       "patch": {
-        "operationId": "manager_update",
-        "summary": "Update a manager",
+        "operationId": "parent_company_manager_update",
+        "summary": "Update a manager for a parent company",
         "description": "Update a manager by his id",
         "tags": [
           "Manager"
@@ -12548,8 +12548,8 @@
     },
     "/parent-companies/{parent_company_id}/companies": {
       "get": {
-        "operationId": "company_list",
-        "summary": "List companies",
+        "operationId": "parent_company_company_list",
+        "summary": "List companies for a parent company",
         "tags": [
           "Company"
         ],
@@ -12632,8 +12632,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/statistics": {
       "get": {
-        "operationId": "company_list_statistics",
-        "summary": "Retrieve list companies statistics",
+        "operationId": "parent_company_company_list_statistics",
+        "summary": "Retrieve list companies statistics for a parent company",
         "tags": [
           "Company"
         ],
@@ -12663,11 +12663,11 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}": {
       "get": {
-        "operationId": "company_retrieve",
+        "operationId": "parent_company_company_retrieve",
         "tags": [
           "Company"
         ],
-        "summary": "Retrieve a company information",
+        "summary": "Retrieve a company information for a parent company",
         "parameters": [
           {
             "schema": {
@@ -12726,8 +12726,8 @@
         "tags": [
           "Company"
         ],
-        "operationId": "company_update",
-        "summary": "Update a company information",
+        "operationId": "parent_company_company_update",
+        "summary": "Update a company information for a parent company",
         "parameters": [
           {
             "schema": {
@@ -12805,8 +12805,8 @@
         "tags": [
           "Company"
         ],
-        "operationId": "company_deletion",
-        "summary": "Delete a company",
+        "operationId": "parent_company_company_deletion",
+        "summary": "Delete a company for a parent company",
         "description": "Deletes a company and logs the deletion",
         "parameters": [
           {
@@ -12865,8 +12865,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/teams": {
       "get": {
-        "operationId": "team_list",
-        "summary": "List teams",
+        "operationId": "parent_company_team_list",
+        "summary": "List teams for a parent company",
         "tags": [
           "Team"
         ],
@@ -12954,11 +12954,11 @@
         }
       },
       "put": {
-        "operationId": "team_creation",
+        "operationId": "parent_company_team_creation",
         "tags": [
           "Team"
         ],
-        "summary": "Create a team",
+        "summary": "Create a team for a parent company",
         "requestBody": {
           "required": true,
           "content": {
@@ -13034,8 +13034,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/teams/statistics": {
       "get": {
-        "operationId": "team_list_statistics",
-        "summary": "Retrieve teams statistics",
+        "operationId": "parent_company_team_list_statistics",
+        "summary": "Retrieve teams statistics for a parent company",
         "tags": [
           "Team"
         ],
@@ -13065,11 +13065,11 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/teams/{teamName}": {
       "get": {
-        "operationId": "team_retrieve",
+        "operationId": "parent_company_team_retrieve",
         "tags": [
           "Team"
         ],
-        "summary": "Team retrieval",
+        "summary": "Team retrieval for a parent company",
         "parameters": [
           {
             "schema": {
@@ -13131,11 +13131,11 @@
         }
       },
       "patch": {
-        "operationId": "team_update",
+        "operationId": "parent_company_team_update",
         "tags": [
           "Team"
         ],
-        "summary": "Team update",
+        "summary": "Team update for a parent company",
         "parameters": [
           {
             "schema": {
@@ -13220,11 +13220,11 @@
         }
       },
       "delete": {
-        "operationId": "team_deletion",
+        "operationId": "parent_company_team_deletion",
         "tags": [
           "Team"
         ],
-        "summary": "Delete a team",
+        "summary": "Delete a team for a parent company",
         "parameters": [
           {
             "schema": {
@@ -13288,11 +13288,11 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/teams/{teamName}/statistics": {
       "get": {
-        "operationId": "team_statistics",
+        "operationId": "parent_company_team_statistics",
         "tags": [
           "Team"
         ],
-        "summary": "Retrieve team statistics",
+        "summary": "Retrieve team statistics for a parent company",
         "parameters": [
           {
             "schema": {
@@ -13359,8 +13359,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/teams/{teamName}/members": {
       "get": {
-        "operationId": "team_members_list",
-        "summary": "List team members",
+        "operationId": "parent_company_team_members_list",
+        "summary": "List team members for a parent company",
         "tags": [
           "Team Member"
         ],
@@ -13474,11 +13474,11 @@
         }
       },
       "put": {
-        "operationId": "team_member_creation",
+        "operationId": "parent_company_team_member_creation",
         "tags": [
           "Team Member"
         ],
-        "summary": "Create a team member",
+        "summary": "Create a team member for a parent company",
         "parameters": [
           {
             "schema": {
@@ -13526,8 +13526,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/entities": {
       "get": {
-        "operationId": "entities_list",
-        "summary": "Entities list",
+        "operationId": "parent_company_entities_list",
+        "summary": "Entities list for a parent company",
         "tags": [
           "Entity"
         ],
@@ -13648,8 +13648,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/entities/statistics": {
       "get": {
-        "operationId": "entities_list_statistics",
-        "summary": "Entities list statistics",
+        "operationId": "parent_company_entities_list_statistics",
+        "summary": "Entities list statistics for a parent company",
         "tags": [
           "Entity"
         ],
@@ -13709,11 +13709,11 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/entities/{entityID}": {
       "get": {
-        "operationId": "entity_informations",
+        "operationId": "parent_company_entity_informations",
         "tags": [
           "Entity"
         ],
-        "summary": "Get entity informations",
+        "summary": "Get entity informations for a parent company",
         "parameters": [
           {
             "schema": {
@@ -14667,11 +14667,11 @@
         }
       },
       "patch": {
-        "operationId": "entity_modification",
+        "operationId": "parent_company_entity_modification",
         "tags": [
           "Entity"
         ],
-        "summary": "Update entity informations",
+        "summary": "Update entity informations for a parent company",
         "parameters": [
           {
             "schema": {
@@ -16370,8 +16370,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/references/statistics": {
       "get": {
-        "operationId": "customer_references_list_statistics",
-        "summary": "Customer references list statistics",
+        "operationId": "parent_company_customer_references_list_statistics",
+        "summary": "Customer references list statistics for a parent company",
         "tags": [
           "Reference"
         ],
@@ -16420,8 +16420,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/references": {
       "get": {
-        "operationId": "references_list",
-        "summary": "List of reference",
+        "operationId": "parent_company_references_list",
+        "summary": "List of reference for a parent company",
         "tags": [
           "Reference"
         ],
@@ -16600,8 +16600,8 @@
         }
       },
       "put": {
-        "operationId": "references_creation",
-        "summary": "Create a reference",
+        "operationId": "parent_company_references_creation",
+        "summary": "Create a reference for a parent company",
         "tags": [
           "Reference"
         ],
@@ -17538,8 +17538,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/references/{reference-id}": {
       "get": {
-        "operationId": "references_informations",
-        "summary": "Reference information",
+        "operationId": "parent_company_references_informations",
+        "summary": "Reference information for a parent company",
         "tags": [
           "Reference"
         ],
@@ -17665,8 +17665,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/references/:reference-id": {
       "patch": {
-        "operationId": "references_modification",
-        "summary": "Update a reference",
+        "operationId": "parent_company_references_modification",
+        "summary": "Update a reference for a parent company",
         "tags": [
           "Reference"
         ],
@@ -17804,8 +17804,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/managers/statistics": {
       "get": {
-        "operationId": "manager_list_statistics",
-        "summary": "Manager list statistics",
+        "operationId": "parent_company_manager_list_statistics",
+        "summary": "Manager list statistics for a parent company",
         "tags": [
           "Manager"
         ],
@@ -17835,8 +17835,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/managers": {
       "get": {
-        "operationId": "manager_list",
-        "summary": "List of managers",
+        "operationId": "parent_company_manager_list",
+        "summary": "List of managers for a parent company",
         "tags": [
           "Manager"
         ],
@@ -17883,8 +17883,8 @@
         }
       },
       "post": {
-        "operationId": "manager_creation",
-        "summary": "Create a new manager",
+        "operationId": "parent_company_manager_creation",
+        "summary": "Create a new manager for a parent company",
         "tags": [
           "Manager"
         ],
@@ -17980,8 +17980,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/managers/{id}": {
       "patch": {
-        "operationId": "manager_update",
-        "summary": "Update a manager",
+        "operationId": "parent_company_manager_update",
+        "summary": "Update a manager for a parent company",
         "description": "Update a manager by his id",
         "tags": [
           "Manager"
@@ -18046,8 +18046,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/assets": {
       "get": {
-        "operationId": "asset_list",
-        "summary": "List assets",
+        "operationId": "parent_company_asset_list",
+        "summary": "List assets for a parent company",
         "tags": [
           "Assets"
         ],
@@ -18096,8 +18096,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/assets/{asset_id}": {
       "get": {
-        "operationId": "asset_informations",
-        "summary": "Asset Information",
+        "operationId": "parent_company_asset_informations",
+        "summary": "Asset Information for a parent company",
         "tags": [
           "Assets"
         ],
@@ -18130,8 +18130,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/assets/{asset_id}/transactions": {
       "get": {
-        "operationId": "asset_transaction_list",
-        "summary": "List asset transactions",
+        "operationId": "parent_company_asset_transaction_list",
+        "summary": "List asset transactions for a parent company",
         "tags": [
           "Assets"
         ],
@@ -18211,8 +18211,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/assets/{asset_id}/investments": {
       "get": {
-        "operationId": "asset_investments_list",
-        "summary": "List asset investments",
+        "operationId": "parent_company_asset_investments_list",
+        "summary": "List asset investments for a parent company",
         "tags": [
           "Assets"
         ],
@@ -18270,8 +18270,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/contracts": {
       "get": {
-        "operationId": "contracts_company_contracts_list",
-        "summary": "List contracts for a company",
+        "operationId": "parent_company_contracts_company_contracts_list",
+        "summary": "List contracts for a company for a parent company",
         "tags": [
           "Contract"
         ],
@@ -18339,8 +18339,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/transactions": {
       "get": {
-        "operationId": "transaction_list",
-        "summary": "List company transactions",
+        "operationId": "parent_company_transaction_list",
+        "summary": "List company transactions for a parent company",
         "tags": [
           "Transactions"
         ],
@@ -18452,8 +18452,8 @@
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/transactions/{transactionID}": {
       "get": {
-        "operationId": "transaction_show",
-        "summary": "Get a specific transaction detail",
+        "operationId": "parent_company_transaction_show",
+        "summary": "Get a specific transaction detail for a parent company",
         "tags": [
           "Transactions"
         ],
@@ -18490,7 +18490,7 @@
     "/parent-companies/{parent_company_id}/companies/{companyID}/transactions/{transactionID}/processed": {
       "patch": {
         "operationId": "parent_company_transaction_set_processed_true",
-        "summary": "Set a specific transaction 'processed' field",
+        "summary": "Set a specific transaction 'processed' field for a parent company",
         "tags": [
           "Transactions"
         ],
