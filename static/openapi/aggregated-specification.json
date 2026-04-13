@@ -992,6 +992,76 @@
           "email"
         ]
       },
+      "ManagerDetails": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Manager"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "nullable": true,
+                "description": "Phone number of the manager",
+                "example": "+33612345678"
+              },
+              "honorific": {
+                "type": "string",
+                "nullable": true,
+                "description": "Honorific title of the manager",
+                "example": "M."
+              },
+              "birthDate": {
+                "type": "string",
+                "nullable": true,
+                "description": "Birth date of the manager"
+              },
+              "address": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "streetAdditional": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "city": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "zipCode": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "administrativeArea": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "country": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "description": "Address of the manager"
+              },
+              "providerCode": {
+                "type": "string",
+                "nullable": true,
+                "description": "External provider code for the manager"
+              },
+              "lastActive": {
+                "type": "string",
+                "nullable": true,
+                "description": "Last active date of the manager"
+              }
+            }
+          }
+        ]
+      },
       "Asset": {
         "type": "object",
         "properties": {
@@ -7352,6 +7422,40 @@
       }
     },
     "/companies/{companyID}/managers/{id}": {
+      "get": {
+        "operationId": "manager_show",
+        "summary": "Get a manager by ID",
+        "description": "Retrieve complete information for a manager by their ID",
+        "tags": [
+          "Manager"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success - manager details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Manager not found"
+          }
+        }
+      },
       "patch": {
         "operationId": "manager_update",
         "summary": "Update a manager",
@@ -7778,6 +7882,20 @@
           {
             "schema": {
               "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ],
+              "description": "Filter by system-processed status.",
+              "example": true
+            },
+            "required": false,
+            "name": "processed",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
               "nullable": true,
               "description": "Filter transactions from this date (inclusive)",
               "example": "2024-01-01"
@@ -7989,7 +8107,7 @@
     "/parent-companies/{parent_company_id}": {
       "get": {
         "operationId": "parent_company_informations",
-        "summary": "Retrieve the parent company informations for a parent company",
+        "summary": "Retrieve the parent company informations",
         "tags": [
           "Parent Company"
         ],
@@ -12481,6 +12599,40 @@
       }
     },
     "/parent-companies/{parent_company_id}/managers/{id}": {
+      "get": {
+        "operationId": "parent_company_manager_show",
+        "summary": "Get a manager by ID for a parent company",
+        "description": "Retrieve complete information for a manager by their ID",
+        "tags": [
+          "Manager"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success - manager details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Manager not found"
+          }
+        }
+      },
       "patch": {
         "operationId": "parent_company_manager_update",
         "summary": "Update a manager for a parent company",
@@ -17979,6 +18131,40 @@
       }
     },
     "/parent-companies/{parent_company_id}/companies/{companyID}/managers/{id}": {
+      "get": {
+        "operationId": "parent_company_manager_show",
+        "summary": "Get a manager by ID for a parent company",
+        "description": "Retrieve complete information for a manager by their ID",
+        "tags": [
+          "Manager"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success - manager details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Manager not found"
+          }
+        }
+      },
       "patch": {
         "operationId": "parent_company_manager_update",
         "summary": "Update a manager for a parent company",
@@ -18400,6 +18586,20 @@
             },
             "required": false,
             "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ],
+              "description": "Filter by system-processed status.",
+              "example": true
+            },
+            "required": false,
+            "name": "processed",
             "in": "query"
           },
           {
