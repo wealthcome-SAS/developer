@@ -1613,28 +1613,34 @@
 					"id"
 				]
 			},
-			"ProductCatalogueItem": {
+			"ProductListItem": {
 				"type": "object",
 				"properties": {
 					"id": {
 						"type": "string",
 						"format": "uuid"
 					},
-					"companyId": {
-						"type": "string",
-						"format": "uuid"
-					},
-					"productSource": {
-						"type": "string"
-					},
 					"referentialId": {
 						"type": "string",
 						"nullable": true,
 						"format": "uuid"
 					},
-					"catalogueName": {
+					"name": {
 						"type": "string",
-						"nullable": true
+						"nullable": true,
+						"description": "Catalogue name, falling back to the referential name."
+					},
+					"type": {
+						"type": "string",
+						"nullable": true,
+						"enum": [
+							"custom",
+							"referential"
+						],
+						"description": "Explicit product kind: 'custom' when a custom_product row references this entry, 'referential' when it points to a referential product. Derived from the data, not from the unreliable productSource column."
+					},
+					"isActive": {
+						"type": "boolean"
 					},
 					"commercializationStatus": {
 						"type": "string",
@@ -1647,161 +1653,17 @@
 					"commercializationEnd": {
 						"type": "string",
 						"nullable": true
-					},
-					"commercializationReason": {
-						"type": "string",
-						"nullable": true
-					},
-					"isActive": {
-						"type": "boolean"
-					},
-					"createdAt": {
-						"type": "string",
-						"nullable": true
-					},
-					"updatedAt": {
-						"type": "string",
-						"nullable": true
-					},
-					"customConfig": {
-						"type": "object",
-						"nullable": true,
-						"additionalProperties": {
-							"nullable": true
-						}
-					},
-					"minimumAmounts": {
-						"type": "object",
-						"nullable": true,
-						"properties": {
-							"initialDeposit": {
-								"type": "string",
-								"nullable": true
-							},
-							"additionalDeposit": {
-								"type": "string",
-								"nullable": true
-							},
-							"minArbitration": {
-								"type": "string",
-								"nullable": true
-							},
-							"minPartialWithdrawal": {
-								"type": "string",
-								"nullable": true
-							}
-						}
-					},
-					"scheduledPayments": {
-						"type": "object",
-						"nullable": true,
-						"properties": {
-							"monthly": {
-								"type": "string",
-								"nullable": true
-							},
-							"quarterly": {
-								"type": "string",
-								"nullable": true
-							},
-							"semiAnnual": {
-								"type": "string",
-								"nullable": true
-							},
-							"annual": {
-								"type": "string",
-								"nullable": true
-							}
-						}
-					},
-					"arbitrationOptions": {
-						"type": "object",
-						"nullable": true,
-						"properties": {
-							"arbitrage_fees": {
-								"type": "string",
-								"nullable": true
-							},
-							"max_entry_fees": {
-								"type": "string",
-								"nullable": true
-							}
-						}
-					},
-					"managementOptions": {
-						"type": "object",
-						"nullable": true,
-						"properties": {
-							"securitization_of_capital_gains": {
-								"type": "boolean",
-								"nullable": true
-							},
-							"dynamization_of_capital_gains": {
-								"type": "boolean",
-								"nullable": true
-							},
-							"limitation_of_capital_losses": {
-								"type": "boolean",
-								"nullable": true
-							},
-							"automatic_rebalancing": {
-								"type": "boolean",
-								"nullable": true
-							}
-						}
-					},
-					"exitOptions": {
-						"type": "object",
-						"nullable": true,
-						"properties": {
-							"scheduledPartialWithdrawal": {
-								"type": "string",
-								"nullable": true
-							},
-							"floorGuarantee": {
-								"type": "string",
-								"nullable": true
-							},
-							"lifeAnnuity": {
-								"type": "string",
-								"nullable": true
-							},
-							"contractAdvance": {
-								"type": "string",
-								"nullable": true
-							},
-							"earlyExitPenalty": {
-								"type": "string",
-								"nullable": true
-							}
-						}
-					},
-					"legacyMetadata": {
-						"type": "object",
-						"nullable": true,
-						"additionalProperties": {
-							"nullable": true
-						}
-					},
-					"parentCatalogueId": {
-						"type": "string",
-						"nullable": true,
-						"format": "uuid"
 					}
 				},
 				"required": [
 					"id",
-					"companyId",
-					"productSource",
+					"referentialId",
+					"name",
+					"type",
 					"isActive",
-					"createdAt",
-					"updatedAt",
-					"minimumAmounts",
-					"scheduledPayments",
-					"arbitrationOptions",
-					"managementOptions",
-					"exitOptions",
-					"legacyMetadata"
+					"commercializationStatus",
+					"commercializationStart",
+					"commercializationEnd"
 				]
 			},
 			"ProductListResponse": {
@@ -1810,7 +1672,7 @@
 					"data": {
 						"type": "array",
 						"items": {
-							"$ref": "#/components/schemas/ProductCatalogueItem"
+							"$ref": "#/components/schemas/ProductListItem"
 						}
 					},
 					"pagination": {
@@ -1846,13 +1708,44 @@
 					"pagination"
 				]
 			},
-			"ContractListResponse": {
+			"EligibleSupport": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"productSupportId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"nullable": true
+					},
+					"code": {
+						"type": "string",
+						"nullable": true
+					},
+					"supportType": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"productSupportId",
+					"name",
+					"code",
+					"supportType"
+				]
+			},
+			"ProductSupportsResponse": {
 				"type": "object",
 				"properties": {
 					"data": {
 						"type": "array",
 						"items": {
-							"$ref": "#/components/schemas/ProductCatalogueItem"
+							"$ref": "#/components/schemas/EligibleSupport"
 						}
 					},
 					"pagination": {
@@ -1886,6 +1779,164 @@
 				"required": [
 					"data",
 					"pagination"
+				]
+			},
+			"MinimumAmountsValues": {
+				"type": "object",
+				"nullable": true,
+				"properties": {
+					"initialDeposit": {
+						"type": "number",
+						"nullable": true
+					},
+					"additionalDeposit": {
+						"type": "number",
+						"nullable": true
+					},
+					"minArbitration": {
+						"type": "number",
+						"nullable": true
+					},
+					"minPartialWithdrawal": {
+						"type": "number",
+						"nullable": true
+					}
+				}
+			},
+			"ScheduledPaymentsAmounts": {
+				"type": "object",
+				"nullable": true,
+				"properties": {
+					"monthly": {
+						"type": "number",
+						"nullable": true
+					},
+					"quarterly": {
+						"type": "number",
+						"nullable": true
+					},
+					"semiAnnual": {
+						"type": "number",
+						"nullable": true
+					},
+					"annual": {
+						"type": "number",
+						"nullable": true
+					}
+				}
+			},
+			"ProductFee": {
+				"type": "object",
+				"properties": {
+					"feeType": {
+						"type": "string"
+					},
+					"value": {
+						"type": "number",
+						"nullable": true
+					},
+					"unit": {
+						"type": "string",
+						"nullable": true
+					},
+					"frequency": {
+						"type": "string",
+						"nullable": true
+					},
+					"isNegotiated": {
+						"type": "boolean",
+						"description": "true when the cabinet negotiated value overrides the default."
+					}
+				},
+				"required": [
+					"feeType",
+					"value",
+					"unit",
+					"frequency",
+					"isNegotiated"
+				]
+			},
+			"ProductClauses": {
+				"type": "object",
+				"nullable": true,
+				"properties": {
+					"beneficiaryClause": {
+						"type": "string",
+						"nullable": true
+					},
+					"advantagesAndRisks": {
+						"type": "string",
+						"nullable": true
+					},
+					"selectionJustification": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"beneficiaryClause",
+					"advantagesAndRisks",
+					"selectionJustification"
+				]
+			},
+			"ProductDetail": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/ProductListItem"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"minimumAmounts": {
+								"$ref": "#/components/schemas/MinimumAmountsValues"
+							},
+							"scheduledPayments": {
+								"$ref": "#/components/schemas/ScheduledPaymentsAmounts"
+							},
+							"exitOptions": {
+								"type": "object",
+								"nullable": true,
+								"properties": {
+									"scheduledPartialWithdrawal": {
+										"type": "string",
+										"nullable": true
+									},
+									"floorGuarantee": {
+										"type": "string",
+										"nullable": true
+									},
+									"lifeAnnuity": {
+										"type": "string",
+										"nullable": true
+									},
+									"contractAdvance": {
+										"type": "string",
+										"nullable": true
+									},
+									"earlyExitPenalty": {
+										"type": "string",
+										"nullable": true
+									}
+								}
+							},
+							"fees": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/ProductFee"
+								}
+							},
+							"clauses": {
+								"$ref": "#/components/schemas/ProductClauses"
+							}
+						},
+						"required": [
+							"minimumAmounts",
+							"scheduledPayments",
+							"exitOptions",
+							"fees",
+							"clauses"
+						]
+					}
 				]
 			},
 			"Transaction": {
@@ -8648,7 +8699,7 @@
 		"/companies/{companyID}/products": {
 			"get": {
 				"operationId": "products_company_products_list",
-				"summary": "List products for a company",
+				"summary": "[Beta – preprod] List products for a company",
 				"tags": [
 					"Products"
 				],
@@ -8714,10 +8765,82 @@
 				}
 			}
 		},
+		"/companies/{companyID}/products/{productID}/supports": {
+			"get": {
+				"operationId": "products_company_product_supports_list",
+				"summary": "[Beta – preprod] List eligible supports for a product",
+				"tags": [
+					"Products"
+				],
+				"parameters": [
+					{
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+						},
+						"required": true,
+						"name": "companyID",
+						"in": "path"
+					},
+					{
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"example": "bcdabcda-48f0-4f3b-b30a-c6d97293090c"
+						},
+						"required": true,
+						"name": "productID",
+						"in": "path"
+					},
+					{
+						"schema": {
+							"type": "number",
+							"nullable": true,
+							"minimum": 0,
+							"default": 1,
+							"description": "Current pagination page",
+							"example": 1
+						},
+						"required": false,
+						"name": "page",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 100,
+							"default": 20,
+							"description": "Number of items per page",
+							"example": 20
+						},
+						"required": false,
+						"name": "limit",
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success - paginated list of eligible supports",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProductSupportsResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Product not found"
+					}
+				}
+			}
+		},
 		"/companies/{companyID}/products/{productID}": {
 			"get": {
 				"operationId": "products_company_product_show",
-				"summary": "Retrieve a product for a company",
+				"summary": "[Beta – preprod] Retrieve a product for a company",
 				"tags": [
 					"Products"
 				],
@@ -8749,7 +8872,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ProductCatalogueItem"
+									"$ref": "#/components/schemas/ProductDetail"
 								}
 							}
 						}
@@ -8782,7 +8905,7 @@
 					{
 						"schema": {
 							"type": "boolean",
-							"description": "list only active contracts",
+							"description": "filter by product active status",
 							"example": true
 						},
 						"required": true,
@@ -8792,7 +8915,8 @@
 					{
 						"schema": {
 							"type": "number",
-							"minimum": 1,
+							"nullable": true,
+							"minimum": 0,
 							"default": 1,
 							"description": "Current pagination page",
 							"example": 1
@@ -8821,7 +8945,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ContractListResponse"
+									"$ref": "#/components/schemas/ProductListResponse"
 								}
 							}
 						}
@@ -21014,7 +21138,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products": {
 			"get": {
 				"operationId": "products_company_products_list",
-				"summary": "List products for a company",
+				"summary": "[Beta – preprod] List products for a company",
 				"tags": [
 					"Products"
 				],
@@ -21080,10 +21204,82 @@
 				}
 			}
 		},
+		"/parent-companies/{parent_company_id}/companies/{companyID}/products/{productID}/supports": {
+			"get": {
+				"operationId": "products_company_product_supports_list",
+				"summary": "[Beta – preprod] List eligible supports for a product",
+				"tags": [
+					"Products"
+				],
+				"parameters": [
+					{
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"example": "adfdfaca-48f0-4f3b-b30a-c6d97293090c"
+						},
+						"required": true,
+						"name": "companyID",
+						"in": "path"
+					},
+					{
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"example": "bcdabcda-48f0-4f3b-b30a-c6d97293090c"
+						},
+						"required": true,
+						"name": "productID",
+						"in": "path"
+					},
+					{
+						"schema": {
+							"type": "number",
+							"nullable": true,
+							"minimum": 0,
+							"default": 1,
+							"description": "Current pagination page",
+							"example": 1
+						},
+						"required": false,
+						"name": "page",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 100,
+							"default": 20,
+							"description": "Number of items per page",
+							"example": 20
+						},
+						"required": false,
+						"name": "limit",
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success - paginated list of eligible supports",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProductSupportsResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Product not found"
+					}
+				}
+			}
+		},
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products/{productID}": {
 			"get": {
 				"operationId": "products_company_product_show",
-				"summary": "Retrieve a product for a company",
+				"summary": "[Beta – preprod] Retrieve a product for a company",
 				"tags": [
 					"Products"
 				],
@@ -21115,7 +21311,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ProductCatalogueItem"
+									"$ref": "#/components/schemas/ProductDetail"
 								}
 							}
 						}
@@ -21148,7 +21344,7 @@
 					{
 						"schema": {
 							"type": "boolean",
-							"description": "list only active contracts",
+							"description": "filter by product active status",
 							"example": true
 						},
 						"required": true,
@@ -21158,7 +21354,8 @@
 					{
 						"schema": {
 							"type": "number",
-							"minimum": 1,
+							"nullable": true,
+							"minimum": 0,
 							"default": 1,
 							"description": "Current pagination page",
 							"example": 1
@@ -21187,7 +21384,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ContractListResponse"
+									"$ref": "#/components/schemas/ProductListResponse"
 								}
 							}
 						}
