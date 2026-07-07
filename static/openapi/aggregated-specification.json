@@ -1479,6 +1479,21 @@
 					},
 					"productCatalogue": {
 						"$ref": "#/components/schemas/ProductCatalogue"
+					},
+					"valuation": {
+						"type": "number",
+						"nullable": true,
+						"description": "The current valuation of the asset"
+					},
+					"totalInvestment": {
+						"type": "number",
+						"nullable": true,
+						"description": "The total amount invested into the asset"
+					},
+					"totalDisinvestment": {
+						"type": "number",
+						"nullable": true,
+						"description": "The total amount disinvested from the asset"
 					}
 				},
 				"required": [
@@ -1615,10 +1630,13 @@
 			},
 			"ProductListItem": {
 				"type": "object",
+				"nullable": true,
 				"properties": {
 					"id": {
 						"type": "string",
-						"format": "uuid"
+						"nullable": true,
+						"format": "uuid",
+						"description": "Identifier of the insurer institution, null when only free-text insurer is known."
 					},
 					"referentialId": {
 						"type": "string",
@@ -1644,11 +1662,15 @@
 					},
 					"commercializationStatus": {
 						"type": "string",
-						"nullable": true
+						"nullable": true,
+						"enum": [
+							"custom",
+							"referential"
+						],
+						"description": "Explicit product kind: 'custom' when a custom_product row references this entry, 'referential' when it points to a referential product. Derived from the data, not from the unreliable productSource column."
 					},
-					"commercializationStart": {
-						"type": "string",
-						"nullable": true
+					"isActive": {
+						"type": "boolean"
 					},
 					"commercializationEnd": {
 						"type": "string",
@@ -2036,6 +2058,12 @@
 						"type": "string",
 						"nullable": true,
 						"description": "The name of the insurer for the related contract"
+					},
+					"feePercentage": {
+						"type": "number",
+						"nullable": true,
+						"description": "The fee percentage applied to this transaction",
+						"example": 1.5
 					},
 					"productCatalogue": {
 						"allOf": [
