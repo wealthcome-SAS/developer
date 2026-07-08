@@ -1628,7 +1628,7 @@
 					"id"
 				]
 			},
-			"ProductListItem": {
+			"ProductEstablishment": {
 				"type": "object",
 				"nullable": true,
 				"properties": {
@@ -1637,6 +1637,24 @@
 						"nullable": true,
 						"format": "uuid",
 						"description": "Identifier of the insurer institution, null when only free-text insurer is known."
+					},
+					"name": {
+						"type": "string",
+						"nullable": true,
+						"description": "Insurer/establishment name (e.g. MMA, AFI ESCA), from the linked institution, falling back to the referential free-text insurer."
+					}
+				},
+				"required": [
+					"id",
+					"name"
+				]
+			},
+			"ProductListItem": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
 					},
 					"referentialId": {
 						"type": "string",
@@ -1660,17 +1678,16 @@
 					"isActive": {
 						"type": "boolean"
 					},
+					"establishment": {
+						"$ref": "#/components/schemas/ProductEstablishment"
+					},
 					"commercializationStatus": {
 						"type": "string",
-						"nullable": true,
-						"enum": [
-							"custom",
-							"referential"
-						],
-						"description": "Explicit product kind: 'custom' when a custom_product row references this entry, 'referential' when it points to a referential product. Derived from the data, not from the unreliable productSource column."
+						"nullable": true
 					},
-					"isActive": {
-						"type": "boolean"
+					"commercializationStart": {
+						"type": "string",
+						"nullable": true
 					},
 					"commercializationEnd": {
 						"type": "string",
@@ -1683,6 +1700,7 @@
 					"name",
 					"type",
 					"isActive",
+					"establishment",
 					"commercializationStatus",
 					"commercializationStart",
 					"commercializationEnd"
