@@ -8745,7 +8745,7 @@
 		"/companies/{companyID}/products": {
 			"get": {
 				"operationId": "products_company_products_list",
-				"summary": "[Beta – preprod] List products for a company",
+				"summary": "List products for a company",
 				"tags": [
 					"Products"
 				],
@@ -8814,7 +8814,7 @@
 		"/companies/{companyID}/products/{productID}/supports": {
 			"get": {
 				"operationId": "products_company_product_supports_list",
-				"summary": "[Beta – preprod] List eligible supports for a product",
+				"summary": "List eligible supports for a product",
 				"tags": [
 					"Products"
 				],
@@ -8886,7 +8886,7 @@
 		"/companies/{companyID}/products/{productID}": {
 			"get": {
 				"operationId": "products_company_product_show",
-				"summary": "[Beta – preprod] Retrieve a product for a company",
+				"summary": "Retrieve a product for a company",
 				"tags": [
 					"Products"
 				],
@@ -21184,7 +21184,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products": {
 			"get": {
 				"operationId": "products_company_products_list",
-				"summary": "[Beta – preprod] List products for a company",
+				"summary": "List products for a company",
 				"tags": [
 					"Products"
 				],
@@ -21253,7 +21253,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products/{productID}/supports": {
 			"get": {
 				"operationId": "products_company_product_supports_list",
-				"summary": "[Beta – preprod] List eligible supports for a product",
+				"summary": "List eligible supports for a product",
 				"tags": [
 					"Products"
 				],
@@ -21325,7 +21325,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products/{productID}": {
 			"get": {
 				"operationId": "products_company_product_show",
-				"summary": "[Beta – preprod] Retrieve a product for a company",
+				"summary": "Retrieve a product for a company",
 				"tags": [
 					"Products"
 				],
