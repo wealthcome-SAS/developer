@@ -47,5 +47,8 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "overrides": {
+    "elliptic": "6.5.7"
   }
 }
