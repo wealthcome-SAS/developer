@@ -747,6 +747,132 @@
 								"type": "string",
 								"nullable": true
 							},
+							"professionalSubcategory": {
+								"anyOf": [
+									{
+										"type": "string",
+										"enum": [
+											"SMALL_FARMERS",
+											"MEDIUM_FARMERS",
+											"LARGE_FARMERS",
+											"ARTISANS",
+											"SHOPKEEPERS_&_RELATED",
+											"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+											"SELF_EMPLOYED",
+											"LIBERAL_PROFESSIONS_&_RELATED",
+											"CIVIL_SERVICE_EXECUTIVES",
+											"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+											"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+											"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+											"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+											"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+											"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+											"CLERGY_RELIGIOUS",
+											"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+											"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+											"TECHNICIANS",
+											"FOREMEN_SUPERVISORS",
+											"PUBLIC_SERVICE_EMPLOYEES",
+											"POLICE_OFFICERS_AND_MILITARY",
+											"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+											"SALES_EMPLOYEES",
+											"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+											"SKILLED_WORKERS",
+											"UNSKILLED_WORKERS",
+											"AGRICULTURAL_WORKERS",
+											"FORMER_EXPLOITANT_FARMERS",
+											"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+											"FORMER_EXECUTIVES",
+											"FORMER_INTERMEDIATE_PROFESSIONS",
+											"FORMER_EMPLOYEES",
+											"FORMER_WORKERS",
+											"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+											"UNEMPLOYED_NEVER_HAVING_WORKED",
+											"CONSCRIPTS",
+											"PUPILS_STUDENTS",
+											"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+											"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+											"OTHERS"
+										]
+									},
+									{
+										"type": "string",
+										"enum": [
+											"EXPLOITANT_FARMERS",
+											"ARTISANS",
+											"SHOPKEEPERS_&_RELATED",
+											"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+											"LIBERAL_PROFESSIONS_&_RELATED",
+											"CIVIL_SERVICE_EXECUTIVES",
+											"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+											"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+											"BUSINESS_EXECUTIVES",
+											"FORMER_EXPLOITANT_FARMERS",
+											"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+											"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+											"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+											"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+											"TECHNICIANS",
+											"FOREMEN_SUPERVISORS",
+											"PUBLIC_SERVICE_EMPLOYEES",
+											"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+											"SALES_EMPLOYEES",
+											"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+											"SKILLED_WORKERS",
+											"UNSKILLED_WORKERS",
+											"AGRICULTURAL_WORKERS",
+											"FORMER_EMPLOYEES_&_WORKERS",
+											"UNEMPLOYED_NEVER_HAVING_WORKED",
+											"VARIOUS_INACTIVE_INDIVIDUALS",
+											"CONSCRIPTS",
+											"PUPILS_STUDENTS",
+											"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+											"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+											"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+											"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+											"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+											"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+											"SELF_EMPLOYED",
+											"OTHERS"
+										]
+									},
+									{
+										"nullable": true
+									}
+								]
+							},
+							"employmentStability": {
+								"type": "string",
+								"nullable": true,
+								"enum": [
+									"UNEMPLOYED_OR_TEMPORARY",
+									"CDD_OR_INTERIM",
+									"CDI_RECENT",
+									"CDI_ESTABLISHED",
+									"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+								]
+							},
+							"experienceRange": {
+								"type": "string",
+								"nullable": true,
+								"enum": [
+									"LESS_THAN_1_YEAR",
+									"1_3_YEARS",
+									"3_5_YEARS",
+									"5_10_YEARS",
+									"MORE_THAN_10_YEARS"
+								]
+							},
+							"currentPastProfession": {
+								"type": "string",
+								"nullable": true,
+								"enum": [
+									"NO",
+									"YES_CURRENT_PROFESSION",
+									"YES_LAST_10_YEARS",
+									"YES_MORE_THAN_10_YEARS"
+								]
+							},
 							"externalClientFileReference": {
 								"type": "string",
 								"nullable": true
@@ -824,6 +950,35 @@
 									},
 									"creationDate": {
 										"type": "string",
+										"nullable": true
+									},
+									"accountClosingDate": {
+										"anyOf": [
+											{
+												"type": "string"
+											},
+											{
+												"type": "string"
+											},
+											{
+												"nullable": true
+											}
+										]
+									},
+									"legalEntityIdentifier": {
+										"type": "string",
+										"nullable": true
+									},
+									"listedCompany": {
+										"type": "boolean",
+										"nullable": true
+									},
+									"mifClientClassification": {
+										"type": "string",
+										"nullable": true
+									},
+									"regulatedActivity": {
+										"type": "boolean",
 										"nullable": true
 									},
 									"legalForm": {
@@ -1382,12 +1537,101 @@
 						"nullable": true,
 						"description": "The insurer/partner institution name",
 						"example": "CARDIF"
+					},
+					"productType": {
+						"type": "string",
+						"nullable": true,
+						"description": "The type of the product"
 					}
 				},
 				"required": [
 					"id"
 				],
 				"description": "Product catalogue information linked to this asset"
+			},
+			"AssetInvestment": {
+				"type": "object",
+				"properties": {
+					"support": {
+						"type": "object",
+						"nullable": true,
+						"properties": {
+							"id": {
+								"type": "string",
+								"description": "The support ID of the investment"
+							},
+							"code": {
+								"type": "string",
+								"description": "The support code of the investment"
+							},
+							"name": {
+								"type": "string",
+								"description": "The support name of the investment"
+							},
+							"supportType": {
+								"type": "string",
+								"description": "The support type of the investment"
+							}
+						},
+						"required": [
+							"id",
+							"code",
+							"name",
+							"supportType"
+						]
+					},
+					"isin": {
+						"type": "string",
+						"nullable": true,
+						"description": "The ISIN of the investment, if any"
+					},
+					"quantity": {
+						"type": "number",
+						"nullable": true,
+						"description": "The number of owned Unit of Accounts"
+					},
+					"unitValue": {
+						"type": "number",
+						"nullable": true,
+						"description": "The value of one Unit of Account, in euros"
+					},
+					"unitPrice": {
+						"type": "number",
+						"nullable": true,
+						"description": "The price of one Unit of Account, in euros"
+					},
+					"valuationDate": {
+						"type": "string",
+						"nullable": true,
+						"description": "The valuation date of the investment"
+					},
+					"performance": {
+						"type": "object",
+						"nullable": true,
+						"properties": {
+							"gain": {
+								"type": "object",
+								"properties": {
+									"value": {
+										"type": "number",
+										"description": "The gain value of the investment, in euros"
+									},
+									"percentage": {
+										"type": "number",
+										"description": "The gain percentage of the investment"
+									}
+								},
+								"required": [
+									"value",
+									"percentage"
+								]
+							}
+						},
+						"required": [
+							"gain"
+						]
+					}
+				}
 			},
 			"Asset": {
 				"type": "object",
@@ -1485,6 +1729,21 @@
 						"nullable": true,
 						"description": "The current valuation of the asset"
 					},
+					"valuationDate": {
+						"type": "string",
+						"nullable": true,
+						"description": "The date of the asset's current valuation"
+					},
+					"openingDate": {
+						"type": "string",
+						"nullable": true,
+						"description": "The contract opening date of the asset"
+					},
+					"closingDate": {
+						"type": "string",
+						"nullable": true,
+						"description": "The closing date of the asset's contract, if any"
+					},
 					"totalInvestment": {
 						"type": "number",
 						"nullable": true,
@@ -1494,6 +1753,14 @@
 						"type": "number",
 						"nullable": true,
 						"description": "The total amount disinvested from the asset"
+					},
+					"investments": {
+						"type": "array",
+						"nullable": true,
+						"items": {
+							"$ref": "#/components/schemas/AssetInvestment"
+						},
+						"description": "The list of investments (supports) held within this contract"
 					}
 				},
 				"required": [
@@ -1681,8 +1948,8 @@
 					"establishment": {
 						"$ref": "#/components/schemas/ProductEstablishment"
 					},
-					"commercializationStatus": {
-						"type": "string",
+					"marketed": {
+						"type": "boolean",
 						"nullable": true
 					},
 					"commercializationStart": {
@@ -1701,7 +1968,7 @@
 					"type",
 					"isActive",
 					"establishment",
-					"commercializationStatus",
+					"marketed",
 					"commercializationStart",
 					"commercializationEnd"
 				]
@@ -3855,6 +4122,132 @@
 													"type": "string",
 													"nullable": true
 												},
+												"professionalSubcategory": {
+													"anyOf": [
+														{
+															"type": "string",
+															"enum": [
+																"SMALL_FARMERS",
+																"MEDIUM_FARMERS",
+																"LARGE_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																"CLERGY_RELIGIOUS",
+																"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"POLICE_OFFICERS_AND_MILITARY",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES",
+																"FORMER_INTERMEDIATE_PROFESSIONS",
+																"FORMER_EMPLOYEES",
+																"FORMER_WORKERS",
+																"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"OTHERS"
+															]
+														},
+														{
+															"type": "string",
+															"enum": [
+																"EXPLOITANT_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"BUSINESS_EXECUTIVES",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EMPLOYEES_&_WORKERS",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"VARIOUS_INACTIVE_INDIVIDUALS",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"OTHERS"
+															]
+														},
+														{
+															"nullable": true
+														}
+													]
+												},
+												"employmentStability": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"UNEMPLOYED_OR_TEMPORARY",
+														"CDD_OR_INTERIM",
+														"CDI_RECENT",
+														"CDI_ESTABLISHED",
+														"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+													]
+												},
+												"experienceRange": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"LESS_THAN_1_YEAR",
+														"1_3_YEARS",
+														"3_5_YEARS",
+														"5_10_YEARS",
+														"MORE_THAN_10_YEARS"
+													]
+												},
+												"currentPastProfession": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"NO",
+														"YES_CURRENT_PROFESSION",
+														"YES_LAST_10_YEARS",
+														"YES_MORE_THAN_10_YEARS"
+													]
+												},
 												"externalClientFileReference": {
 													"type": "string",
 													"nullable": true
@@ -3932,6 +4325,35 @@
 														},
 														"creationDate": {
 															"type": "string",
+															"nullable": true
+														},
+														"accountClosingDate": {
+															"anyOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "string"
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"legalEntityIdentifier": {
+															"type": "string",
+															"nullable": true
+														},
+														"listedCompany": {
+															"type": "boolean",
+															"nullable": true
+														},
+														"mifClientClassification": {
+															"type": "string",
+															"nullable": true
+														},
+														"regulatedActivity": {
+															"type": "boolean",
 															"nullable": true
 														},
 														"legalForm": {
@@ -4831,6 +5253,132 @@
 												"type": "string",
 												"nullable": true
 											},
+											"professionalSubcategory": {
+												"anyOf": [
+													{
+														"type": "string",
+														"enum": [
+															"SMALL_FARMERS",
+															"MEDIUM_FARMERS",
+															"LARGE_FARMERS",
+															"ARTISANS",
+															"SHOPKEEPERS_&_RELATED",
+															"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"SELF_EMPLOYED",
+															"LIBERAL_PROFESSIONS_&_RELATED",
+															"CIVIL_SERVICE_EXECUTIVES",
+															"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+															"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+															"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+															"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+															"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+															"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+															"CLERGY_RELIGIOUS",
+															"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+															"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+															"TECHNICIANS",
+															"FOREMEN_SUPERVISORS",
+															"PUBLIC_SERVICE_EMPLOYEES",
+															"POLICE_OFFICERS_AND_MILITARY",
+															"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+															"SALES_EMPLOYEES",
+															"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+															"SKILLED_WORKERS",
+															"UNSKILLED_WORKERS",
+															"AGRICULTURAL_WORKERS",
+															"FORMER_EXPLOITANT_FARMERS",
+															"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+															"FORMER_EXECUTIVES",
+															"FORMER_INTERMEDIATE_PROFESSIONS",
+															"FORMER_EMPLOYEES",
+															"FORMER_WORKERS",
+															"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+															"UNEMPLOYED_NEVER_HAVING_WORKED",
+															"CONSCRIPTS",
+															"PUPILS_STUDENTS",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+															"OTHERS"
+														]
+													},
+													{
+														"type": "string",
+														"enum": [
+															"EXPLOITANT_FARMERS",
+															"ARTISANS",
+															"SHOPKEEPERS_&_RELATED",
+															"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"LIBERAL_PROFESSIONS_&_RELATED",
+															"CIVIL_SERVICE_EXECUTIVES",
+															"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+															"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+															"BUSINESS_EXECUTIVES",
+															"FORMER_EXPLOITANT_FARMERS",
+															"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+															"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+															"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+															"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+															"TECHNICIANS",
+															"FOREMEN_SUPERVISORS",
+															"PUBLIC_SERVICE_EMPLOYEES",
+															"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+															"SALES_EMPLOYEES",
+															"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+															"SKILLED_WORKERS",
+															"UNSKILLED_WORKERS",
+															"AGRICULTURAL_WORKERS",
+															"FORMER_EMPLOYEES_&_WORKERS",
+															"UNEMPLOYED_NEVER_HAVING_WORKED",
+															"VARIOUS_INACTIVE_INDIVIDUALS",
+															"CONSCRIPTS",
+															"PUPILS_STUDENTS",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+															"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+															"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+															"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+															"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"SELF_EMPLOYED",
+															"OTHERS"
+														]
+													},
+													{
+														"nullable": true
+													}
+												]
+											},
+											"employmentStability": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"UNEMPLOYED_OR_TEMPORARY",
+													"CDD_OR_INTERIM",
+													"CDI_RECENT",
+													"CDI_ESTABLISHED",
+													"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+												]
+											},
+											"experienceRange": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"LESS_THAN_1_YEAR",
+													"1_3_YEARS",
+													"3_5_YEARS",
+													"5_10_YEARS",
+													"MORE_THAN_10_YEARS"
+												]
+											},
+											"currentPastProfession": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"NO",
+													"YES_CURRENT_PROFESSION",
+													"YES_LAST_10_YEARS",
+													"YES_MORE_THAN_10_YEARS"
+												]
+											},
 											"externalClientFileReference": {
 												"type": "string",
 												"nullable": true
@@ -4908,6 +5456,35 @@
 													},
 													"creationDate": {
 														"type": "string",
+														"nullable": true
+													},
+													"accountClosingDate": {
+														"anyOf": [
+															{
+																"type": "string"
+															},
+															{
+																"type": "string"
+															},
+															{
+																"nullable": true
+															}
+														]
+													},
+													"legalEntityIdentifier": {
+														"type": "string",
+														"nullable": true
+													},
+													"listedCompany": {
+														"type": "boolean",
+														"nullable": true
+													},
+													"mifClientClassification": {
+														"type": "string",
+														"nullable": true
+													},
+													"regulatedActivity": {
+														"type": "boolean",
 														"nullable": true
 													},
 													"legalForm": {
@@ -5721,6 +6298,132 @@
 													"type": "string",
 													"nullable": true
 												},
+												"professionalSubcategory": {
+													"anyOf": [
+														{
+															"type": "string",
+															"enum": [
+																"SMALL_FARMERS",
+																"MEDIUM_FARMERS",
+																"LARGE_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																"CLERGY_RELIGIOUS",
+																"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"POLICE_OFFICERS_AND_MILITARY",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES",
+																"FORMER_INTERMEDIATE_PROFESSIONS",
+																"FORMER_EMPLOYEES",
+																"FORMER_WORKERS",
+																"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"OTHERS"
+															]
+														},
+														{
+															"type": "string",
+															"enum": [
+																"EXPLOITANT_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"BUSINESS_EXECUTIVES",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EMPLOYEES_&_WORKERS",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"VARIOUS_INACTIVE_INDIVIDUALS",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"OTHERS"
+															]
+														},
+														{
+															"nullable": true
+														}
+													]
+												},
+												"employmentStability": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"UNEMPLOYED_OR_TEMPORARY",
+														"CDD_OR_INTERIM",
+														"CDI_RECENT",
+														"CDI_ESTABLISHED",
+														"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+													]
+												},
+												"experienceRange": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"LESS_THAN_1_YEAR",
+														"1_3_YEARS",
+														"3_5_YEARS",
+														"5_10_YEARS",
+														"MORE_THAN_10_YEARS"
+													]
+												},
+												"currentPastProfession": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"NO",
+														"YES_CURRENT_PROFESSION",
+														"YES_LAST_10_YEARS",
+														"YES_MORE_THAN_10_YEARS"
+													]
+												},
 												"externalClientFileReference": {
 													"type": "string",
 													"nullable": true
@@ -5798,6 +6501,35 @@
 														},
 														"creationDate": {
 															"type": "string",
+															"nullable": true
+														},
+														"accountClosingDate": {
+															"anyOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "string"
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"legalEntityIdentifier": {
+															"type": "string",
+															"nullable": true
+														},
+														"listedCompany": {
+															"type": "boolean",
+															"nullable": true
+														},
+														"mifClientClassification": {
+															"type": "string",
+															"nullable": true
+														},
+														"regulatedActivity": {
+															"type": "boolean",
 															"nullable": true
 														},
 														"legalForm": {
@@ -6883,6 +7615,132 @@
 															"type": "string",
 															"nullable": true
 														},
+														"professionalSubcategory": {
+															"anyOf": [
+																{
+																	"type": "string",
+																	"enum": [
+																		"SMALL_FARMERS",
+																		"MEDIUM_FARMERS",
+																		"LARGE_FARMERS",
+																		"ARTISANS",
+																		"SHOPKEEPERS_&_RELATED",
+																		"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"SELF_EMPLOYED",
+																		"LIBERAL_PROFESSIONS_&_RELATED",
+																		"CIVIL_SERVICE_EXECUTIVES",
+																		"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																		"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																		"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																		"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																		"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																		"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																		"CLERGY_RELIGIOUS",
+																		"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																		"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																		"TECHNICIANS",
+																		"FOREMEN_SUPERVISORS",
+																		"PUBLIC_SERVICE_EMPLOYEES",
+																		"POLICE_OFFICERS_AND_MILITARY",
+																		"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																		"SALES_EMPLOYEES",
+																		"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																		"SKILLED_WORKERS",
+																		"UNSKILLED_WORKERS",
+																		"AGRICULTURAL_WORKERS",
+																		"FORMER_EXPLOITANT_FARMERS",
+																		"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																		"FORMER_EXECUTIVES",
+																		"FORMER_INTERMEDIATE_PROFESSIONS",
+																		"FORMER_EMPLOYEES",
+																		"FORMER_WORKERS",
+																		"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																		"UNEMPLOYED_NEVER_HAVING_WORKED",
+																		"CONSCRIPTS",
+																		"PUPILS_STUDENTS",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																		"OTHERS"
+																	]
+																},
+																{
+																	"type": "string",
+																	"enum": [
+																		"EXPLOITANT_FARMERS",
+																		"ARTISANS",
+																		"SHOPKEEPERS_&_RELATED",
+																		"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"LIBERAL_PROFESSIONS_&_RELATED",
+																		"CIVIL_SERVICE_EXECUTIVES",
+																		"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																		"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																		"BUSINESS_EXECUTIVES",
+																		"FORMER_EXPLOITANT_FARMERS",
+																		"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																		"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																		"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																		"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																		"TECHNICIANS",
+																		"FOREMEN_SUPERVISORS",
+																		"PUBLIC_SERVICE_EMPLOYEES",
+																		"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																		"SALES_EMPLOYEES",
+																		"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																		"SKILLED_WORKERS",
+																		"UNSKILLED_WORKERS",
+																		"AGRICULTURAL_WORKERS",
+																		"FORMER_EMPLOYEES_&_WORKERS",
+																		"UNEMPLOYED_NEVER_HAVING_WORKED",
+																		"VARIOUS_INACTIVE_INDIVIDUALS",
+																		"CONSCRIPTS",
+																		"PUPILS_STUDENTS",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																		"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																		"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																		"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																		"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"SELF_EMPLOYED",
+																		"OTHERS"
+																	]
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"employmentStability": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"UNEMPLOYED_OR_TEMPORARY",
+																"CDD_OR_INTERIM",
+																"CDI_RECENT",
+																"CDI_ESTABLISHED",
+																"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+															]
+														},
+														"experienceRange": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"LESS_THAN_1_YEAR",
+																"1_3_YEARS",
+																"3_5_YEARS",
+																"5_10_YEARS",
+																"MORE_THAN_10_YEARS"
+															]
+														},
+														"currentPastProfession": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"NO",
+																"YES_CURRENT_PROFESSION",
+																"YES_LAST_10_YEARS",
+																"YES_MORE_THAN_10_YEARS"
+															]
+														},
 														"externalClientFileReference": {
 															"type": "string",
 															"nullable": true
@@ -6960,6 +7818,35 @@
 																},
 																"creationDate": {
 																	"type": "string",
+																	"nullable": true
+																},
+																"accountClosingDate": {
+																	"anyOf": [
+																		{
+																			"type": "string"
+																		},
+																		{
+																			"type": "string"
+																		},
+																		{
+																			"nullable": true
+																		}
+																	]
+																},
+																"legalEntityIdentifier": {
+																	"type": "string",
+																	"nullable": true
+																},
+																"listedCompany": {
+																	"type": "boolean",
+																	"nullable": true
+																},
+																"mifClientClassification": {
+																	"type": "string",
+																	"nullable": true
+																},
+																"regulatedActivity": {
+																	"type": "boolean",
 																	"nullable": true
 																},
 																"legalForm": {
@@ -7823,25 +8710,6 @@
 										"description": "The role to assign to the manager. Takes precedence over claims. Possible values: Conseiller, Conseiller cabinet, Admin cabinet, Admin groupe, Assistant, Assistant cabinet, Externe, Responsable conformité",
 										"example": "Conseiller"
 									},
-									"claims": {
-										"type": "array",
-										"items": {
-											"type": "string",
-											"enum": [
-												"billing",
-												"managers_read",
-												"manager_invite",
-												"clients_invite",
-												"clients_reads",
-												"management"
-											]
-										},
-										"example": [
-											"billing",
-											"management"
-										],
-										"deprecated": true
-									},
 									"informations": {
 										"type": "object",
 										"properties": {
@@ -8126,29 +8994,10 @@
 													],
 													"description": "The role assigned to the manager. Possible values: Conseiller, Conseiller cabinet, Admin cabinet, Admin groupe, Assistant, Assistant cabinet, Externe, Responsable conformité",
 													"example": "Conseiller"
-												},
-												"claims": {
-													"type": "array",
-													"items": {
-														"type": "string",
-														"enum": [
-															"billing",
-															"managers_read",
-															"manager_invite",
-															"clients_invite",
-															"clients_reads",
-															"management"
-														]
-													},
-													"example": [
-														"billing"
-													],
-													"deprecated": true
 												}
 											},
 											"required": [
-												"role",
-												"claims"
+												"role"
 											]
 										}
 									]
@@ -8517,10 +9366,10 @@
 				"parameters": [
 					{
 						"schema": {
-							"type": "number",
+							"type": "integer",
 							"nullable": true,
-							"default": 0,
 							"minimum": 0,
+							"default": 0,
 							"example": 0
 						},
 						"required": false,
@@ -8529,10 +9378,10 @@
 					},
 					{
 						"schema": {
-							"type": "number",
-							"nullable": true,
-							"default": 10,
+							"type": "integer",
 							"minimum": 1,
+							"maximum": 500,
+							"default": 10,
 							"example": 10
 						},
 						"required": false,
@@ -8542,12 +9391,48 @@
 					{
 						"schema": {
 							"type": "string",
+							"enum": [
+								"true",
+								"false"
+							],
+							"default": "false",
+							"description": "Whether to expand the asset details with full information"
+						},
+						"required": false,
+						"name": "expand",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "string",
 							"format": "uuid",
-							"description": "Filter by product catalogue ID",
+							"description": "Filter by product catalogue ID (valid when expand=false)",
 							"example": "b1c2d3e4-f5a6-7890-abcd-ef1234567890"
 						},
 						"required": false,
 						"name": "productCatalogueId",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "string",
+							"nullable": true,
+							"description": "Only return assets whose contract was updated on or after this date (valid when expand=true)",
+							"example": "2024-01-01"
+						},
+						"required": false,
+						"name": "updated_from",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "string",
+							"nullable": true,
+							"description": "Only return assets whose contract was updated on or before this date (valid when expand=true)",
+							"example": "2024-12-31"
+						},
+						"required": false,
+						"name": "updated_to",
 						"in": "query"
 					}
 				],
@@ -8745,7 +9630,7 @@
 		"/companies/{companyID}/products": {
 			"get": {
 				"operationId": "products_company_products_list",
-				"summary": "List products for a company",
+				"summary": "[Beta – preprod] List products for a company",
 				"tags": [
 					"Products"
 				],
@@ -8814,7 +9699,7 @@
 		"/companies/{companyID}/products/{productID}/supports": {
 			"get": {
 				"operationId": "products_company_product_supports_list",
-				"summary": "List eligible supports for a product",
+				"summary": "[Beta – preprod] List eligible supports for a product",
 				"tags": [
 					"Products"
 				],
@@ -8886,7 +9771,7 @@
 		"/companies/{companyID}/products/{productID}": {
 			"get": {
 				"operationId": "products_company_product_show",
-				"summary": "Retrieve a product for a company",
+				"summary": "[Beta – preprod] Retrieve a product for a company",
 				"tags": [
 					"Products"
 				],
@@ -9994,6 +10879,132 @@
 													"type": "string",
 													"nullable": true
 												},
+												"professionalSubcategory": {
+													"anyOf": [
+														{
+															"type": "string",
+															"enum": [
+																"SMALL_FARMERS",
+																"MEDIUM_FARMERS",
+																"LARGE_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																"CLERGY_RELIGIOUS",
+																"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"POLICE_OFFICERS_AND_MILITARY",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES",
+																"FORMER_INTERMEDIATE_PROFESSIONS",
+																"FORMER_EMPLOYEES",
+																"FORMER_WORKERS",
+																"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"OTHERS"
+															]
+														},
+														{
+															"type": "string",
+															"enum": [
+																"EXPLOITANT_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"BUSINESS_EXECUTIVES",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EMPLOYEES_&_WORKERS",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"VARIOUS_INACTIVE_INDIVIDUALS",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"OTHERS"
+															]
+														},
+														{
+															"nullable": true
+														}
+													]
+												},
+												"employmentStability": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"UNEMPLOYED_OR_TEMPORARY",
+														"CDD_OR_INTERIM",
+														"CDI_RECENT",
+														"CDI_ESTABLISHED",
+														"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+													]
+												},
+												"experienceRange": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"LESS_THAN_1_YEAR",
+														"1_3_YEARS",
+														"3_5_YEARS",
+														"5_10_YEARS",
+														"MORE_THAN_10_YEARS"
+													]
+												},
+												"currentPastProfession": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"NO",
+														"YES_CURRENT_PROFESSION",
+														"YES_LAST_10_YEARS",
+														"YES_MORE_THAN_10_YEARS"
+													]
+												},
 												"externalClientFileReference": {
 													"type": "string",
 													"nullable": true
@@ -10071,6 +11082,35 @@
 														},
 														"creationDate": {
 															"type": "string",
+															"nullable": true
+														},
+														"accountClosingDate": {
+															"anyOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "string"
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"legalEntityIdentifier": {
+															"type": "string",
+															"nullable": true
+														},
+														"listedCompany": {
+															"type": "boolean",
+															"nullable": true
+														},
+														"mifClientClassification": {
+															"type": "string",
+															"nullable": true
+														},
+														"regulatedActivity": {
+															"type": "boolean",
 															"nullable": true
 														},
 														"legalForm": {
@@ -10970,6 +12010,132 @@
 												"type": "string",
 												"nullable": true
 											},
+											"professionalSubcategory": {
+												"anyOf": [
+													{
+														"type": "string",
+														"enum": [
+															"SMALL_FARMERS",
+															"MEDIUM_FARMERS",
+															"LARGE_FARMERS",
+															"ARTISANS",
+															"SHOPKEEPERS_&_RELATED",
+															"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"SELF_EMPLOYED",
+															"LIBERAL_PROFESSIONS_&_RELATED",
+															"CIVIL_SERVICE_EXECUTIVES",
+															"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+															"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+															"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+															"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+															"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+															"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+															"CLERGY_RELIGIOUS",
+															"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+															"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+															"TECHNICIANS",
+															"FOREMEN_SUPERVISORS",
+															"PUBLIC_SERVICE_EMPLOYEES",
+															"POLICE_OFFICERS_AND_MILITARY",
+															"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+															"SALES_EMPLOYEES",
+															"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+															"SKILLED_WORKERS",
+															"UNSKILLED_WORKERS",
+															"AGRICULTURAL_WORKERS",
+															"FORMER_EXPLOITANT_FARMERS",
+															"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+															"FORMER_EXECUTIVES",
+															"FORMER_INTERMEDIATE_PROFESSIONS",
+															"FORMER_EMPLOYEES",
+															"FORMER_WORKERS",
+															"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+															"UNEMPLOYED_NEVER_HAVING_WORKED",
+															"CONSCRIPTS",
+															"PUPILS_STUDENTS",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+															"OTHERS"
+														]
+													},
+													{
+														"type": "string",
+														"enum": [
+															"EXPLOITANT_FARMERS",
+															"ARTISANS",
+															"SHOPKEEPERS_&_RELATED",
+															"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"LIBERAL_PROFESSIONS_&_RELATED",
+															"CIVIL_SERVICE_EXECUTIVES",
+															"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+															"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+															"BUSINESS_EXECUTIVES",
+															"FORMER_EXPLOITANT_FARMERS",
+															"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+															"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+															"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+															"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+															"TECHNICIANS",
+															"FOREMEN_SUPERVISORS",
+															"PUBLIC_SERVICE_EMPLOYEES",
+															"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+															"SALES_EMPLOYEES",
+															"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+															"SKILLED_WORKERS",
+															"UNSKILLED_WORKERS",
+															"AGRICULTURAL_WORKERS",
+															"FORMER_EMPLOYEES_&_WORKERS",
+															"UNEMPLOYED_NEVER_HAVING_WORKED",
+															"VARIOUS_INACTIVE_INDIVIDUALS",
+															"CONSCRIPTS",
+															"PUPILS_STUDENTS",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+															"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+															"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+															"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+															"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"SELF_EMPLOYED",
+															"OTHERS"
+														]
+													},
+													{
+														"nullable": true
+													}
+												]
+											},
+											"employmentStability": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"UNEMPLOYED_OR_TEMPORARY",
+													"CDD_OR_INTERIM",
+													"CDI_RECENT",
+													"CDI_ESTABLISHED",
+													"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+												]
+											},
+											"experienceRange": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"LESS_THAN_1_YEAR",
+													"1_3_YEARS",
+													"3_5_YEARS",
+													"5_10_YEARS",
+													"MORE_THAN_10_YEARS"
+												]
+											},
+											"currentPastProfession": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"NO",
+													"YES_CURRENT_PROFESSION",
+													"YES_LAST_10_YEARS",
+													"YES_MORE_THAN_10_YEARS"
+												]
+											},
 											"externalClientFileReference": {
 												"type": "string",
 												"nullable": true
@@ -11047,6 +12213,35 @@
 													},
 													"creationDate": {
 														"type": "string",
+														"nullable": true
+													},
+													"accountClosingDate": {
+														"anyOf": [
+															{
+																"type": "string"
+															},
+															{
+																"type": "string"
+															},
+															{
+																"nullable": true
+															}
+														]
+													},
+													"legalEntityIdentifier": {
+														"type": "string",
+														"nullable": true
+													},
+													"listedCompany": {
+														"type": "boolean",
+														"nullable": true
+													},
+													"mifClientClassification": {
+														"type": "string",
+														"nullable": true
+													},
+													"regulatedActivity": {
+														"type": "boolean",
 														"nullable": true
 													},
 													"legalForm": {
@@ -11860,6 +13055,132 @@
 													"type": "string",
 													"nullable": true
 												},
+												"professionalSubcategory": {
+													"anyOf": [
+														{
+															"type": "string",
+															"enum": [
+																"SMALL_FARMERS",
+																"MEDIUM_FARMERS",
+																"LARGE_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																"CLERGY_RELIGIOUS",
+																"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"POLICE_OFFICERS_AND_MILITARY",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES",
+																"FORMER_INTERMEDIATE_PROFESSIONS",
+																"FORMER_EMPLOYEES",
+																"FORMER_WORKERS",
+																"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"OTHERS"
+															]
+														},
+														{
+															"type": "string",
+															"enum": [
+																"EXPLOITANT_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"BUSINESS_EXECUTIVES",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EMPLOYEES_&_WORKERS",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"VARIOUS_INACTIVE_INDIVIDUALS",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"OTHERS"
+															]
+														},
+														{
+															"nullable": true
+														}
+													]
+												},
+												"employmentStability": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"UNEMPLOYED_OR_TEMPORARY",
+														"CDD_OR_INTERIM",
+														"CDI_RECENT",
+														"CDI_ESTABLISHED",
+														"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+													]
+												},
+												"experienceRange": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"LESS_THAN_1_YEAR",
+														"1_3_YEARS",
+														"3_5_YEARS",
+														"5_10_YEARS",
+														"MORE_THAN_10_YEARS"
+													]
+												},
+												"currentPastProfession": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"NO",
+														"YES_CURRENT_PROFESSION",
+														"YES_LAST_10_YEARS",
+														"YES_MORE_THAN_10_YEARS"
+													]
+												},
 												"externalClientFileReference": {
 													"type": "string",
 													"nullable": true
@@ -11937,6 +13258,35 @@
 														},
 														"creationDate": {
 															"type": "string",
+															"nullable": true
+														},
+														"accountClosingDate": {
+															"anyOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "string"
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"legalEntityIdentifier": {
+															"type": "string",
+															"nullable": true
+														},
+														"listedCompany": {
+															"type": "boolean",
+															"nullable": true
+														},
+														"mifClientClassification": {
+															"type": "string",
+															"nullable": true
+														},
+														"regulatedActivity": {
+															"type": "boolean",
 															"nullable": true
 														},
 														"legalForm": {
@@ -13022,6 +14372,132 @@
 															"type": "string",
 															"nullable": true
 														},
+														"professionalSubcategory": {
+															"anyOf": [
+																{
+																	"type": "string",
+																	"enum": [
+																		"SMALL_FARMERS",
+																		"MEDIUM_FARMERS",
+																		"LARGE_FARMERS",
+																		"ARTISANS",
+																		"SHOPKEEPERS_&_RELATED",
+																		"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"SELF_EMPLOYED",
+																		"LIBERAL_PROFESSIONS_&_RELATED",
+																		"CIVIL_SERVICE_EXECUTIVES",
+																		"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																		"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																		"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																		"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																		"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																		"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																		"CLERGY_RELIGIOUS",
+																		"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																		"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																		"TECHNICIANS",
+																		"FOREMEN_SUPERVISORS",
+																		"PUBLIC_SERVICE_EMPLOYEES",
+																		"POLICE_OFFICERS_AND_MILITARY",
+																		"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																		"SALES_EMPLOYEES",
+																		"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																		"SKILLED_WORKERS",
+																		"UNSKILLED_WORKERS",
+																		"AGRICULTURAL_WORKERS",
+																		"FORMER_EXPLOITANT_FARMERS",
+																		"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																		"FORMER_EXECUTIVES",
+																		"FORMER_INTERMEDIATE_PROFESSIONS",
+																		"FORMER_EMPLOYEES",
+																		"FORMER_WORKERS",
+																		"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																		"UNEMPLOYED_NEVER_HAVING_WORKED",
+																		"CONSCRIPTS",
+																		"PUPILS_STUDENTS",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																		"OTHERS"
+																	]
+																},
+																{
+																	"type": "string",
+																	"enum": [
+																		"EXPLOITANT_FARMERS",
+																		"ARTISANS",
+																		"SHOPKEEPERS_&_RELATED",
+																		"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"LIBERAL_PROFESSIONS_&_RELATED",
+																		"CIVIL_SERVICE_EXECUTIVES",
+																		"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																		"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																		"BUSINESS_EXECUTIVES",
+																		"FORMER_EXPLOITANT_FARMERS",
+																		"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																		"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																		"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																		"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																		"TECHNICIANS",
+																		"FOREMEN_SUPERVISORS",
+																		"PUBLIC_SERVICE_EMPLOYEES",
+																		"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																		"SALES_EMPLOYEES",
+																		"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																		"SKILLED_WORKERS",
+																		"UNSKILLED_WORKERS",
+																		"AGRICULTURAL_WORKERS",
+																		"FORMER_EMPLOYEES_&_WORKERS",
+																		"UNEMPLOYED_NEVER_HAVING_WORKED",
+																		"VARIOUS_INACTIVE_INDIVIDUALS",
+																		"CONSCRIPTS",
+																		"PUPILS_STUDENTS",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																		"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																		"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																		"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																		"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"SELF_EMPLOYED",
+																		"OTHERS"
+																	]
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"employmentStability": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"UNEMPLOYED_OR_TEMPORARY",
+																"CDD_OR_INTERIM",
+																"CDI_RECENT",
+																"CDI_ESTABLISHED",
+																"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+															]
+														},
+														"experienceRange": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"LESS_THAN_1_YEAR",
+																"1_3_YEARS",
+																"3_5_YEARS",
+																"5_10_YEARS",
+																"MORE_THAN_10_YEARS"
+															]
+														},
+														"currentPastProfession": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"NO",
+																"YES_CURRENT_PROFESSION",
+																"YES_LAST_10_YEARS",
+																"YES_MORE_THAN_10_YEARS"
+															]
+														},
 														"externalClientFileReference": {
 															"type": "string",
 															"nullable": true
@@ -13099,6 +14575,35 @@
 																},
 																"creationDate": {
 																	"type": "string",
+																	"nullable": true
+																},
+																"accountClosingDate": {
+																	"anyOf": [
+																		{
+																			"type": "string"
+																		},
+																		{
+																			"type": "string"
+																		},
+																		{
+																			"nullable": true
+																		}
+																	]
+																},
+																"legalEntityIdentifier": {
+																	"type": "string",
+																	"nullable": true
+																},
+																"listedCompany": {
+																	"type": "boolean",
+																	"nullable": true
+																},
+																"mifClientClassification": {
+																	"type": "string",
+																	"nullable": true
+																},
+																"regulatedActivity": {
+																	"type": "boolean",
 																	"nullable": true
 																},
 																"legalForm": {
@@ -13968,25 +15473,6 @@
 										"description": "The role to assign to the manager. Takes precedence over claims. Possible values: Conseiller, Conseiller cabinet, Admin cabinet, Admin groupe, Assistant, Assistant cabinet, Externe, Responsable conformité",
 										"example": "Conseiller"
 									},
-									"claims": {
-										"type": "array",
-										"items": {
-											"type": "string",
-											"enum": [
-												"billing",
-												"managers_read",
-												"manager_invite",
-												"clients_invite",
-												"clients_reads",
-												"management"
-											]
-										},
-										"example": [
-											"billing",
-											"management"
-										],
-										"deprecated": true
-									},
 									"informations": {
 										"type": "object",
 										"properties": {
@@ -14271,29 +15757,10 @@
 													],
 													"description": "The role assigned to the manager. Possible values: Conseiller, Conseiller cabinet, Admin cabinet, Admin groupe, Assistant, Assistant cabinet, Externe, Responsable conformité",
 													"example": "Conseiller"
-												},
-												"claims": {
-													"type": "array",
-													"items": {
-														"type": "string",
-														"enum": [
-															"billing",
-															"managers_read",
-															"manager_invite",
-															"clients_invite",
-															"clients_reads",
-															"management"
-														]
-													},
-													"example": [
-														"billing"
-													],
-													"deprecated": true
 												}
 											},
 											"required": [
-												"role",
-												"claims"
+												"role"
 											]
 										}
 									]
@@ -16294,6 +17761,132 @@
 													"type": "string",
 													"nullable": true
 												},
+												"professionalSubcategory": {
+													"anyOf": [
+														{
+															"type": "string",
+															"enum": [
+																"SMALL_FARMERS",
+																"MEDIUM_FARMERS",
+																"LARGE_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																"CLERGY_RELIGIOUS",
+																"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"POLICE_OFFICERS_AND_MILITARY",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES",
+																"FORMER_INTERMEDIATE_PROFESSIONS",
+																"FORMER_EMPLOYEES",
+																"FORMER_WORKERS",
+																"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"OTHERS"
+															]
+														},
+														{
+															"type": "string",
+															"enum": [
+																"EXPLOITANT_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"BUSINESS_EXECUTIVES",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EMPLOYEES_&_WORKERS",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"VARIOUS_INACTIVE_INDIVIDUALS",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"OTHERS"
+															]
+														},
+														{
+															"nullable": true
+														}
+													]
+												},
+												"employmentStability": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"UNEMPLOYED_OR_TEMPORARY",
+														"CDD_OR_INTERIM",
+														"CDI_RECENT",
+														"CDI_ESTABLISHED",
+														"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+													]
+												},
+												"experienceRange": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"LESS_THAN_1_YEAR",
+														"1_3_YEARS",
+														"3_5_YEARS",
+														"5_10_YEARS",
+														"MORE_THAN_10_YEARS"
+													]
+												},
+												"currentPastProfession": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"NO",
+														"YES_CURRENT_PROFESSION",
+														"YES_LAST_10_YEARS",
+														"YES_MORE_THAN_10_YEARS"
+													]
+												},
 												"externalClientFileReference": {
 													"type": "string",
 													"nullable": true
@@ -16371,6 +17964,35 @@
 														},
 														"creationDate": {
 															"type": "string",
+															"nullable": true
+														},
+														"accountClosingDate": {
+															"anyOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "string"
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"legalEntityIdentifier": {
+															"type": "string",
+															"nullable": true
+														},
+														"listedCompany": {
+															"type": "boolean",
+															"nullable": true
+														},
+														"mifClientClassification": {
+															"type": "string",
+															"nullable": true
+														},
+														"regulatedActivity": {
+															"type": "boolean",
 															"nullable": true
 														},
 														"legalForm": {
@@ -17270,6 +18892,132 @@
 												"type": "string",
 												"nullable": true
 											},
+											"professionalSubcategory": {
+												"anyOf": [
+													{
+														"type": "string",
+														"enum": [
+															"SMALL_FARMERS",
+															"MEDIUM_FARMERS",
+															"LARGE_FARMERS",
+															"ARTISANS",
+															"SHOPKEEPERS_&_RELATED",
+															"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"SELF_EMPLOYED",
+															"LIBERAL_PROFESSIONS_&_RELATED",
+															"CIVIL_SERVICE_EXECUTIVES",
+															"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+															"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+															"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+															"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+															"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+															"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+															"CLERGY_RELIGIOUS",
+															"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+															"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+															"TECHNICIANS",
+															"FOREMEN_SUPERVISORS",
+															"PUBLIC_SERVICE_EMPLOYEES",
+															"POLICE_OFFICERS_AND_MILITARY",
+															"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+															"SALES_EMPLOYEES",
+															"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+															"SKILLED_WORKERS",
+															"UNSKILLED_WORKERS",
+															"AGRICULTURAL_WORKERS",
+															"FORMER_EXPLOITANT_FARMERS",
+															"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+															"FORMER_EXECUTIVES",
+															"FORMER_INTERMEDIATE_PROFESSIONS",
+															"FORMER_EMPLOYEES",
+															"FORMER_WORKERS",
+															"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+															"UNEMPLOYED_NEVER_HAVING_WORKED",
+															"CONSCRIPTS",
+															"PUPILS_STUDENTS",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+															"OTHERS"
+														]
+													},
+													{
+														"type": "string",
+														"enum": [
+															"EXPLOITANT_FARMERS",
+															"ARTISANS",
+															"SHOPKEEPERS_&_RELATED",
+															"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"LIBERAL_PROFESSIONS_&_RELATED",
+															"CIVIL_SERVICE_EXECUTIVES",
+															"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+															"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+															"BUSINESS_EXECUTIVES",
+															"FORMER_EXPLOITANT_FARMERS",
+															"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+															"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+															"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+															"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+															"TECHNICIANS",
+															"FOREMEN_SUPERVISORS",
+															"PUBLIC_SERVICE_EMPLOYEES",
+															"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+															"SALES_EMPLOYEES",
+															"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+															"SKILLED_WORKERS",
+															"UNSKILLED_WORKERS",
+															"AGRICULTURAL_WORKERS",
+															"FORMER_EMPLOYEES_&_WORKERS",
+															"UNEMPLOYED_NEVER_HAVING_WORKED",
+															"VARIOUS_INACTIVE_INDIVIDUALS",
+															"CONSCRIPTS",
+															"PUPILS_STUDENTS",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+															"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+															"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+															"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+															"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+															"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+															"SELF_EMPLOYED",
+															"OTHERS"
+														]
+													},
+													{
+														"nullable": true
+													}
+												]
+											},
+											"employmentStability": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"UNEMPLOYED_OR_TEMPORARY",
+													"CDD_OR_INTERIM",
+													"CDI_RECENT",
+													"CDI_ESTABLISHED",
+													"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+												]
+											},
+											"experienceRange": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"LESS_THAN_1_YEAR",
+													"1_3_YEARS",
+													"3_5_YEARS",
+													"5_10_YEARS",
+													"MORE_THAN_10_YEARS"
+												]
+											},
+											"currentPastProfession": {
+												"type": "string",
+												"nullable": true,
+												"enum": [
+													"NO",
+													"YES_CURRENT_PROFESSION",
+													"YES_LAST_10_YEARS",
+													"YES_MORE_THAN_10_YEARS"
+												]
+											},
 											"externalClientFileReference": {
 												"type": "string",
 												"nullable": true
@@ -17347,6 +19095,35 @@
 													},
 													"creationDate": {
 														"type": "string",
+														"nullable": true
+													},
+													"accountClosingDate": {
+														"anyOf": [
+															{
+																"type": "string"
+															},
+															{
+																"type": "string"
+															},
+															{
+																"nullable": true
+															}
+														]
+													},
+													"legalEntityIdentifier": {
+														"type": "string",
+														"nullable": true
+													},
+													"listedCompany": {
+														"type": "boolean",
+														"nullable": true
+													},
+													"mifClientClassification": {
+														"type": "string",
+														"nullable": true
+													},
+													"regulatedActivity": {
+														"type": "boolean",
 														"nullable": true
 													},
 													"legalForm": {
@@ -18160,6 +19937,132 @@
 													"type": "string",
 													"nullable": true
 												},
+												"professionalSubcategory": {
+													"anyOf": [
+														{
+															"type": "string",
+															"enum": [
+																"SMALL_FARMERS",
+																"MEDIUM_FARMERS",
+																"LARGE_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																"CLERGY_RELIGIOUS",
+																"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"POLICE_OFFICERS_AND_MILITARY",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES",
+																"FORMER_INTERMEDIATE_PROFESSIONS",
+																"FORMER_EMPLOYEES",
+																"FORMER_WORKERS",
+																"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"OTHERS"
+															]
+														},
+														{
+															"type": "string",
+															"enum": [
+																"EXPLOITANT_FARMERS",
+																"ARTISANS",
+																"SHOPKEEPERS_&_RELATED",
+																"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"LIBERAL_PROFESSIONS_&_RELATED",
+																"CIVIL_SERVICE_EXECUTIVES",
+																"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																"BUSINESS_EXECUTIVES",
+																"FORMER_EXPLOITANT_FARMERS",
+																"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																"TECHNICIANS",
+																"FOREMEN_SUPERVISORS",
+																"PUBLIC_SERVICE_EMPLOYEES",
+																"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																"SALES_EMPLOYEES",
+																"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																"SKILLED_WORKERS",
+																"UNSKILLED_WORKERS",
+																"AGRICULTURAL_WORKERS",
+																"FORMER_EMPLOYEES_&_WORKERS",
+																"UNEMPLOYED_NEVER_HAVING_WORKED",
+																"VARIOUS_INACTIVE_INDIVIDUALS",
+																"CONSCRIPTS",
+																"PUPILS_STUDENTS",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																"SELF_EMPLOYED",
+																"OTHERS"
+															]
+														},
+														{
+															"nullable": true
+														}
+													]
+												},
+												"employmentStability": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"UNEMPLOYED_OR_TEMPORARY",
+														"CDD_OR_INTERIM",
+														"CDI_RECENT",
+														"CDI_ESTABLISHED",
+														"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+													]
+												},
+												"experienceRange": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"LESS_THAN_1_YEAR",
+														"1_3_YEARS",
+														"3_5_YEARS",
+														"5_10_YEARS",
+														"MORE_THAN_10_YEARS"
+													]
+												},
+												"currentPastProfession": {
+													"type": "string",
+													"nullable": true,
+													"enum": [
+														"NO",
+														"YES_CURRENT_PROFESSION",
+														"YES_LAST_10_YEARS",
+														"YES_MORE_THAN_10_YEARS"
+													]
+												},
 												"externalClientFileReference": {
 													"type": "string",
 													"nullable": true
@@ -18237,6 +20140,35 @@
 														},
 														"creationDate": {
 															"type": "string",
+															"nullable": true
+														},
+														"accountClosingDate": {
+															"anyOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "string"
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"legalEntityIdentifier": {
+															"type": "string",
+															"nullable": true
+														},
+														"listedCompany": {
+															"type": "boolean",
+															"nullable": true
+														},
+														"mifClientClassification": {
+															"type": "string",
+															"nullable": true
+														},
+														"regulatedActivity": {
+															"type": "boolean",
 															"nullable": true
 														},
 														"legalForm": {
@@ -19322,6 +21254,132 @@
 															"type": "string",
 															"nullable": true
 														},
+														"professionalSubcategory": {
+															"anyOf": [
+																{
+																	"type": "string",
+																	"enum": [
+																		"SMALL_FARMERS",
+																		"MEDIUM_FARMERS",
+																		"LARGE_FARMERS",
+																		"ARTISANS",
+																		"SHOPKEEPERS_&_RELATED",
+																		"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"SELF_EMPLOYED",
+																		"LIBERAL_PROFESSIONS_&_RELATED",
+																		"CIVIL_SERVICE_EXECUTIVES",
+																		"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																		"SCHOOL_TEACHERS_INSTITUTORS_&_RELATED",
+																		"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																		"ADMINISTRATIVE_&_COMMERCIAL_BUSINESS_EXECUTIVES",
+																		"ENGINEERS_&_TECHNICAL_BUSINESS_EXECUTIVES",
+																		"HEALTH_AND_SOCIAL_WORK_INTERMEDIATE_PROFESSIONS",
+																		"CLERGY_RELIGIOUS",
+																		"PUBLIC_SERVICE_ADMINISTRATIVE_INTERMEDIATE_PROFESSIONS",
+																		"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																		"TECHNICIANS",
+																		"FOREMEN_SUPERVISORS",
+																		"PUBLIC_SERVICE_EMPLOYEES",
+																		"POLICE_OFFICERS_AND_MILITARY",
+																		"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																		"SALES_EMPLOYEES",
+																		"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																		"SKILLED_WORKERS",
+																		"UNSKILLED_WORKERS",
+																		"AGRICULTURAL_WORKERS",
+																		"FORMER_EXPLOITANT_FARMERS",
+																		"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																		"FORMER_EXECUTIVES",
+																		"FORMER_INTERMEDIATE_PROFESSIONS",
+																		"FORMER_EMPLOYEES",
+																		"FORMER_WORKERS",
+																		"INACTIVE_OR_RETIRED_WITHOUT_NOTABLE_PREVIOUS_PROFESSIONAL_AFFILIATION",
+																		"UNEMPLOYED_NEVER_HAVING_WORKED",
+																		"CONSCRIPTS",
+																		"PUPILS_STUDENTS",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																		"OTHERS"
+																	]
+																},
+																{
+																	"type": "string",
+																	"enum": [
+																		"EXPLOITANT_FARMERS",
+																		"ARTISANS",
+																		"SHOPKEEPERS_&_RELATED",
+																		"BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"LIBERAL_PROFESSIONS_&_RELATED",
+																		"CIVIL_SERVICE_EXECUTIVES",
+																		"TEACHERS_&_SCIENTIFIC_PROFESSIONS",
+																		"INFORMATION_ARTS_&_ENTERTAINMENT_PROFESSIONS",
+																		"BUSINESS_EXECUTIVES",
+																		"FORMER_EXPLOITANT_FARMERS",
+																		"FORMER_ARTISANS_SHOPKEEPERS_BUSINESS_OWNERS",
+																		"FORMER_EXECUTIVES_&_INTERMEDIATE_PROFESSIONS",
+																		"INTERMEDIATE_PROFESSIONS_IN_EDUCATION_HEALTH_PUBLIC_SERVICE_&_RELATED",
+																		"ADMINISTRATIVE_&_COMMERCIAL_INTERMEDIATE_PROFESSIONS_IN_BUSINESS",
+																		"TECHNICIANS",
+																		"FOREMEN_SUPERVISORS",
+																		"PUBLIC_SERVICE_EMPLOYEES",
+																		"ADMINISTRATIVE_EMPLOYEES_IN_BUSINESS",
+																		"SALES_EMPLOYEES",
+																		"DIRECT_SERVICE_PERSONNAL_FOR_INDIVIDUALS",
+																		"SKILLED_WORKERS",
+																		"UNSKILLED_WORKERS",
+																		"AGRICULTURAL_WORKERS",
+																		"FORMER_EMPLOYEES_&_WORKERS",
+																		"UNEMPLOYED_NEVER_HAVING_WORKED",
+																		"VARIOUS_INACTIVE_INDIVIDUALS",
+																		"CONSCRIPTS",
+																		"PUPILS_STUDENTS",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_UNDER_60_YEARS_OLD",
+																		"VARIOUS_INDIVIDUALS_WITHOUT_PROFESSIONNAL_ACTIVITY_60_YEARS_OLD_&_MORE",
+																		"RETIRED_UNSKILLED_WORKERS_OR_SERVICE_OR_SALES_EMPLOYEES",
+																		"RETIRED_SKILLED_WORKERS_FARMERS_ARTISANS_SHOPKEEPERS_ADMINISTRATIVE_EMPLOYEES",
+																		"RETIRED_INTERMEDIATE_PROFESSIONS_TEACHERS_TECHNICIANS_SUPERVISORS",
+																		"RETIRED_EXECUTIVES_LIBERAL_PROFESSIONS_PROFESSORS_SCIENTISTS_OR_BUSINESS_OWNERS_10_MORE_EMPLOYEES",
+																		"SELF_EMPLOYED",
+																		"OTHERS"
+																	]
+																},
+																{
+																	"nullable": true
+																}
+															]
+														},
+														"employmentStability": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"UNEMPLOYED_OR_TEMPORARY",
+																"CDD_OR_INTERIM",
+																"CDI_RECENT",
+																"CDI_ESTABLISHED",
+																"CDI_LONG_TERM_OR_PUBLIC_SERVICE"
+															]
+														},
+														"experienceRange": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"LESS_THAN_1_YEAR",
+																"1_3_YEARS",
+																"3_5_YEARS",
+																"5_10_YEARS",
+																"MORE_THAN_10_YEARS"
+															]
+														},
+														"currentPastProfession": {
+															"type": "string",
+															"nullable": true,
+															"enum": [
+																"NO",
+																"YES_CURRENT_PROFESSION",
+																"YES_LAST_10_YEARS",
+																"YES_MORE_THAN_10_YEARS"
+															]
+														},
 														"externalClientFileReference": {
 															"type": "string",
 															"nullable": true
@@ -19399,6 +21457,35 @@
 																},
 																"creationDate": {
 																	"type": "string",
+																	"nullable": true
+																},
+																"accountClosingDate": {
+																	"anyOf": [
+																		{
+																			"type": "string"
+																		},
+																		{
+																			"type": "string"
+																		},
+																		{
+																			"nullable": true
+																		}
+																	]
+																},
+																"legalEntityIdentifier": {
+																	"type": "string",
+																	"nullable": true
+																},
+																"listedCompany": {
+																	"type": "boolean",
+																	"nullable": true
+																},
+																"mifClientClassification": {
+																	"type": "string",
+																	"nullable": true
+																},
+																"regulatedActivity": {
+																	"type": "boolean",
 																	"nullable": true
 																},
 																"legalForm": {
@@ -20262,25 +22349,6 @@
 										"description": "The role to assign to the manager. Takes precedence over claims. Possible values: Conseiller, Conseiller cabinet, Admin cabinet, Admin groupe, Assistant, Assistant cabinet, Externe, Responsable conformité",
 										"example": "Conseiller"
 									},
-									"claims": {
-										"type": "array",
-										"items": {
-											"type": "string",
-											"enum": [
-												"billing",
-												"managers_read",
-												"manager_invite",
-												"clients_invite",
-												"clients_reads",
-												"management"
-											]
-										},
-										"example": [
-											"billing",
-											"management"
-										],
-										"deprecated": true
-									},
 									"informations": {
 										"type": "object",
 										"properties": {
@@ -20565,29 +22633,10 @@
 													],
 													"description": "The role assigned to the manager. Possible values: Conseiller, Conseiller cabinet, Admin cabinet, Admin groupe, Assistant, Assistant cabinet, Externe, Responsable conformité",
 													"example": "Conseiller"
-												},
-												"claims": {
-													"type": "array",
-													"items": {
-														"type": "string",
-														"enum": [
-															"billing",
-															"managers_read",
-															"manager_invite",
-															"clients_invite",
-															"clients_reads",
-															"management"
-														]
-													},
-													"example": [
-														"billing"
-													],
-													"deprecated": true
 												}
 											},
 											"required": [
-												"role",
-												"claims"
+												"role"
 											]
 										}
 									]
@@ -20956,10 +23005,10 @@
 				"parameters": [
 					{
 						"schema": {
-							"type": "number",
+							"type": "integer",
 							"nullable": true,
-							"default": 0,
 							"minimum": 0,
+							"default": 0,
 							"example": 0
 						},
 						"required": false,
@@ -20968,10 +23017,10 @@
 					},
 					{
 						"schema": {
-							"type": "number",
-							"nullable": true,
-							"default": 10,
+							"type": "integer",
 							"minimum": 1,
+							"maximum": 500,
+							"default": 10,
 							"example": 10
 						},
 						"required": false,
@@ -20981,12 +23030,48 @@
 					{
 						"schema": {
 							"type": "string",
+							"enum": [
+								"true",
+								"false"
+							],
+							"default": "false",
+							"description": "Whether to expand the asset details with full information"
+						},
+						"required": false,
+						"name": "expand",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "string",
 							"format": "uuid",
-							"description": "Filter by product catalogue ID",
+							"description": "Filter by product catalogue ID (valid when expand=false)",
 							"example": "b1c2d3e4-f5a6-7890-abcd-ef1234567890"
 						},
 						"required": false,
 						"name": "productCatalogueId",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "string",
+							"nullable": true,
+							"description": "Only return assets whose contract was updated on or after this date (valid when expand=true)",
+							"example": "2024-01-01"
+						},
+						"required": false,
+						"name": "updated_from",
+						"in": "query"
+					},
+					{
+						"schema": {
+							"type": "string",
+							"nullable": true,
+							"description": "Only return assets whose contract was updated on or before this date (valid when expand=true)",
+							"example": "2024-12-31"
+						},
+						"required": false,
+						"name": "updated_to",
 						"in": "query"
 					}
 				],
@@ -21184,7 +23269,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products": {
 			"get": {
 				"operationId": "products_company_products_list",
-				"summary": "List products for a company",
+				"summary": "[Beta – preprod] List products for a company",
 				"tags": [
 					"Products"
 				],
@@ -21253,7 +23338,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products/{productID}/supports": {
 			"get": {
 				"operationId": "products_company_product_supports_list",
-				"summary": "List eligible supports for a product",
+				"summary": "[Beta – preprod] List eligible supports for a product",
 				"tags": [
 					"Products"
 				],
@@ -21325,7 +23410,7 @@
 		"/parent-companies/{parent_company_id}/companies/{companyID}/products/{productID}": {
 			"get": {
 				"operationId": "products_company_product_show",
-				"summary": "Retrieve a product for a company",
+				"summary": "[Beta – preprod] Retrieve a product for a company",
 				"tags": [
 					"Products"
 				],
