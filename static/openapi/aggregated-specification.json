@@ -1585,6 +1585,12 @@
 						"nullable": true,
 						"description": "The ISIN of the investment, if any"
 					},
+					"label": {
+						"type": "string",
+						"nullable": true,
+						"description": "The label/name of the support",
+						"example": "APPLE INC"
+					},
 					"quantity": {
 						"type": "number",
 						"nullable": true,
@@ -1600,10 +1606,52 @@
 						"nullable": true,
 						"description": "The price of one Unit of Account, in euros"
 					},
+					"valuation": {
+						"type": "number",
+						"nullable": true,
+						"description": "The valuation of the position, in euros",
+						"example": 15575
+					},
 					"valuationDate": {
 						"type": "string",
 						"nullable": true,
 						"description": "The valuation date of the investment"
+					},
+					"instrument": {
+						"type": "string",
+						"nullable": true,
+						"description": "The type of financial instrument",
+						"example": "Stock"
+					},
+					"category": {
+						"type": "string",
+						"nullable": true,
+						"description": "The category of the investment",
+						"example": "Equity"
+					},
+					"subcategory": {
+						"type": "string",
+						"nullable": true,
+						"description": "The subcategory of the investment",
+						"example": "Technology"
+					},
+					"managementCompany": {
+						"type": "string",
+						"nullable": true,
+						"description": "The management company of the support",
+						"example": "BlackRock"
+					},
+					"riskIndicator": {
+						"type": "number",
+						"nullable": true,
+						"description": "The risk indicator of the support",
+						"example": 3
+					},
+					"sri": {
+						"type": "number",
+						"nullable": true,
+						"description": "The Synthetic Risk Indicator (SRI) of the support",
+						"example": 4
 					},
 					"performance": {
 						"type": "object",
