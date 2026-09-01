@@ -1,0 +1,24 @@
+name: Renovate Slack
+
+# Notifie #dev-reviews à l'ouverture d'une PR Renovate.
+#
+# Trigger `pull_request` volontaire : `workflow_run` s'exécute dans le contexte de
+# la branche par défaut avec accès aux secrets, ce que l'analyse SAST signale comme
+# une voie d'escalade de privilèges. Ici le job tourne dans le contexte de la PR.
+# Renovate pousse ses branches dans le repo (jamais depuis un fork) : les secrets
+# restent disponibles.
+#
+# Déployé tel quel dans chaque repo par renovate/scripts/deploy-slack-stubs.sh.
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+jobs:
+  notify:
+    if: startsWith(github.head_ref, 'renovate/')
+    permissions:
+      contents: read
+      pull-requests: read
+    uses: wealthcome-SAS/actions/.github/workflows/notify-renovate-ready.yml@stable
+    secrets: inherit
