@@ -1,5 +1,5 @@
 # NodeJS image
-FROM node:18.13-alpine
+FROM node:22-alpine
 
 WORKDIR /build
 
