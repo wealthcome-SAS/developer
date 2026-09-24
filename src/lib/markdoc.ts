@@ -1,5 +1,6 @@
 import Markdoc from "@markdoc/markdoc";
 import type { Config } from "@markdoc/markdoc";
+import { BaseUrl } from "../components/markdoc/BaseUrl";
 import { Callout } from "../components/markdoc/Callout";
 import { Card } from "../components/markdoc/Card";
 import { CodeBlock } from "../components/markdoc/CodeBlock";
@@ -12,6 +13,10 @@ import { TypographyTable } from "../components/markdoc/TypographyTable";
 
 export const config: Config = {
 	tags: {
+		"base-url": {
+			render: "BaseUrl",
+			selfClosing: true,
+		},
 		callout: {
 			render: "Callout",
 			attributes: {
@@ -99,6 +104,7 @@ export const config: Config = {
 };
 
 export const components = {
+	BaseUrl,
 	Callout,
 	CodeBlock,
 	Card,

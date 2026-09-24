@@ -18,24 +18,24 @@ function Home() {
 				<Grid cols="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<Card
 						variant="home"
+						title="Getting Started"
+						description="Get up and running with the Wealthcome APIs: obtain a token, list your companies, and explore your data."
+						href="/docs/guides/first-steps"
+						icon="Building"
+					/>
+					<Card
+						variant="home"
 						title="Authentication"
-						description="This specification describes the authentication methods for the Wealthcome ecosystem."
+						description="Learn how to authenticate your application and retrieve an access token to call the Wealthcome APIs."
 						href="/docs/authentication/introduction"
 						icon="User"
 					/>
 					<Card
 						variant="home"
-						title="Financial Provider Specification"
-						description="This specification describes what a financial provider must comply with to offer its clients (wealth management companies) an integration of their data into a wealth aggregator (Wealthcome)."
-						href="/docs/financial-provider-specification/introduction"
-						icon="TrendingUp"
-					/>
-					<Card
-						variant="home"
-						title="Aggregated API"
-						description="This specification describes the Aggregated API for managing companies, customers, teams, entities, references, managers, assets, and parent companies in the Wealthcome ecosystem."
-						href="/docs/aggregated-api/introduction"
-						icon="Database"
+						title="Guides"
+						description="Practical guides covering token retrieval, company and contract listing, customer updates, pagination, and error handling."
+						href="/docs/guides/get-token"
+						icon="FileText"
 					/>
 				</Grid>
 			</div>

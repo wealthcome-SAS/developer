@@ -17,6 +17,7 @@ import {
 } from "./ui/Breadcrumb";
 import { Footer } from "./ui/Footer";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "./ui/Sidebar";
+import { EnvSwitcher } from "./EnvSwitcher";
 
 export function Layout() {
 	const location = useLocation();
@@ -57,7 +58,7 @@ export function Layout() {
 			<AppSidebar />
 			<SidebarInset className="overflow-y-auto ">
 				<main className="flex-1 overflow-y-auto bg-gray-100 rounded-lg">
-					<header className="flex h-16 shrink-0 items-center gap-2">
+					<header className="flex h-16 shrink-0 items-center justify-between pr-4">
 						<div className="flex items-center gap-2 px-4">
 							<SidebarTrigger className="-ml-1" />
 							<Separator
@@ -100,6 +101,9 @@ export function Layout() {
 									))}
 								</BreadcrumbList>
 							</Breadcrumb>
+						</div>
+						<div className="flex items-center">
+							<EnvSwitcher />
 						</div>
 					</header>
 					<div className="max-w-full mx-auto pt-0">

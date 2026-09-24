@@ -45,21 +45,28 @@ export function Footer() {
 							<li>
 								<Link
 									to="/docs/$"
-									params={{
-										_splat: "financial-provider-specification/introduction",
-									}}
+									params={{ _splat: "guides/get-token" }}
 									className="text-gray-300 hover:text-white transition-colors"
 								>
-									Financial Provider
+									Get an access token
 								</Link>
 							</li>
 							<li>
 								<Link
 									to="/docs/$"
-									params={{ _splat: "aggregated-api/introduction" }}
+									params={{ _splat: "guides/list-companies" }}
 									className="text-gray-300 hover:text-white transition-colors"
 								>
-									Aggregated API
+									List your companies
+								</Link>
+							</li>
+							<li>
+								<Link
+									to="/docs/$"
+									params={{ _splat: "guides/error-codes" }}
+									className="text-gray-300 hover:text-white transition-colors"
+								>
+									Error codes
 								</Link>
 							</li>
 						</ul>
