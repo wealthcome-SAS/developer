@@ -30,7 +30,15 @@ function extractText(node: React.ReactNode): string {
 		return node.map(extractText).join("");
 	}
 	if (React.isValidElement(node)) {
-		const { children } = node.props as { children?: React.ReactNode };
+		const { children, content } = node.props as {
+			children?: React.ReactNode;
+			content?: string;
+		};
+		// Some markdoc render components (e.g. TypographyCode) pass their text
+		// through a `content` prop instead of children.
+		if (content != null && children == null) {
+			return content;
+		}
 		return extractText(children);
 	}
 	return "";
