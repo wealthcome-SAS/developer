@@ -191,6 +191,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					</SidebarGroupLabel>
 					<SidebarGroupContent>
 						<SidebarMenu>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild isActive={location.pathname === "/api-reference"}>
+									<Link to="/api-reference">
+										<File />
+										<span>API Reference</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
 							{/* Build a collapsible tree for Financial Provider Specification */}
 							<TreeRoot currentSection={currentSection} />
 						</SidebarMenu>

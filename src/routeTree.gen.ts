@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ApiReferenceRouteImport } from './routes/api-reference'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 import { Route as DocsSplatRouteImport } from './routes/docs.$'
 
+const ApiReferenceRoute = ApiReferenceRouteImport.update({
+  id: '/api-reference',
+  path: '/api-reference',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,36 +37,47 @@ const DocsSplatRoute = DocsSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api-reference': typeof ApiReferenceRoute
   '/docs/$': typeof DocsSplatRoute
   '/docs/$slug': typeof DocsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api-reference': typeof ApiReferenceRoute
   '/docs/$': typeof DocsSplatRoute
   '/docs/$slug': typeof DocsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api-reference': typeof ApiReferenceRoute
   '/docs/$': typeof DocsSplatRoute
   '/docs/$slug': typeof DocsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs/$' | '/docs/$slug'
+  fullPaths: '/' | '/api-reference' | '/docs/$' | '/docs/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/docs/$' | '/docs/$slug'
-  id: '__root__' | '/' | '/docs/$' | '/docs/$slug'
+  to: '/' | '/api-reference' | '/docs/$' | '/docs/$slug'
+  id: '__root__' | '/' | '/api-reference' | '/docs/$' | '/docs/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiReferenceRoute: typeof ApiReferenceRoute
   DocsSplatRoute: typeof DocsSplatRoute
   DocsSlugRoute: typeof DocsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/api-reference': {
+      id: '/api-reference'
+      path: '/api-reference'
+      fullPath: '/api-reference'
+      preLoaderRoute: typeof ApiReferenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiReferenceRoute: ApiReferenceRoute,
   DocsSplatRoute: DocsSplatRoute,
   DocsSlugRoute: DocsSlugRoute,
 }
