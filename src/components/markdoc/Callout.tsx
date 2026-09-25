@@ -1,4 +1,9 @@
-import type React from "react";
+import { Banner } from "design-system";
+import React from "react";
+
+type BannerVariant = NonNullable<
+	React.ComponentProps<typeof Banner>["variant"]
+>;
 
 interface CalloutProps {
 	type?: "info" | "warning" | "error" | "success";
@@ -6,18 +11,41 @@ interface CalloutProps {
 	children: React.ReactNode;
 }
 
-export function Callout({ type = "info", title, children }: CalloutProps) {
-	const styles = {
-		info: "bg-blue-50 border-blue-200 text-blue-900",
-		warning: "bg-yellow-50 border-yellow-200 text-yellow-900",
-		error: "bg-red-50 border-red-200 text-red-900",
-		success: "bg-green-50 border-green-200 text-green-900",
-	};
+// Banner variants are richer than the callout types, so map the legacy types
+// onto the closest design-system variants.
+const variantMap: Record<NonNullable<CalloutProps["type"]>, BannerVariant> = {
+	info: "accent",
+	warning: "alert",
+	error: "high",
+	success: "low",
+};
 
+// Banner only accepts a plain-text `description`, so flatten the already-rendered
+// markdoc children (links, inline code, base-url, ...) into a single string.
+function extractText(node: React.ReactNode): string {
+	if (typeof node === "string" || typeof node === "number") {
+		return node.toString();
+	}
+	if (Array.isArray(node)) {
+		return node.map(extractText).join("");
+	}
+	if (React.isValidElement(node)) {
+		const { children } = node.props as { children?: React.ReactNode };
+		return extractText(children);
+	}
+	return "";
+}
+
+export function Callout({ type = "info", title, children }: CalloutProps) {
 	return (
-		<div className={`border-l-4 p-4 my-4 ${styles[type]}`}>
-			{title && <div className="font-bold mb-2">{title}</div>}
-			<div>{children}</div>
-		</div>
+		<Banner
+			variant={variantMap[type]}
+			title={title ?? ""}
+			description={extractText(children)}
+			onClose={() => {}}
+			onDismiss={() => {}}
+			closable={false}
+			showDismissSwitch={false}
+		/>
 	);
 }
