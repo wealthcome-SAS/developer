@@ -17,7 +17,7 @@
 		"buffer": "^6.0.3",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
-		"design-system": "wealthcome-SAS/design-system#semver:3.x.x",
+		"design-system": "wealthcome-SAS/design-system#semver:18.x.x",
 		"gray-matter": "^4.0.3",
 		"lucide-react": "^0.548.0",
 		"mermaid": "^11.12.1",
